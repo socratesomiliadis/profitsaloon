@@ -32,8 +32,8 @@ const NavUser = () => {
       </Link>
     );
   } else {
-    const src = userDetails?.avatar_url as string;
-    const name = userDetails?.full_name as string;
+    const src = userDetails?.avatar_url || '/static/images/userAvatar.jpg';
+    const name = userDetails?.full_name || 'Name not found.';
     return (
       <button
         onClick={async () => {
