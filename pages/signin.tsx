@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
-import LoadingDots from 'components/ui/LoadingDots';
-import Logo from 'components/icons/Logo';
+
 import { getURL } from '@/utils/helpers';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
 
@@ -22,13 +21,13 @@ const SignIn = () => {
       <div className="flex justify-center height-screen-helper">
         <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
           <div className="flex justify-center pb-12 ">
-            <Logo width="64px" height="64px" />
+            {/* <Logo width="64px" height="64px" /> */}
           </div>
           <div className="flex flex-col space-y-4">
             <Auth
               supabaseClient={supabaseClient}
-              providers={['github']}
-              redirectTo={getURL()}
+              providers={['discord']}
+              redirectTo={'/'}
               magicLink={true}
               appearance={{
                 theme: ThemeSupa,
@@ -48,11 +47,7 @@ const SignIn = () => {
       </div>
     );
 
-  return (
-    <div className="m-6">
-      <LoadingDots />
-    </div>
-  );
+  return <div className="m-6">{/* <LoadingDots /> */}</div>;
 };
 
 export default SignIn;

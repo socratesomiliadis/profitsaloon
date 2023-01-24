@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "AcidGrotesk";
+  src: local("AcidGrotesk"), url(/fonts/AcidGrotesk-Light.woff2) format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "AcidGrotesk";
+  src: local("AcidGrotesk"),
+    url(/fonts/AcidGrotesk-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "AcidGrotesk";
+  src: local("AcidGrotesk"),
+    url(/fonts/AcidGrotesk-Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "AcidGrotesk";
+  src: local("AcidGrotesk"), url(/fonts/AcidGrotesk-Bold.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1a1a1a;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  background: #2f2f2f;
+}
+
+html {
+  font-family: "AcidGrotesk";
+  overflow-x: hidden;
+  background: #1a1a1a;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: #ededed;
+}
+
+::selection {
+  color: black;
+  background: #ededed;
+}
+
+.tier-section {
+  background: radial-gradient(
+    61.82% 58.3% at 50% 58.3%,
+    #232323 0%,
+    #000000 100%
+  );
+}
+
+img {
+  user-select: none;
+}
