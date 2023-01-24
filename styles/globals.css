@@ -3,28 +3,28 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "AcidGrotesk";
-  src: local("AcidGrotesk"), url(/fonts/AcidGrotesk-Light.woff2) format("woff2");
+  font-family: 'AcidGrotesk';
+  src: local('AcidGrotesk'), url(/fonts/AcidGrotesk-Light.woff2) format('woff2');
   font-weight: 300;
   font-display: swap;
 }
 @font-face {
-  font-family: "AcidGrotesk";
-  src: local("AcidGrotesk"),
-    url(/fonts/AcidGrotesk-Regular.woff2) format("woff2");
+  font-family: 'AcidGrotesk';
+  src: local('AcidGrotesk'),
+    url(/fonts/AcidGrotesk-Regular.woff2) format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: "AcidGrotesk";
-  src: local("AcidGrotesk"),
-    url(/fonts/AcidGrotesk-Medium.woff2) format("woff2");
+  font-family: 'AcidGrotesk';
+  src: local('AcidGrotesk'),
+    url(/fonts/AcidGrotesk-Medium.woff2) format('woff2');
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
-  font-family: "AcidGrotesk";
-  src: local("AcidGrotesk"), url(/fonts/AcidGrotesk-Bold.woff2) format("woff2");
+  font-family: 'AcidGrotesk';
+  src: local('AcidGrotesk'), url(/fonts/AcidGrotesk-Bold.woff2) format('woff2');
   font-weight: 600;
   font-display: swap;
 }
@@ -46,7 +46,7 @@
 }
 
 html {
-  font-family: "AcidGrotesk";
+  font-family: 'AcidGrotesk';
   overflow-x: hidden;
   background: #1a1a1a;
 }
@@ -72,4 +72,31 @@ html {
 
 img {
   user-select: none;
+}
+
+.big-circle {
+  background: linear-gradient(
+    145.25deg,
+    rgba(13, 13, 13, 0.05) 14.8%,
+    rgba(46, 46, 46, 0) 86.15%
+  );
+  backdrop-filter: blur(78px);
+}
+
+.medium-circle {
+  background: linear-gradient(
+    145.25deg,
+    rgba(13, 13, 13, 0.1) 14.8%,
+    rgba(46, 46, 46, 0) 86.15%
+  );
+  backdrop-filter: blur(78px);
+}
+
+.small-circle {
+  background: linear-gradient(
+    145.25deg,
+    rgba(13, 13, 13, 0.5) 14.8%,
+    rgba(46, 46, 46, 0) 86.15%
+  );
+  backdrop-filter: blur(78px);
 }

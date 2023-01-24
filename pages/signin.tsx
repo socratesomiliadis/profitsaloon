@@ -10,12 +10,6 @@ const SignIn = () => {
   const user = useUser();
   const supabaseClient = useSupabaseClient();
 
-  useEffect(() => {
-    if (user) {
-      router.replace('/account');
-    }
-  }, [user]);
-
   if (!user)
     return (
       <div className="flex justify-center height-screen-helper">

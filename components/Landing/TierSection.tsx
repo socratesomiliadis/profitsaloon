@@ -1,9 +1,10 @@
-import TierCard from "./TierCard";
+import Image from 'next/image';
+import TierCard from './TierCard';
 
 export default function TierSection() {
   return (
-    <section className="tier-section flex h-[180vh] w-screen flex-col items-center pt-32">
-      <div className="flex flex-col items-center gap-4">
+    <section className="tier-section flex h-[180vh] w-screen flex-col items-center pt-32 relative">
+      <div className="flex flex-col items-center gap-4 z-10">
         <span className="text-center text-5xl font-medium text-[#ededed]">
           Increase your earnings through participation
           <br />
@@ -16,7 +17,7 @@ export default function TierSection() {
           increasing revenue.
         </p>
       </div>
-      <div className="mt-32 flex w-full flex-row items-center gap-10 px-64">
+      <div className="mt-32 flex w-full flex-row items-center gap-10 px-64 z-10">
         <TierCard
           title="Student"
           price="28,99"
@@ -31,11 +32,18 @@ export default function TierSection() {
         />
         <TierCard
           title="Expert"
-          price="28,99"
+          price="988,99"
           fromColor="#95780A"
           toColor="#E8D694"
         />
       </div>
+      <Image
+        src="/static/images/overlappingCircles.png"
+        width={2000}
+        height={2000}
+        className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+        alt=""
+      />
     </section>
   );
 }

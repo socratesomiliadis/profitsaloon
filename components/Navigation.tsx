@@ -4,13 +4,34 @@ import { useUser } from '@/utils/useUser';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import type { Database } from 'types_db';
 
 const NavUser = () => {
   const router = useRouter();
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = useSupabaseClient<Database>();
   const { user, userDetails } = useUser();
+
+  async function updateUserDetails() {
+    try {
+      if (!user) throw new Error('No user');
+
+      let { error } = await supabaseClient
+        .from('users')
+        .update({ full_name: userDetails?.email.replace(/@.*$/, '') })
+        .eq('id', userDetails?.id);
+      if (error) throw error;
+      alert('Profile updated!');
+    } catch (error) {
+      alert('Error updating the data!');
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    if (userDetails) console.log(userDetails);
+    if (userDetails && !userDetails.full_name) {
+      updateUserDetails();
+      console.log('test');
+    }
   }, [userDetails]);
 
   if (!user) {
@@ -51,6 +72,7 @@ const NavUser = () => {
         />
         <span className="-mb-1">{name}</span>
       </button>
+      
     );
   }
 };
