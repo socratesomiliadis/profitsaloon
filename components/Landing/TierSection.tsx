@@ -3,7 +3,7 @@ import TierCard from './TierCard';
 
 export default function TierSection() {
   return (
-    <section className="tier-section flex h-[180vh] w-screen flex-col items-center pt-32 relative">
+    <section className="tier-section flex h-[200vh] w-screen flex-col items-center pt-32 relative noisy">
       <div className="flex flex-col items-center gap-4 z-10">
         <span className="text-center text-5xl font-medium text-[#ededed]">
           Increase your earnings through participation
@@ -38,10 +38,19 @@ export default function TierSection() {
         />
       </div>
       <Image
+        src="/static/images/grain.png"
+        width={3000}
+        height={3000}
+        quality={100}
+        className="absolute inset-0 w-full h-full object-cover z-[1] opacity-80"
+        alt=""
+        priority={true}
+      />
+      <Image
         src="/static/images/overlappingCircles.png"
         width={2000}
         height={2000}
-        className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+        className="mt-[10%] absolute w-[60%] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 opacity-40 z-0"
         alt=""
       />
     </section>

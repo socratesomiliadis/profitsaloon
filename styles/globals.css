@@ -73,30 +73,3 @@ html {
 img {
   user-select: none;
 }
-
-.big-circle {
-  background: linear-gradient(
-    145.25deg,
-    rgba(13, 13, 13, 0.05) 14.8%,
-    rgba(46, 46, 46, 0) 86.15%
-  );
-  backdrop-filter: blur(78px);
-}
-
-.medium-circle {
-  background: linear-gradient(
-    145.25deg,
-    rgba(13, 13, 13, 0.1) 14.8%,
-    rgba(46, 46, 46, 0) 86.15%
-  );
-  backdrop-filter: blur(78px);
-}
-
-.small-circle {
-  background: linear-gradient(
-    145.25deg,
-    rgba(13, 13, 13, 0.5) 14.8%,
-    rgba(46, 46, 46, 0) 86.15%
-  );
-  backdrop-filter: blur(78px);
-}
