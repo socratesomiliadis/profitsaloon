@@ -2,7 +2,7 @@ export default function TierCard({
   title,
   price,
   fromColor,
-  toColor,
+  toColor
 }: {
   title: string;
   price: string;
@@ -10,7 +10,7 @@ export default function TierCard({
   toColor: string;
 }) {
   return (
-    <div className="flex h-fit basis-1/3 flex-col rounded-3xl border-[0.5px] border-[#818181] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50">
+    <div className="backdrop-blur flex h-fit basis-1/3 flex-col rounded-3xl border-[0.5px] border-[#818181] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50">
       <div className="flex h-[45px] w-full flex-col justify-end">
         <svg
           width="24"
@@ -42,7 +42,7 @@ export default function TierCard({
       <div className="w-full px-16 py-8">
         <div
           style={{
-            background: `linear-gradient(288.71deg, ${fromColor} 0%, ${toColor} 100%)`,
+            background: `linear-gradient(288.71deg, ${fromColor} 0%, ${toColor} 100%)`
           }}
           className="flex aspect-[350/200] h-auto w-full flex-row items-start justify-end rounded-2xl p-8"
         >

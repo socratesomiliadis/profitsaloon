@@ -50,7 +50,7 @@ export default function TierSection() {
         src="/static/images/overlappingCircles.png"
         width={2000}
         height={2000}
-        className="mt-[10%] absolute w-[60%] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 opacity-40 z-0"
+        className="mt-[10%] absolute w-[60%] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 opacity-30 z-0"
         alt=""
       />
     </section>
