@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { Database } from 'types_db';
 
-const NavUser = () => {
+const NavUser = ({ setSignInOpen }: { setSignInOpen: any }) => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient<Database>();
   const { user, userDetails } = useUser();
@@ -34,9 +34,20 @@ const NavUser = () => {
     }
   }, [userDetails]);
 
+  useEffect(() => {
+    const HTMLDom = document.querySelector('html') as HTMLElement;
+    if (user) {
+      HTMLDom.style.overflow = '';
+      setSignInOpen(false);
+    }
+  }, [user]);
+
   if (!user) {
     return (
-      <Link href="/signin" className="flex flex-row items-center gap-8">
+      <button
+        onClick={() => setSignInOpen(true)}
+        className="flex flex-row items-center gap-8"
+      >
         <svg
           width="40"
           height="40"
@@ -50,7 +61,7 @@ const NavUser = () => {
           />
         </svg>
         <span className="text-lg font-medium text-white">Login</span>
-      </Link>
+      </button>
     );
   } else {
     const src = userDetails?.avatar_url || '/static/images/userAvatar.jpg';
@@ -59,7 +70,7 @@ const NavUser = () => {
       <button
         onClick={async () => {
           await supabaseClient.auth.signOut();
-          router.push('/signin');
+          // router.push('/signin');
         }}
         className="flex flex-row items-center gap-4 text-lg text-white"
       >
@@ -76,7 +87,7 @@ const NavUser = () => {
   }
 };
 
-export default function Navigation() {
+export default function Navigation({ setSignInOpen }: { setSignInOpen: any }) {
   return (
     <nav className="fixed top-0 z-[999] flex w-screen flex-row items-center justify-between px-32 pt-8">
       <div className="flex flex-row items-center gap-4">
@@ -160,7 +171,7 @@ export default function Navigation() {
           <span className="-mb-1">Become an affiliate</span>
         </button>
         <div className="h-[40px] w-[1px] bg-gradient-to-t from-[#222222] via-[#3C3C3C] to-[#222222]"></div>
-        <NavUser />
+        <NavUser setSignInOpen={setSignInOpen} />
       </div>
     </nav>
   );
