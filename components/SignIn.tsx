@@ -10,9 +10,9 @@ const SignIn = () => {
 
   if (!user)
     return (
-      <div className="fixed z-[9999] w-full h-full flex justify-center inset-0 backdrop-blur-xl bg-black/80">
-        <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
-          <div className="flex justify-center pb-12 ">
+      <div className="fixed z-[9999] w-full h-full flex items-center justify-center inset-0 backdrop-blur-xl bg-black/80">
+        <div className="flex flex-col h-fit max-w-lg py-16 px-32 rounded-2xl border-[2px] border-[#202020] bg-gradient-to-br from-[#000000] to-[#1A1A1A]">
+          <div className="flex justify-center pb-12">
             <svg
               width="220"
               viewBox="0 0 272 50"
@@ -73,7 +73,7 @@ const SignIn = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4 ">
             <Auth
               supabaseClient={supabaseClient}
               providers={['discord']}
