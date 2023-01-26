@@ -229,12 +229,13 @@ export default function HeroSection() {
           </svg> */}
         </div>
         <Image
-          src="/static/images/heroMockup.png"
-          width={1920}
-          height={1342}
+          src="/static/images/heroNew2.png"
+          width={2600}
+          height={2600}
           alt="Profit Saloon"
-          className="z-0 h-full w-full"
+          className="-mt-32 z-0 h-full w-full"
           quality={100}
+          priority={true}
         />
       </div>
     </section>

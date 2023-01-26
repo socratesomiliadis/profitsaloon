@@ -53,13 +53,13 @@ html {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: black;
-  background: #ededed;
+  color: #0f0f0f;
+  background: #49ff86;
 }
 
 ::selection {
-  color: black;
-  background: #ededed;
+  color: #0f0f0f;
+  background: #49ff86;
 }
 
 .tier-section {
