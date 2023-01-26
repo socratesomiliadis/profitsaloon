@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       fontFamily: {
         AcidGrotesk: ['AcidGrotesk', 'sans-serif']
+      },
+      backgroundImage: {
+        'gradient-conic':
+          'conic-gradient(var(--conic-position), var(--tw-gradient-stops))'
       }
     }
   },

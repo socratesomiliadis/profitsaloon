@@ -135,3 +135,50 @@ img {
 .tier-card:hover > .tier-card-fs {
   transform: scale(1.2);
 }
+
+.error-404 {
+  background: radial-gradient(
+    37.32% 68.87% at 50% 50%,
+    #232323 0%,
+    #101010 100%
+  );
+}
+
+.left-light-grad {
+  background: conic-gradient(
+    from 181deg at 57% 0%,
+    rgba(27, 27, 27, 0) -30.87deg,
+    #218643 30.23deg,
+    rgba(72, 255, 134, 0.6) 89.8deg,
+    rgba(19, 19, 19, 0) 89.89deg,
+    rgba(72, 255, 134, 0) 90.24deg,
+    rgba(24, 24, 24, 0) 144.37deg,
+    rgba(27, 27, 27, 0) 329.13deg,
+    #218643 390.23deg
+  );
+  transform: scaleX(-1);
+}
+
+.right-light-grad {
+  background: conic-gradient(
+    from 181deg at 57% 0%,
+    rgba(27, 27, 27, 0) -30.87deg,
+    #218643 30.23deg,
+    rgba(72, 255, 134, 0.6) 89.8deg,
+    rgba(19, 19, 19, 0) 89.89deg,
+    rgba(72, 255, 134, 0) 90.24deg,
+    rgba(24, 24, 24, 0) 144.37deg,
+    rgba(27, 27, 27, 0) 329.13deg,
+    #218643 390.23deg
+  );
+}
+
+.light-ellipse {
+  background: rgba(72, 255, 134, 0.36);
+  filter: blur(80px);
+}
+
+.light-bar {
+  background: linear-gradient(180deg, #505050 0%, #44f27f 195%);
+  border-radius: 3px;
+}

@@ -56,6 +56,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <TierSection />
         <FeaturedCourses />
+        <div className="h-[200vh]"></div>
         {/* <button onClick={() => handleCheckout()} className="text-white">
           Test
         </button> */}
