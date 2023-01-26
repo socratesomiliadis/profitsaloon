@@ -134,7 +134,7 @@ export default function HeroSection() {
       </div>
       <div className="relative mt-44 aspect-[1920/1342] h-auto w-full">
         <div className="absolute bottom-0 left-0 z-[1] flex h-[40%] w-full flex-col items-center gap-4 bg-gradient-to-t from-black via-black to-transparent pt-[12%]">
-          <span className="text-4xl font-medium text-[#ededed]">
+          {/* <span className="text-4xl font-medium text-[#ededed]">
             Be the best version of yourself.
           </span>
           <p className="text-center text-xl text-[#818181]">
@@ -226,7 +226,7 @@ export default function HeroSection() {
                 <stop offset="1" stopColor="#2D2D2D" stopOpacity="0.3" />
               </linearGradient>
             </defs>
-          </svg>
+          </svg> */}
         </div>
         <Image
           src="/static/images/heroMockup.png"

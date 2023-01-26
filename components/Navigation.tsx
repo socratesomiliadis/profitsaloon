@@ -60,7 +60,7 @@ const NavUser = ({ setSignInOpen }: { setSignInOpen: any }) => {
             fill="#818181"
           />
         </svg>
-        <span className="text-lg font-medium text-white">Login</span>
+        <span className="text-lg font-medium text-white -mb-[1px]">Login</span>
       </button>
     );
   } else {
@@ -152,9 +152,9 @@ export default function Navigation({ setSignInOpen }: { setSignInOpen: any }) {
             />
           </svg>
         </Link>
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#3A3A3A]">
+        <button className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 border-[1px] backdrop-blur border-[#818181]">
           <svg
-            width="10"
+            width="6"
             viewBox="0 0 8 5"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -167,9 +167,12 @@ export default function Navigation({ setSignInOpen }: { setSignInOpen: any }) {
         </button>
       </div>
       <div className="flex flex-row items-center gap-16">
-        <button className="flex rounded-full border-[0.5px] border-[#818181] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 px-20 py-3 text-lg text-white">
+        <Link
+          href="/pagida"
+          className="flex rounded-full border-[0.5px] backdrop-blur border-[#818181] bg-gradient-to-r from-[#121212]/40 via-[#232323]/50 to-[#121212]/40 px-20 py-3 text-lg text-white"
+        >
           <span className="-mb-1">Become an affiliate</span>
-        </button>
+        </Link>
         <div className="h-[40px] w-[1px] bg-gradient-to-t from-[#222222] via-[#3C3C3C] to-[#222222]"></div>
         <NavUser setSignInOpen={setSignInOpen} />
       </div>

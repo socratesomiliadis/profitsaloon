@@ -9,7 +9,12 @@ export default withApiAuth(async function createCheckoutSession(
   supabaseServerClient
 ) {
   if (req.method === 'POST') {
-    const { price, quantity = 1, metadata = {} } = req.body;
+    const {
+      quantity = 1,
+      metadata = {
+        crypto: true
+      }
+    } = req.body;
 
     try {
       const {
@@ -27,7 +32,7 @@ export default withApiAuth(async function createCheckoutSession(
         customer,
         line_items: [
           {
-            price: price.id,
+            price: 'price_1MUENlGuEyK30WCUTizeN2wY',
             quantity
           }
         ],

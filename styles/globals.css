@@ -73,3 +73,65 @@ html {
 img {
   user-select: none;
 }
+
+.indicator {
+  left: 38%;
+  width: 33.33%;
+  border-radius: 0px;
+  opacity: 0;
+}
+
+.tier-card-selector:has(.tier-card-selector-left:hover) > .indicator {
+  width: 50%;
+  left: 0.5rem;
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.tier-card-selector:has(.tier-card-selector-right:hover) > .indicator {
+  width: 33.33%;
+  left: 61%;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.tier-card-selector > .indicator {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tier-card-selector:hover > .indicator {
+  opacity: 1;
+}
+
+.tier-label {
+  animation-name: bob;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.tier-card-fs {
+  transition: transform 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tier-card:hover > .tier-card-fs {
+  transform: scale(1.2);
+}
