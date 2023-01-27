@@ -26,6 +26,15 @@ export default function Layout({ children }: { children: ReactNode }) {
           className="pointer-events-none fixed inset-0 z-[9999] h-full w-full object-cover opacity-25"
         ></Image> */}
         <Navigation setSignInOpen={setSignInOpen} />
+        <Image
+          src="/static/images/grain.png"
+          width={2000}
+          height={2000}
+          quality={100}
+          className="fixed inset-0 w-full h-full object-cover z-[3] opacity-80 pointer-events-none"
+          alt=""
+          priority={true}
+        />
         {signInOpen && <SignIn setSignInOpen={setSignInOpen} />}
         {children}
       </div>

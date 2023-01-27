@@ -13,6 +13,7 @@ import { getActiveProductsWithPrices } from '@/utils/supabase-client';
 import { GetStaticPropsResult } from 'next';
 import { Product } from 'types';
 import FeaturedCourses from '@/components/Landing/FeaturedCourses';
+import Tools from '@/components/Landing/Tools';
 
 interface Props {
   products: Product[];
@@ -56,7 +57,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <TierSection />
         <FeaturedCourses />
-        <div className="h-[200vh]"></div>
+        <Tools />
         {/* <button onClick={() => handleCheckout()} className="text-white">
           Test
         </button> */}

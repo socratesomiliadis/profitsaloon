@@ -37,7 +37,7 @@ export default function TierSection() {
           toColor="#E8D694"
         />
       </div>
-      <Image
+      {/* <Image
         src="/static/images/grain.png"
         width={3000}
         height={3000}
@@ -45,7 +45,7 @@ export default function TierSection() {
         className="absolute inset-0 w-full h-full object-cover z-[1] opacity-80"
         alt=""
         priority={true}
-      />
+      /> */}
       <div className="labels-section z-10">
         <div className="tier-label flex flex-row items-start gap-4 absolute left-[35%] top-[43.7%]">
           <svg

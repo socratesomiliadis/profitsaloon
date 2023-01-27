@@ -182,3 +182,37 @@ img {
   background: linear-gradient(180deg, #505050 0%, #44f27f 195%);
   border-radius: 3px;
 }
+
+.affiliate-page {
+  background: radial-gradient(
+      27.79% 51.28% at 88.98% 87.55%,
+      #232323 0%,
+      #0b0b0b 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.rive-canvas > canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon.current {
+  height: 60px;
+  transform: translateY(-10px);
+}
+
+.icon.prev {
+  height: 50px;
+  transform: translateY(-6px);
+}
+
+.icon.next {
+  height: 50px;
+  transform: translateY(-6px);
+}

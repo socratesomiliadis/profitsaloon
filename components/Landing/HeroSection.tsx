@@ -18,7 +18,7 @@ export default function HeroSection() {
 
   return (
     <section className="hero-section flex min-h-screen w-screen flex-col bg-gradient-to-br from-[#000000] to-[#1A1A1A] pt-[25vh]">
-      <div className="hero-text flex flex-col items-center gap-4 px-32">
+      <div className="hero-text flex flex-col items-center gap-4 px-32 z-[4]">
         <span className="text-xl font-medium uppercase text-[#818181]">
           Available Worldwide
         </span>
@@ -132,7 +132,7 @@ export default function HeroSection() {
           </svg>
         </div>
       </div>
-      <div className="relative mt-44 aspect-[1920/1342] h-auto w-full">
+      <div className="relative z-[4] mt-44 aspect-[1920/1342] h-auto w-full">
         <div className="absolute bottom-0 left-0 z-[1] flex h-[40%] w-full flex-col items-center gap-4 bg-gradient-to-t from-black via-black to-transparent pt-[12%]">
           {/* <span className="text-4xl font-medium text-[#ededed]">
             Be the best version of yourself.
