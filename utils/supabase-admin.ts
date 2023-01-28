@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { stripe } from './stripe';
 import { toDateTime } from './helpers';
-import { Customer, UserDetails, Price, Product } from 'types';
+import { Customer, UserDetails, Price, Product, Charge } from 'types';
 import type { Database } from 'types_db';
 import Stripe from 'stripe';
 
@@ -45,6 +45,21 @@ const upsertPriceRecord = async (price: Stripe.Price) => {
   const { error } = await supabaseAdmin.from('prices').upsert([priceData]);
   if (error) throw error;
   console.log(`Price inserted/updated: ${price.id}`);
+};
+
+const insertChargeRecord = async (charge: Stripe.Charge) => {
+  const chargeData: Charge = {
+    id: charge.id,
+    customer_id: charge.customer as string,
+    payment_method_id: charge.payment_method as string,
+    amount: charge.amount,
+    card_brand: charge.payment_method_details?.card?.brand as string,
+    last4: charge.payment_method_details?.card?.last4 as string
+  };
+
+  const { error } = await supabaseAdmin.from('charges').insert([chargeData]);
+  if (error) throw error;
+  console.log(`Charge inserted: ${charge.id}`);
 };
 
 const createOrRetrieveCustomer = async ({
@@ -179,5 +194,6 @@ export {
   upsertProductRecord,
   upsertPriceRecord,
   createOrRetrieveCustomer,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  insertChargeRecord
 };

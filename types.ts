@@ -34,6 +34,15 @@ export interface UserDetails {
   email: string;
 }
 
+export interface Charge {
+  id: string /* primary key */;
+  customer_id: string;
+  payment_method_id: string;
+  amount: number;
+  card_brand: string;
+  last4: string;
+}
+
 export interface Price {
   id: string /* primary key */;
   product_id?: string /* foreign key to products.id */;

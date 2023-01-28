@@ -58,9 +58,9 @@ const Home: NextPage = () => {
         <TierSection />
         <FeaturedCourses />
         <Tools />
-        {/* <button onClick={() => handleCheckout()} className="text-white">
+        <button onClick={() => handleCheckout()} className="text-white">
           Test
-        </button> */}
+        </button>
       </main>
     </>
   );

@@ -2,7 +2,8 @@ import { stripe } from 'utils/stripe';
 import {
   upsertProductRecord,
   upsertPriceRecord,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  insertChargeRecord
 } from 'utils/supabase-admin';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
@@ -31,7 +32,8 @@ const relevantEvents = new Set([
   'checkout.session.completed',
   'customer.subscription.created',
   'customer.subscription.updated',
-  'customer.subscription.deleted'
+  'customer.subscription.deleted',
+  'charge.succeeded'
 ]);
 
 const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -83,6 +85,9 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 true
               );
             }
+            break;
+          case 'charge.succeeded':
+            await insertChargeRecord(event.data.object as Stripe.Charge);
             break;
           default:
             throw new Error('Unhandled relevant event!');
