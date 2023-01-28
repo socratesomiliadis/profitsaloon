@@ -57,7 +57,7 @@ const insertChargeRecord = async (charge: Stripe.Charge) => {
     last4: charge.payment_method_details?.card?.last4 as string
   };
 
-  const { error } = await supabaseAdmin.from('charges').insert([chargeData]);
+  const { error } = await supabaseAdmin.from('charges').upsert([chargeData]);
   if (error) throw error;
   console.log(`Charge inserted: ${charge.id}`);
 };
