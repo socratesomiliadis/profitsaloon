@@ -1,3 +1,4 @@
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect } from 'react';
 import Navigation from './Navigation';
@@ -5,7 +6,8 @@ import SignIn from './SignIn';
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [signInOpen, setSignInOpen] = useState(false);
-
+  const [isResetPassword, setIsResetPassword] = useState(false);
+  const supabase = useSupabaseClient();
   useEffect(() => {
     const HTMLDom = document.querySelector('html') as HTMLElement;
     if (signInOpen) {
@@ -14,6 +16,15 @@ export default function Layout({ children }: { children: ReactNode }) {
       HTMLDom.style.overflow = '';
     }
   }, [signInOpen]);
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event) => {
+      if (event == 'PASSWORD_RECOVERY') {
+        setIsResetPassword(true);
+        setSignInOpen(true);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -25,7 +36,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           alt="Grain"
           className="pointer-events-none fixed inset-0 z-[9999] h-full w-full object-cover opacity-25"
         ></Image> */}
-        <Navigation setSignInOpen={setSignInOpen} />
+        <Navigation
+          isResetPassword={isResetPassword}
+          setSignInOpen={setSignInOpen}
+        />
         <Image
           src="/static/images/grain.png"
           width={2000}
@@ -35,7 +49,13 @@ export default function Layout({ children }: { children: ReactNode }) {
           alt=""
           priority={true}
         />
-        {signInOpen && <SignIn setSignInOpen={setSignInOpen} />}
+        {signInOpen && (
+          <SignIn
+            isResetPassword={isResetPassword}
+            setIsResetPassword={setIsResetPassword}
+            setSignInOpen={setSignInOpen}
+          />
+        )}
         {children}
       </div>
     </>

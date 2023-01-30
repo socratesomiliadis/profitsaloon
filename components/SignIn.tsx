@@ -1,14 +1,349 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
+import Input from './Input';
+import { getURL } from '@/utils/helpers';
 
-export default function SignIn({ setSignInOpen }: { setSignInOpen: any }) {
+function SignUpForm({
+  email,
+  setEmail,
+  password,
+  setPassword,
+  setIsSignUp
+}: {
+  email: string;
+  setEmail: (value: string) => void;
+  password: string;
+  setPassword: (value: string) => void;
+  setIsSignUp: (value: boolean) => void;
+}) {
+  const [fullname, setFullname] = useState('');
+  const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
+  const supabase = useSupabaseClient();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    {
+      // const exisistingEmail = await supabase
+      //   .from('users')
+      //   .select('email')
+      //   .eq('email', email)
+      //   .single()
+      //   .then();
+      // console.log(exisistingEmail.data);
+      // if (exisistingEmail.data) {
+      //   setErrorState(
+      //     <span className="text-red-500">
+      //       Email address is already in use!{' '}
+      //       <button className="ml-1 underline text-[#818181]">
+      //         Sign in instead.
+      //       </button>
+      //     </span>
+      //   );
+      // } else
+    }
+    if (!fullname.match(/^([\w]{2,})+\s+([\w\s]{2,})+$/i)) {
+      setErrorState(
+        <span className="text-red-500 text-center">
+          Please enter a valid full name!
+        </span>
+      );
+    } else {
+      setErrorState(null);
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            full_name: fullname
+          }
+        }
+      });
+
+      if (error)
+        setErrorState(
+          <span className="text-red-500 text-center">{error.message}</span>
+        );
+      else if (data)
+        setErrorState(
+          <span className="text-[#49ff86] text-center">
+            Check your email for the confirmation link.
+          </span>
+        );
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-8 items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-8 mt-16"
+      >
+        <Input
+          type="text"
+          placeholder="Enter your full name"
+          value={fullname}
+          setValue={setFullname}
+          label="Full Name"
+        />
+        <Input
+          type="email"
+          placeholder="Enter your email address"
+          value={email}
+          setValue={setEmail}
+          label="Email Address"
+        />
+        <Input
+          type="password"
+          placeholder="Create a password"
+          value={password}
+          setValue={setPassword}
+          label="Password"
+        />
+        <button
+          className={`bg-white text-[#202020] px-24 border-[1px] border-white hover:border-[#5A5A5A] hover:bg-transparent hover:text-[#818181] transition-colors duration-200
+         rounded-full py-4 flex flex-row items-center justify-center mt-6`}
+        >
+          <span className="font-medium text-lg -mb-1">Sign Up</span>
+        </button>
+      </form>
+      <div className="flex flex-col gap-4">
+        <span className="text-[#818181]">
+          Already have an account?
+          <button
+            onClick={() => setIsSignUp(false)}
+            className="ml-1 underline text-[#818181]"
+          >
+            Sign in instead.
+          </button>
+        </span>
+        {errorState}
+      </div>
+    </div>
+  );
+}
+
+function SignInForm({
+  email,
+  setEmail,
+  password,
+  setPassword,
+  setIsSignUp,
+  setIsResetPasswordRequest
+}: {
+  email: string;
+  setEmail: (value: string) => void;
+  password: string;
+  setPassword: (value: string) => void;
+  setIsSignUp: (value: boolean) => void;
+  setIsResetPasswordRequest: (value: boolean) => void;
+}) {
+  const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
+  const supabase = useSupabaseClient();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setErrorState(null);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error)
+      setErrorState(<span className="text-red-500">{error.message}</span>);
+  }
+
+  return (
+    <div className="flex flex-col gap-8 items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-8 mt-16"
+      >
+        <Input
+          type="email"
+          placeholder="Enter your email address"
+          value={email}
+          setValue={setEmail}
+          label="Email Address"
+        />
+        <Input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          setValue={setPassword}
+          label="Password"
+        />
+        <button
+          className={`bg-white text-[#202020] px-24 border-[1px] border-white hover:border-[#5A5A5A] hover:bg-transparent hover:text-[#818181] transition-colors duration-200
+         rounded-full py-4 flex flex-row items-center justify-center mt-6`}
+        >
+          <span className="font-medium text-lg -mb-1">Sign In</span>
+        </button>
+      </form>
+      <div className="flex flex-col gap-2 items-center">
+        <button
+          onClick={() => setIsResetPasswordRequest(true)}
+          className="ml-1 underline text-[#818181]"
+        >
+          Forgot your password?
+        </button>
+        <span className="text-[#818181]">
+          Don't have an account?
+          <button
+            onClick={() => setIsSignUp(true)}
+            className="ml-1 underline text-[#818181]"
+          >
+            Sign up instead.
+          </button>
+        </span>
+      </div>
+      {errorState}
+    </div>
+  );
+}
+
+function ResetPasswordRequestForm({
+  email,
+  setEmail,
+  setIsResetPasswordRequest
+}: {
+  email: string;
+  setEmail: (value: string) => void;
+  setIsResetPasswordRequest: (value: boolean) => void;
+}) {
+  const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
+  const supabase = useSupabaseClient();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setErrorState(null);
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: getURL()
+    });
+
+    if (error)
+      setErrorState(
+        <span className="text-red-500 text-center">{error.message}</span>
+      );
+    else if (data)
+      setErrorState(
+        <span className="text-[#49ff86] text-center">
+          Check your email for instructions.
+        </span>
+      );
+  }
+
+  return (
+    <div className="flex flex-col gap-8 items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-8 mt-16"
+      >
+        <Input
+          type="email"
+          placeholder="Enter your email address"
+          value={email}
+          setValue={setEmail}
+          label="Email Address"
+        />
+
+        <button
+          className={`bg-white text-[#202020] px-24 border-[1px] border-white hover:border-[#5A5A5A] hover:bg-transparent hover:text-[#818181] transition-colors duration-200
+         rounded-full py-4 flex flex-row items-center justify-center mt-6`}
+        >
+          <span className="font-medium text-lg -mb-1">Reset password</span>
+        </button>
+      </form>
+      <div className="flex flex-col gap-2 items-center">
+        <button
+          onClick={() => setIsResetPasswordRequest(false)}
+          className="ml-1 underline text-[#818181]"
+        >
+          Go back.
+        </button>
+      </div>
+      {errorState}
+    </div>
+  );
+}
+
+function ResetPasswordForm({
+  setIsResetPassword
+}: {
+  setIsResetPassword: (value: boolean) => void;
+}) {
+  const [password, setPassword] = useState('');
+  const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
+  const supabase = useSupabaseClient();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setErrorState(null);
+    const { data, error } = await supabase.auth.updateUser({
+      password: password
+    });
+
+    if (error)
+      setErrorState(
+        <span className="text-red-500 text-center">{error.message}</span>
+      );
+    else if (data) {
+      setIsResetPassword(false);
+      setErrorState(
+        <span className="text-[#49ff86] text-center">
+          Password reset succesfully
+        </span>
+      );
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-6 items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-8 mt-16"
+      >
+        <Input
+          type="password"
+          placeholder="Enter your new password"
+          value={password}
+          setValue={setPassword}
+          label="New Password"
+        />
+
+        <button
+          className={`bg-white text-[#202020] px-24 border-[1px] border-white hover:border-[#5A5A5A] hover:bg-transparent hover:text-[#818181] transition-colors duration-200
+         rounded-full py-4 flex flex-row items-center justify-center mt-6`}
+        >
+          <span className="font-medium text-lg -mb-1">Reset password</span>
+        </button>
+      </form>
+      {errorState}
+    </div>
+  );
+}
+
+export default function SignIn({
+  setSignInOpen,
+  isResetPassword,
+  setIsResetPassword
+}: {
+  setSignInOpen: any;
+  isResetPassword: boolean;
+  setIsResetPassword: (value: boolean) => void;
+}) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [isResetPasswordRequest, setIsResetPasswordRequest] = useState(false);
   const router = useRouter();
   const user = useUser();
   const supabaseClient = useSupabaseClient();
 
-  if (!user)
+  if (!user || isResetPassword)
     return (
       <div className="fixed z-[9999] w-full h-full flex items-center justify-center inset-0 ">
         <div className="relative w-full h-full">
@@ -16,7 +351,7 @@ export default function SignIn({ setSignInOpen }: { setSignInOpen: any }) {
             onClick={() => setSignInOpen(false)}
             className="absolute inset-0 w-full h-full backdrop-blur-xl bg-black/80 z-0 cursor-pointer"
           ></div>
-          <div className="absolute z-10 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col h-fit max-w-lg py-16 px-32 rounded-2xl border-[2px] border-[#202020] bg-gradient-to-br from-[#000000] to-[#1A1A1A]">
+          <div className="max-w-xl absolute z-10 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col h-fit py-16 px-24 rounded-2xl border-[2px] border-[#202020] bg-gradient-to-br from-[#000000] to-[#1A1A1A]">
             <div className="flex justify-center pb-12">
               <svg
                 width="220"
@@ -78,8 +413,37 @@ export default function SignIn({ setSignInOpen }: { setSignInOpen: any }) {
                 />
               </svg>
             </div>
-            <div className="flex flex-col space-y-4 ">
-              <Auth
+            <div className="flex flex-col">
+              {isSignUp && !isResetPasswordRequest && !isResetPassword && (
+                <SignUpForm
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  setIsSignUp={setIsSignUp}
+                />
+              )}
+              {!isSignUp && !isResetPasswordRequest && !isResetPassword && (
+                <SignInForm
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  setIsSignUp={setIsSignUp}
+                  setIsResetPasswordRequest={setIsResetPasswordRequest}
+                />
+              )}
+              {isResetPasswordRequest && !isResetPassword && (
+                <ResetPasswordRequestForm
+                  email={email}
+                  setEmail={setEmail}
+                  setIsResetPasswordRequest={setIsResetPasswordRequest}
+                />
+              )}
+              {isResetPassword && (
+                <ResetPasswordForm setIsResetPassword={setIsResetPassword} />
+              )}
+              {/* <Auth
                 supabaseClient={supabaseClient}
                 providers={['discord']}
                 redirectTo={'/'}
@@ -106,7 +470,7 @@ export default function SignIn({ setSignInOpen }: { setSignInOpen: any }) {
                   }
                 }}
                 theme="dark"
-              />
+              /> */}
             </div>
           </div>
         </div>

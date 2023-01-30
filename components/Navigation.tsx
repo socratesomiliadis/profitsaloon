@@ -6,7 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { Database } from 'types_db';
 
-const NavUser = ({ setSignInOpen }: { setSignInOpen: any }) => {
+const NavUser = ({
+  setSignInOpen,
+  isResetPassword
+}: {
+  setSignInOpen: any;
+  isResetPassword: boolean;
+}) => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient<Database>();
   const { user, userDetails } = useUser();
@@ -36,7 +42,7 @@ const NavUser = ({ setSignInOpen }: { setSignInOpen: any }) => {
 
   useEffect(() => {
     const HTMLDom = document.querySelector('html') as HTMLElement;
-    if (user) {
+    if (user && !isResetPassword) {
       HTMLDom.style.overflow = '';
       setSignInOpen(false);
     }
@@ -104,7 +110,13 @@ const NavUser = ({ setSignInOpen }: { setSignInOpen: any }) => {
   }
 };
 
-export default function Navigation({ setSignInOpen }: { setSignInOpen: any }) {
+export default function Navigation({
+  setSignInOpen,
+  isResetPassword
+}: {
+  setSignInOpen: any;
+  isResetPassword: boolean;
+}) {
   return (
     <nav className="fixed top-0 z-[999] flex w-screen flex-row items-center justify-between px-32 pt-8">
       <div className="flex flex-row items-center gap-4">
@@ -191,7 +203,10 @@ export default function Navigation({ setSignInOpen }: { setSignInOpen: any }) {
           <span className="-mb-1">Become an affiliate</span>
         </Link>
         <div className="h-[40px] w-[1px] bg-gradient-to-t from-[#222222] via-[#3C3C3C] to-[#222222]"></div>
-        <NavUser setSignInOpen={setSignInOpen} />
+        <NavUser
+          isResetPassword={isResetPassword}
+          setSignInOpen={setSignInOpen}
+        />
       </div>
     </nav>
   );
