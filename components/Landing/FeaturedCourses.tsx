@@ -4,7 +4,7 @@ import IconsHover from './IconsHover';
 
 export default function FeaturedCourses() {
   return (
-    <section className="featured-courses relative w-screen min-h-screen bg-[#0F0F0F]">
+    <section className="featured-courses relative w-screen min-h-screen bg-[#0F0F0F] -mt-[40vh]">
       <div className="left-0 w-full h-[30vh] absolute z-0 top-0 -translate-y-[99%] bg-gradient-to-t from-[#0F0F0F] to-transparent"></div>
       <div className="flex flex-col items-center gap-4 z-50 relative">
         <span className="text-center text-4xl font-medium text-[#ededed]">
