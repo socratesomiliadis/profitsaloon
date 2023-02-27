@@ -8,6 +8,7 @@ export const course = defineType({
   name: 'course',
   type: 'document',
   title: 'Course',
+  //@ts-ignore
   orderings: [orderRankOrdering],
   fields: [
     defineField({
