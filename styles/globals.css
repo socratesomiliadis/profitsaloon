@@ -216,3 +216,11 @@ img {
   height: 50px;
   transform: translateY(-6px);
 }
+
+.label-inner {
+  background: linear-gradient(90deg, #101010 0%, #1b1b1b 50.52%, #101010 100%); 
+}
+
+.label-stroke {
+  background: linear-gradient(0deg, #81818100 0%, #818181 100%);
+}

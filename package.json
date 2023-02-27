@@ -11,6 +11,7 @@
   "dependencies": {
     "@rive-app/react-canvas": "^3.0.35",
     "@rive-app/react-webgl": "^3.0.35",
+    "@sanity/orderable-document-list": "^1.0.2",
     "@stripe/stripe-js": "1.22.0",
     "@supabase/auth-helpers-nextjs": "^0.4.1",
     "@supabase/auth-helpers-react": "^0.3.0",
@@ -19,10 +20,13 @@
     "classnames": "2.3.1",
     "discord-oauth2": "^2.11.0",
     "next": "^13.1.5",
+    "next-sanity": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-merge-refs": "1.1.0",
+    "sanity": "^3.5.0",
     "stripe": "8.201.0",
+    "swiper": "^9.0.5",
     "swr": "1.2.0",
     "tailwindcss": "3.0.18"
   },

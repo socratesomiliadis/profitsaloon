@@ -14,6 +14,7 @@ import { GetStaticPropsResult } from 'next';
 import { Product } from 'types';
 import FeaturedCourses from '@/components/Landing/FeaturedCourses';
 import Tools from '@/components/Landing/Tools';
+import TeacherSection from '@/components/Landing/TeacherSection';
 
 interface Props {
   products: Product[];
@@ -58,6 +59,7 @@ const Home: NextPage = () => {
         <TierSection />
         <FeaturedCourses />
         <Tools />
+        <TeacherSection />
         <button onClick={() => handleCheckout()} className="text-white">
           Test
         </button>

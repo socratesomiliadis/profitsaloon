@@ -49,7 +49,7 @@ export default function TierCard({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_786_2)">
+              <g clipPath="url(#clip0_786_2)">
                 <path
                   d="M214.73 40.08H183.23V110.09H196.43V83.69H214.73C228.73 83.69 238.83 75.89 238.83 61.99C238.83 48.09 228.73 40.08 214.73 40.08ZM211.93 72.99H196.43V50.78H211.93C220.13 50.78 225.23 55.19 225.23 61.99C225.23 68.79 220.13 72.99 211.93 72.99Z"
                   fill="#EDEDED"

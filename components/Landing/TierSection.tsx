@@ -1,11 +1,13 @@
 import Image from 'next/image';
+import Label from '../Label';
 import TierCard from './TierCard';
 
 export default function TierSection() {
   return (
     <section className="tier-section flex h-[200vh] w-screen flex-col items-center -mt-44 relative noisy">
       <div className="flex flex-col items-center gap-4 z-10">
-        <span className="text-center text-4xl font-medium text-[#ededed]">
+        <Label text="Our Programs" />
+        <span className="text-center text-4xl font-medium text-[#ededed] mt-4">
           Increase your earnings through participation
           <br />
           in our affiliate program.
