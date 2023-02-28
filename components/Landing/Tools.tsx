@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import Label from '../Label';
 
 export default function Tools() {
   return (
     <section className="relative bg-[#0f0f0f] w-screen h-[50vh] flex flex-col">
       <div className="flex flex-col items-center gap-4 z-10">
+        <Label text="Work with the latest apps" />
         <span className="text-center text-4xl font-medium text-[#ededed]">
           Create a modern workflow.
         </span>

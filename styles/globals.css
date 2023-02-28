@@ -218,9 +218,43 @@ img {
 }
 
 .label-inner {
-  background: linear-gradient(90deg, #101010 0%, #1b1b1b 50.52%, #101010 100%); 
+  background: linear-gradient(90deg, #101010 0%, #1b1b1b 50.52%, #101010 100%);
 }
 
 .label-stroke {
   background: linear-gradient(0deg, #81818100 0%, #818181 100%);
 }
+
+.teacher-intro-swiper.test {
+  transform: none !important;
+}
+
+.teacher-intro-swiper.test .swiper-wrapper {
+  transform: none !important;
+}
+
+.teacher-intro-swiper.test .swiper-slide {
+  transform: none !important;
+}
+
+.video-outer.fixed {
+  position: fixed;
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+}
+.video-button {
+  transition: opacity 0.35s ease;
+}
+
+.video-button.off {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*.swiper-slide {
+  transition: width 0.35s ease;
+}
+
+.swiper-slide:has(.teacher-intro-slide.video) {
+  width: 100% !important;
+}*/

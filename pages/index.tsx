@@ -15,6 +15,7 @@ import { Product } from 'types';
 import FeaturedCourses from '@/components/Landing/FeaturedCourses';
 import Tools from '@/components/Landing/Tools';
 import TeacherSection from '@/components/Landing/TeacherSection';
+import Footer from '@/components/Footer';
 
 interface Props {
   products: Product[];
@@ -60,6 +61,8 @@ const Home: NextPage = () => {
         <FeaturedCourses />
         <Tools />
         <TeacherSection />
+        <section className="bg-[#060606] h-[100vh]"></section>
+        <Footer />
         <button onClick={() => handleCheckout()} className="text-white">
           Test
         </button>
