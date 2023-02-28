@@ -49,13 +49,13 @@ export default function Layout({ children }: { children: ReactNode }) {
           alt="Grain"
           className="pointer-events-none fixed inset-0 z-[9999] h-full w-full object-cover opacity-25"
         ></Image> */}
-        {!isSanityPage ? (
+        {!isSanityPage && (
           <Navigation
             isResetPassword={isResetPassword}
             setSignInOpen={setSignInOpen}
           />
-        ) : null}
-        {!isSanityPage ? (
+        )}
+        {!isSanityPage && (
           <Image
             src="/static/images/grain.png"
             width={2000}
@@ -65,7 +65,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             alt=""
             priority={true}
           />
-        ) : null}
+        )}
         {signInOpen && (
           <SignIn
             isResetPassword={isResetPassword}
