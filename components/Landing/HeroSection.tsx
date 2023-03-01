@@ -233,7 +233,7 @@ export default function HeroSection() {
           width={1920}
           height={2013}
           alt="Profit Saloon"
-          className="-mt-[19%] z-0 h-full w-full object-cover"
+          className="-mt-[19%] z-0 w-full h-full object-cover"
           quality={100}
           priority={true}
         />

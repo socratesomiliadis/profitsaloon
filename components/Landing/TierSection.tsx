@@ -4,7 +4,7 @@ import TierCard from './TierCard';
 
 export default function TierSection() {
   return (
-    <section className="tier-section flex h-[200vh] w-screen flex-col items-center -mt-44 relative noisy">
+    <section className="tier-section flex h-[200vh] w-screen flex-col items-center -mt-[40vh] relative noisy">
       <div className="flex flex-col items-center gap-4 z-10">
         <Label text="Our Programs" />
         <span className="text-center text-4xl font-medium text-[#ededed] mt-4">
