@@ -9,6 +9,7 @@
     "stripe:listen": "stripe listen --forward-to=localhost:3000/api/webhooks --project-name=saas-starter"
   },
   "dependencies": {
+    "@portabletext/react": "^2.0.2",
     "@rive-app/react-canvas": "^3.0.35",
     "@rive-app/react-webgl": "^3.0.35",
     "@sanity/orderable-document-list": "^1.0.2",

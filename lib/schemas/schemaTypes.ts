@@ -80,11 +80,28 @@ export const course = defineType({
             },
             {
               name: 'video',
-              type: 'file',
+              type: 'object',
               title: 'Video',
-              options: {
-                accept: 'video/*'
-              }
+              fields: [
+                {
+                  name: 'videoFile',
+                  type: 'file',
+                  title: 'Video File',
+                  options: {
+                    accept: 'video/*'
+                  }
+                },
+                {
+                  name: 'videoTitle',
+                  type: 'string',
+                  title: 'Video Title'
+                },
+                {
+                  name: 'videoThumbnail',
+                  type: 'image',
+                  title: 'Video Thumbnail'
+                }
+              ]
             }
           ]
         }
@@ -113,11 +130,28 @@ export const course = defineType({
             },
             {
               name: 'video',
-              type: 'file',
+              type: 'object',
               title: 'Video',
-              options: {
-                accept: 'video/*'
-              }
+              fields: [
+                {
+                  name: 'videoFile',
+                  type: 'file',
+                  title: 'Video File',
+                  options: {
+                    accept: 'video/*'
+                  }
+                },
+                {
+                  name: 'videoTitle',
+                  type: 'string',
+                  title: 'Video Title'
+                },
+                {
+                  name: 'videoThumbnail',
+                  type: 'image',
+                  title: 'Video Thumbnail'
+                }
+              ]
             }
           ]
         }
@@ -146,11 +180,28 @@ export const course = defineType({
             },
             {
               name: 'video',
-              type: 'file',
+              type: 'object',
               title: 'Video',
-              options: {
-                accept: 'video/*'
-              }
+              fields: [
+                {
+                  name: 'videoFile',
+                  type: 'file',
+                  title: 'Video File',
+                  options: {
+                    accept: 'video/*'
+                  }
+                },
+                {
+                  name: 'videoTitle',
+                  type: 'string',
+                  title: 'Video Title'
+                },
+                {
+                  name: 'videoThumbnail',
+                  type: 'image',
+                  title: 'Video Thumbnail'
+                }
+              ]
             }
           ]
         }
