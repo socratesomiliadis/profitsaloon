@@ -256,6 +256,21 @@ img {
   pointer-events: none;
 }
 
+.logo-strip {
+  background-color: #0f0f0f;
+  background-size: 100% 100%;
+  background-position-y: 0;
+  animation-name: move;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+  0% {
+    background-position-x: 0;
+  }
+}
+
 /*.swiper-slide {
   transition: width 0.35s ease;
 }

@@ -27,7 +27,7 @@ that are programmed to think and learn like humans."
               key={index}
               title={section.title}
               text={section.text}
-              video={section.video}
+              //   video={section.video ? section.video : null}
             />
           ))}
         </CenterColumn>

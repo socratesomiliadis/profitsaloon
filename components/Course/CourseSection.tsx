@@ -8,7 +8,7 @@ export default function CourseSection({
 }: {
   title: string;
   text: any;
-  video: any;
+  video?: any;
 }) {
   return (
     <div className="flex flex-col w-full relative z-20 gap-4">
@@ -16,12 +16,14 @@ export default function CourseSection({
       <div className="text-lg text-[#EDEDED]">
         <PortableText value={text} />
       </div>
-      <video
-        src={assetUrlFor(video).url}
-        width={1920}
-        height={1080}
-        className="aspect-video w-full h-auto"
-      />
+      {video && (
+        <video
+          src={assetUrlFor(video).url}
+          width={1920}
+          height={1080}
+          className="aspect-video w-full h-auto"
+        />
+      )}
     </div>
   );
 }

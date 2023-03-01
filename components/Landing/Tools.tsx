@@ -1,7 +1,27 @@
 import Image from 'next/image';
 import Label from '../Label';
-
+import { useEffect } from 'react';
 export default function Tools() {
+  useEffect(() => {
+    const logoStrips = document.querySelectorAll(
+      '.logo-strip'
+    ) as NodeListOf<HTMLDivElement>;
+    function updateBgPos() {
+      logoStrips.forEach((strip) => {
+        if (window.innerWidth >= 1024)
+          strip.style.backgroundPositionX = `-${window.innerWidth}px`;
+        else strip.style.backgroundPositionX = `-${window.innerWidth * 5}px`;
+      });
+    }
+
+    updateBgPos();
+
+    window.addEventListener('resize', updateBgPos);
+
+    return () => {
+      window.removeEventListener('resize', updateBgPos);
+    };
+  }, []);
   return (
     <section className="relative bg-[#0f0f0f] w-screen h-[50vh] flex flex-col">
       <div className="flex flex-col items-center gap-4 z-10">
@@ -16,8 +36,16 @@ export default function Tools() {
           Google, Notion, and more.
         </p>
       </div>
-      <div className="relative flex flex-col items-center z-[4] mt-32 gap-16">
-        <div className="flex flex-row items-center gap-28">
+      <div className="relative flex flex-col items-center mt-32 gap-16">
+        <div
+          style={{
+            animationDuration: '20s'
+          }}
+          className="logo-strip bg-[url('/static/images/ProfitLogos.png')] w-full h-[6vh] bg-repeat-x"
+        >
+          <div className="w-full h-full bg-gradient-to-r from-[#0f0f0f] via-transparent to-[#0f0f0f]"></div>
+        </div>
+        {/* <div className="flex flex-row items-center gap-28">
           <Image
             src="/static/images/tools/Shopify.svg"
             width={500}
@@ -69,7 +97,7 @@ export default function Tools() {
             alt="OpenSea Logo"
             className="w-[160px]"
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -2,10 +2,12 @@ import Label from '../Label';
 import TeacherIntro from './TeacherIntro';
 import { urlFor } from 'lib/sanityClient';
 import { assetUrlFor } from 'lib/sanityClient';
+
 export default function TeacherSection({ teachers }: { teachers: any[] }) {
   const teachersTriple = [...teachers, ...teachers, ...teachers];
+
   return (
-    <section className="w-screen relative bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#060606] flex flex-col items-center">
+    <section className="pt-32 w-screen relative bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#060606] flex flex-col items-center">
       <div className="flex flex-col items-center gap-4 z-10">
         <Label text="Talk with teachers" />
         <span className="text-center text-4xl font-medium text-[#ededed] mt-4">

@@ -18,7 +18,7 @@ export default function HeroSection() {
 
   return (
     <section className="hero-section flex min-h-screen w-screen flex-col bg-gradient-to-br from-[#000000] to-[#1A1A1A] pt-[25vh]">
-      <div className="hero-text flex flex-col items-center translate-y-[65%] gap-4 px-32 z-[4]">
+      <div className="hero-text flex flex-col items-center translate-y-[65%] gap-4 px-32 z-[5]">
         <span className="text-xl font-medium uppercase text-[#818181]">
           Available Worldwide
         </span>
