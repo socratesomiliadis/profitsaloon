@@ -1,22 +1,9 @@
 import Label from '../Label';
 import TeacherIntro from './TeacherIntro';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/autoplay';
-
-const teacher = {
-  role: 'Marketing Teacher',
-  name: 'Iman Gadzhi',
-  description:
-    '“I am teaching a variety of topics related to cryptocurrency and blockchain technology such as basics of how cryptocurrency works, overview of smart contracts, and more.”',
-  thumbnail: '/static/images/iman2.jpg',
-  link: 'https://www.linkedin.com/in/iman-gadzhi-1b1b3b1b3/'
-};
-
-const teachers = [teacher, teacher, teacher, teacher];
-
-export default function TeacherSection({}) {
+import { urlFor } from 'lib/sanityClient';
+import { assetUrlFor } from 'lib/sanityClient';
+export default function TeacherSection({ teachers }: { teachers: any[] }) {
+  const teachersTriple = [...teachers, ...teachers, ...teachers];
   return (
     <section className="w-screen relative bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#060606] flex flex-col items-center">
       <div className="flex flex-col items-center gap-4 z-10">
@@ -28,8 +15,20 @@ export default function TeacherSection({}) {
           Work with teachers that have succeed.
         </p>
       </div>
-      <div className="w-full px-64 mt-16 relative z-10">
-        <Swiper
+      <div className="w-full px-44 mt-16 relative z-10 flex flex-row items-center gap-16">
+        {teachersTriple.map((teacher, index) => {
+          return (
+            <TeacherIntro
+              key={index}
+              role={teacher.role}
+              name={teacher.name}
+              description={teacher.desc}
+              thumbnail={urlFor(teacher.thumbnail).url()}
+              video={assetUrlFor(teacher.video).url}
+            />
+          );
+        })}
+        {/* <Swiper
           spaceBetween={120}
           slidesPerView={3}
           initialSlide={1}
@@ -97,7 +96,7 @@ export default function TeacherSection({}) {
               link={teacher.link}
             />
           </SwiperSlide>
-        </Swiper>
+        </Swiper> */}
       </div>
     </section>
   );

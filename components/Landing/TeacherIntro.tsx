@@ -10,20 +10,23 @@ export default function TeacherIntro({
   name,
   description,
   thumbnail,
-  link
+  video
 }: {
   role: string;
   name: string;
   description: string;
   thumbnail: string;
-  link: string;
+  video: string;
 }) {
+  const testRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    let state = Flip.getState(testRef.current);
     if (isPlaying) {
+      testRef.current?.classList.add('fixed');
       btnRef.current?.classList.add('off');
       videoRef.current!.currentTime = 0;
       videoRef.current!.muted = false;
@@ -32,46 +35,49 @@ export default function TeacherIntro({
       videoRef.current?.play();
       videoRef.current?.classList.remove('pointer-events-none');
     } else {
+      testRef.current?.classList.remove('fixed');
+      btnRef.current?.classList.remove('off');
+      videoRef.current!.currentTime = 0;
+      videoRef.current!.muted = true;
+      videoRef.current!.controls = false;
       videoRef.current?.pause();
+      videoRef.current?.classList.add('pointer-events-none');
     }
+    Flip.from(state, {
+      duration: 0.5,
+      scale: true,
+      ease: 'power4.out'
+    });
   }, [isPlaying]);
 
   return (
-    <div className="teacher-intro-slide rounded-2xl w-full flex flex-col border-[#2A2A2A]/60 border-[1px] bg-gradient-to-r from-[#101010] via-[#1b1b1b] to-[#101010]">
+    <div className="teacher-intro-slide rounded-2xl basis-1/3 flex flex-col border-[#2A2A2A]/60 border-[1px] bg-gradient-to-r from-[#101010] via-[#1b1b1b] to-[#101010]">
       <div className="pt-8 px-10 teacher-intro-vid-wrapper">
         <div className="relative w-full aspect-video h-auto overflow-hidden">
           <div
-            // onClick={() => {
-            //   let state = Flip.getState(testRef.current);
-            //   testRef.current?.classList.toggle('fixed');
-            //   videoRef.current?.play();
-            //   videoRef.current!.controls = true;
-            //   Flip.from(state, {
-            //     duration: 0.5,
-            //     scale: true,
-            //     ease: 'power4.out'
-            //   });
-
-            //   // testRef.current?.classList.toggle('video');
-            // }}
-            // ref={testRef}
+            onClick={() => {
+              if (!isPlaying) {
+                setIsPlaying(true);
+              }
+            }}
+            ref={testRef}
             className="video-outer w-full min-w-full inset-0 flex flex-row items-center justify-center"
           >
             <div
-              onMouseEnter={() => {
-                if (!isPlaying) videoRef.current?.play();
-              }}
-              onMouseLeave={() => {
-                if (!isPlaying) videoRef.current?.pause();
-              }}
-              onClick={() => {
-                setIsPlaying(true);
-              }}
-              className="video-wrapper w-full max-w-[60vw] aspect-video h-auto relative cursor-pointer"
+              // onMouseEnter={() => {
+              //   if (!isPlaying) videoRef.current?.play();
+              // }}
+              // onMouseLeave={() => {
+              //   if (!isPlaying) videoRef.current?.pause();
+              // }}
+              // onClick={() => {
+              //   setIsPlaying(true);
+              // }}
+              className="video-wrapper w-full max-w-[60vw] aspect-video h-auto relative cursor-pointer z-[1]"
             >
               <button
                 ref={btnRef}
-                className="video-button left-6 bottom-6 absolute flex flex-row items-center gap-2"
+                className="video-button left-6 bottom-6 absolute flex flex-row items-center gap-2 z-[3]"
               >
                 <span className="w-12 h-12 flex flex-row items-center justify-center bg-[#C1C1C1] rounded-full">
                   <svg
@@ -89,16 +95,24 @@ export default function TeacherIntro({
                 </span>
                 <span className="text-[#E6E6E6] -mb-1">Watch video</span>
               </button>
+              <Image
+                src={thumbnail}
+                width="1280"
+                height="720"
+                alt={`Profit Saloon introducing ${name}`}
+                className="video-thumbnail aspect-video w-full h-auto object-cover rounded-xl pointer-events-none absolute inset-0 z-[2]"
+              />
               <video
                 ref={videoRef}
-                poster={thumbnail}
                 width="1920"
                 muted
-                controlsList="nodownload noremoteplayback"
+                disablePictureInPicture
+                controlsList="nodownload noremoteplayback noplaybackrate"
                 height="1080"
-                src="/static/videos/video.mov"
-                className="aspect-video w-full h-auto object-cover rounded-xl cursor-pointer pointer-events-none"
+                src={video}
+                className="aspect-video relative w-full h-auto object-cover rounded-xl cursor-pointer pointer-events-none z-[1]"
               />
+
               {/* <Image
                 src={thumbnail}
                 alt={`Profit Saloon introducing ${name}`}
@@ -108,6 +122,14 @@ export default function TeacherIntro({
                 className="aspect-video w-full h-auto object-cover rounded-xl"
               /> */}
             </div>
+            <div
+              onClick={() => {
+                if (isPlaying) {
+                  setIsPlaying(false);
+                }
+              }}
+              className="bg-overlay cursor-pointer w-full h-full z-[0] absolute inset-0"
+            ></div>
           </div>
         </div>
       </div>

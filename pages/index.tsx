@@ -16,12 +16,19 @@ import FeaturedCourses from '@/components/Landing/FeaturedCourses';
 import Tools from '@/components/Landing/Tools';
 import TeacherSection from '@/components/Landing/TeacherSection';
 import Footer from '@/components/Footer';
+import { groq } from 'next-sanity';
+import { sanityClient } from 'lib/sanityClient';
+import { teacher } from 'lib/schemas/schemaTypes';
+import { useEffect } from 'react';
 
 interface Props {
   products: Product[];
+  teachers: any[];
 }
 
-const Home: NextPage = () => {
+const teacherQuery = groq`*[_type == "teacher"] | order(orderRank)`;
+
+export default function Home({ products, teachers }: Props) {
   const router = useRouter();
   const supabase = useSupabaseClient();
   const { user, isLoading, subscription } = useUser();
@@ -48,6 +55,11 @@ const Home: NextPage = () => {
       // setPriceIdLoading(undefined);
     }
   };
+
+  useEffect(() => {
+    console.log(teachers);
+  }, [teachers]);
+
   return (
     <>
       <Head>
@@ -60,7 +72,7 @@ const Home: NextPage = () => {
         <TierSection />
         <FeaturedCourses />
         <Tools />
-        <TeacherSection />
+        <TeacherSection teachers={teachers} />
         <section className="bg-[#060606] h-[100vh]"></section>
         <Footer />
         <button onClick={() => handleCheckout()} className="text-white">
@@ -69,17 +81,17 @@ const Home: NextPage = () => {
       </main>
     </>
   );
-};
+}
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   const products = await getActiveProductsWithPrices();
+  const teachers = await sanityClient.fetch(teacherQuery);
 
   return {
     props: {
-      products
+      products,
+      teachers
     },
     revalidate: 60
   };
 }
-
-export default Home;

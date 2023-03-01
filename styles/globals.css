@@ -240,8 +240,13 @@ img {
 .video-outer.fixed {
   position: fixed;
   z-index: 9999;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
+
+.video-outer.fixed .video-thumbnail {
+  opacity: 0;
+}
+
 .video-button {
   transition: opacity 0.35s ease;
 }

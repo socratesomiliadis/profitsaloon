@@ -28,14 +28,6 @@ export const course = defineType({
           input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)
       }
     }),
-    // defineField({
-    //   name: 'sortOrder',
-    //   type: 'number',
-    //   title: 'Sort Order',
-    //   validation(rule) {
-    //     return rule.required().min(1).integer();
-    //   }
-    // }),
     defineField({
       name: 'courseCode',
       type: 'string',
@@ -99,4 +91,61 @@ export const course = defineType({
       ]
     })
   ]
+});
+
+export const teacher = defineType({
+  name: 'teacher',
+  type: 'document',
+  title: 'Teacher',
+  //@ts-ignore
+  orderings: [orderRankOrdering],
+  fields: [
+    defineField({
+      name: 'name',
+      type: 'string',
+      title: 'Name'
+    }),
+    orderRankField({ type: 'teacher' }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name',
+        maxLength: 200, // will be ignored if slugify is set
+        slugify: (input: any) =>
+          input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)
+      }
+    }),
+    defineField({
+      name: 'role',
+      type: 'string',
+      title: 'Role'
+    }),
+    defineField({
+      name: 'desc',
+      type: 'text',
+      title: 'Teacher Description'
+    }),
+    defineField({
+      name: 'thumbnail',
+      type: 'image',
+      title: 'Thumbnail'
+    }),
+    defineField({
+      name: 'video',
+      type: 'file',
+      title: 'Video',
+      options: {
+        accept: 'video/*'
+      }
+    })
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'role',
+      media: 'thumbnail'
+    }
+  }
 });
