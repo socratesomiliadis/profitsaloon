@@ -47,7 +47,12 @@ export default function Home({ products, teachers }: Props) {
 
     try {
       const { sessionId } = await postData({
-        url: '/api/create-checkout-session'
+        url: '/api/create-checkout-session',
+        data: {
+          metadata: {
+            ai: true
+          }
+        }
       });
 
       const stripe = await getStripe();
@@ -58,10 +63,6 @@ export default function Home({ products, teachers }: Props) {
       // setPriceIdLoading(undefined);
     }
   };
-
-  useEffect(() => {
-    console.log(teachers);
-  }, [teachers]);
 
   // useEffect(() => {
   //   const path = document.querySelector('.test-path') as SVGPathElement;

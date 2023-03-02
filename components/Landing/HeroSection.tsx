@@ -17,7 +17,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section flex min-h-screen w-screen flex-col bg-gradient-to-br from-[#000000] to-[#1A1A1A] pt-[25vh]">
+    <section className="hero-section flex w-screen h-fit flex-col bg-gradient-to-br from-[#000000] to-[#1A1A1A] pt-[25vh]">
       <div className="hero-text flex flex-col items-center translate-y-[65%] gap-4 px-32 z-[5]">
         <span className="text-xl font-medium uppercase text-[#818181]">
           Available Worldwide
@@ -132,8 +132,8 @@ export default function HeroSection() {
           </svg>
         </div>
       </div>
-      <div className="relative z-[4] mt-44 aspect-[1920/1342] h-auto w-full">
-        <div className="absolute bottom-0 left-0 z-[1] flex h-[40%] w-full flex-col items-center gap-4 bg-gradient-to-t from-black via-black to-transparent pt-[12%]">
+      <div className="relative z-[4]">
+        <div className="absolute bottom-0 z-0 left-0 flex h-[15%] w-full flex-col items-center gap-4 bg-gradient-to-t from-black to-transparent">
           {/* <span className="text-4xl font-medium text-[#ededed]">
             Be the best version of yourself.
           </span>
@@ -233,7 +233,7 @@ export default function HeroSection() {
           width={1920}
           height={2013}
           alt="Profit Saloon"
-          className="-mt-[19%] z-0 w-full h-full object-cover"
+          className="-mt-[25%] z-[1] w-full h-full object-cover relative"
           quality={100}
           priority={true}
         />

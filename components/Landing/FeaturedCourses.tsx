@@ -9,9 +9,7 @@ export default function FeaturedCourses() {
       <div className="flex flex-col items-center gap-4 z-50 relative">
         <Label text="Courses" />
         <span className="text-center text-4xl font-medium text-[#ededed]">
-          Stop chasing the meta.
-          <br />
-          Be the meta.
+          Stop chasing the meta. Be the meta.
         </span>
         <p className="text-center text-xl text-[#818181]">
           Join a supportive community to enhance your growth as an <br />

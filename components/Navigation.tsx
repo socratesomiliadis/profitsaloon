@@ -1,21 +1,35 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useUser } from '@/utils/useUser';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { Database } from 'types_db';
+import ProfileMenu from './ProfileMenu';
 
 const NavUser = ({
-  setSignInOpen,
-  isResetPassword
+  formType,
+  setFormType
 }: {
-  setSignInOpen: any;
-  isResetPassword: boolean;
+  formType:
+    | 'sign-in'
+    | 'sign-up'
+    | 'reset-password'
+    | 'reset-password-request'
+    | 'none';
+  setFormType: (
+    formType:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient<Database>();
-  const { user, userDetails } = useUser();
+  const { user, userDetails, subscription } = useUser();
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   async function updateUserDetails() {
     try {
@@ -33,25 +47,61 @@ const NavUser = ({
     }
   }
 
+  async function checkDiscordConnection() {
+    const HTMLDom = document.querySelector('html') as HTMLElement;
+    const { data, error } = await supabaseClient
+      .from('users')
+      .select('discord_id')
+      .eq('id', user?.id);
+
+    if (error) throw error;
+    if (data) {
+      if (data[0].discord_id == null) {
+        HTMLDom.style.overflow = 'hidden';
+      }
+    }
+  }
+
   useEffect(() => {
     if (userDetails && !userDetails.full_name) {
       updateUserDetails();
-      console.log('test');
     }
   }, [userDetails]);
 
   useEffect(() => {
     const HTMLDom = document.querySelector('html') as HTMLElement;
-    if (user && !isResetPassword) {
+    if (user && formType !== 'reset-password') {
       HTMLDom.style.overflow = '';
-      setSignInOpen(false);
+      setFormType('none');
+    }
+    if (user) {
+      // checkDiscordConnection();
     }
   }, [user]);
+
+  useEffect(() => {
+    const profileMenu = document.querySelector('.profile-menu') as HTMLElement;
+    const mainDom = document.querySelector('main') as HTMLElement;
+    if (isProfileMenuOpen) {
+      profileMenu?.classList.add('active');
+      mainDom?.addEventListener('click', () => {
+        setIsProfileMenuOpen(false);
+      });
+    } else {
+      profileMenu?.classList.remove('active');
+    }
+
+    return () => {
+      mainDom?.removeEventListener('click', () => {
+        setIsProfileMenuOpen(false);
+      });
+    };
+  }, [isProfileMenuOpen]);
 
   if (!user) {
     return (
       <button
-        onClick={() => setSignInOpen(true)}
+        onClick={() => setFormType('sign-in')}
         className="flex flex-row items-center gap-8"
       >
         <svg
@@ -96,30 +146,46 @@ const NavUser = ({
             Log out
           </span>
         </button>
-        <Link href="/account">
+        <div className="relative">
           <Image
+            onClick={() => {
+              setIsProfileMenuOpen((prev) => !prev);
+            }}
             src={src}
             alt={`${name}`}
             width={250}
             height={250}
-            className="h-12 w-12 rounded-full"
+            className="h-12 w-12 rounded-full cursor-pointer"
           />
-        </Link>
+          <ProfileMenu name={name} />
+        </div>
       </div>
     );
   }
 };
 
 export default function Navigation({
-  setSignInOpen,
-  isResetPassword
+  formType,
+  setFormType
 }: {
-  setSignInOpen: any;
-  isResetPassword: boolean;
+  formType:
+    | 'sign-in'
+    | 'sign-up'
+    | 'reset-password'
+    | 'reset-password-request'
+    | 'none';
+  setFormType: (
+    formType:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   return (
-    <nav className="fixed top-0 z-[999] flex w-screen flex-row items-center justify-between px-32 pt-8">
-      <div className="flex flex-row items-center gap-4">
+    <nav className="fixed top-0 z-[999] flex w-screen flex-row items-center justify-between px-32 pt-8 pointer-events-none">
+      <div className="flex flex-row items-center gap-4 pointer-events-auto">
         <Link href="/">
           <svg
             width="220"
@@ -195,7 +261,7 @@ export default function Navigation({
           </svg>
         </button>
       </div>
-      <div className="flex flex-row items-center gap-16">
+      <div className="flex flex-row items-center gap-16 pointer-events-auto">
         <Link
           href="/affiliate"
           className="flex rounded-full border-[0.5px] backdrop-blur border-[#818181] bg-gradient-to-r from-[#121212]/40 via-[#232323]/50 to-[#121212]/40 px-20 py-3 text-lg text-white"
@@ -203,10 +269,7 @@ export default function Navigation({
           <span className="-mb-1">Become an affiliate</span>
         </Link>
         <div className="h-[40px] w-[1px] bg-gradient-to-t from-[#222222] via-[#3C3C3C] to-[#222222]"></div>
-        <NavUser
-          isResetPassword={isResetPassword}
-          setSignInOpen={setSignInOpen}
-        />
+        <NavUser formType={formType} setFormType={setFormType} />
       </div>
     </nav>
   );

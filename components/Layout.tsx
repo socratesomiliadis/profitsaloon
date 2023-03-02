@@ -9,6 +9,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [signInOpen, setSignInOpen] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
+  const [formType, setFormType] = useState<
+    'sign-in' | 'sign-up' | 'reset-password' | 'reset-password-request' | 'none'
+  >('none');
   const [isSanityPage, setIsSanityPage] = useState(
     router.asPath.includes('studio')
   );
@@ -16,18 +19,17 @@ export default function Layout({ children }: { children: ReactNode }) {
   const supabase = useSupabaseClient();
   useEffect(() => {
     const HTMLDom = document.querySelector('html') as HTMLElement;
-    if (signInOpen) {
+    if (formType !== 'none') {
       HTMLDom.style.overflow = 'hidden';
     } else {
       HTMLDom.style.overflow = '';
     }
-  }, [signInOpen]);
+  }, [formType]);
 
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event) => {
       if (event == 'PASSWORD_RECOVERY') {
-        setIsResetPassword(true);
-        setSignInOpen(true);
+        setFormType('reset-password');
       }
     });
   }, []);
@@ -35,8 +37,6 @@ export default function Layout({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (router.asPath.includes('studio')) setIsSanityPage(true);
     else setIsSanityPage(false);
-
-    console.log(isSanityPage);
   }, [router.asPath]);
 
   return (
@@ -51,10 +51,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         ></Image> */}
 
         {!isSanityPage && (
-          <Navigation
-            isResetPassword={isResetPassword}
-            setSignInOpen={setSignInOpen}
-          />
+          <Navigation formType={formType} setFormType={setFormType} />
         )}
 
         {!isSanityPage && (
@@ -69,12 +66,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           />
         )}
 
-        {signInOpen && (
-          <SignIn
-            isResetPassword={isResetPassword}
-            setIsResetPassword={setIsResetPassword}
-            setSignInOpen={setSignInOpen}
-          />
+        {formType !== 'none' && (
+          <SignIn formType={formType} setFormType={setFormType} />
         )}
         {children}
       </div>

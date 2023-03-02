@@ -4,8 +4,8 @@ import TierCard from './TierCard';
 
 export default function TierSection() {
   return (
-    <section className="tier-section flex h-[200vh] w-screen flex-col items-center -mt-[40vh] relative noisy">
-      <div className="flex flex-col items-center gap-4 z-10">
+    <section className="tier-section flex h-[200vh] w-screen flex-col items-center -mt-[0vh] relative noisy">
+      <div className="flex flex-col py-32 items-center gap-4 z-10 -mt-64 bg-gradient-to-t from-black via-black to-transparent w-full">
         <Label text="Our Programs" />
         <span className="text-center text-4xl font-medium text-[#ededed] mt-4">
           Increase your earnings through participation
@@ -19,7 +19,7 @@ export default function TierSection() {
           increasing revenue.
         </p>
       </div>
-      <div className="mt-32 flex w-full flex-row items-center gap-10 px-24 3xl:px-64 z-10">
+      <div className="flex w-full flex-row items-center gap-10 px-24 3xl:px-64 z-10">
         <TierCard
           title="Student"
           price="28,99"

@@ -23,7 +23,7 @@ export default function Input({
           setValue(e.target.value);
         }}
         placeholder={placeholder}
-        className={`bg-transparent border-[1px] text-white focus:outline-none border-[#5A5A5A] py-4 pl-6 pr-20 rounded-2xl ${className}`}
+        className={`bg-transparent border-[1px] text-white focus:outline-none border-[#5A5A5A] pt-5 pb-4 pl-6 pr-20 rounded-2xl ${className}`}
       />
     </div>
   );

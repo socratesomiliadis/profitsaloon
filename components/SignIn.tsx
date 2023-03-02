@@ -4,19 +4,27 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
 import Input from './Input';
 import { getURL } from '@/utils/helpers';
+import { redirect } from 'next/dist/server/api-utils';
 
 function SignUpForm({
   email,
   setEmail,
   password,
   setPassword,
-  setIsSignUp
+  setFormType
 }: {
   email: string;
   setEmail: (value: string) => void;
   password: string;
   setPassword: (value: string) => void;
-  setIsSignUp: (value: boolean) => void;
+  setFormType: (
+    value:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   const [fullname, setFullname] = useState('');
   const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
@@ -56,7 +64,8 @@ function SignUpForm({
         options: {
           data: {
             full_name: fullname
-          }
+          },
+          emailRedirectTo: getURL() + 'test'
         }
       });
 
@@ -111,7 +120,7 @@ function SignUpForm({
         <span className="text-[#818181]">
           Already have an account?
           <button
-            onClick={() => setIsSignUp(false)}
+            onClick={() => setFormType('sign-in')}
             className="ml-1 underline text-[#818181]"
           >
             Sign in instead.
@@ -128,15 +137,20 @@ function SignInForm({
   setEmail,
   password,
   setPassword,
-  setIsSignUp,
-  setIsResetPasswordRequest
+  setFormType
 }: {
   email: string;
   setEmail: (value: string) => void;
   password: string;
   setPassword: (value: string) => void;
-  setIsSignUp: (value: boolean) => void;
-  setIsResetPasswordRequest: (value: boolean) => void;
+  setFormType: (
+    value:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
   const supabase = useSupabaseClient();
@@ -183,7 +197,7 @@ function SignInForm({
       </form>
       <div className="flex flex-col gap-2 items-center">
         <button
-          onClick={() => setIsResetPasswordRequest(true)}
+          onClick={() => setFormType('reset-password-request')}
           className="ml-1 underline text-[#818181]"
         >
           Forgot your password?
@@ -191,7 +205,7 @@ function SignInForm({
         <span className="text-[#818181]">
           Don't have an account?
           <button
-            onClick={() => setIsSignUp(true)}
+            onClick={() => setFormType('sign-up')}
             className="ml-1 underline text-[#818181]"
           >
             Sign up instead.
@@ -206,11 +220,18 @@ function SignInForm({
 function ResetPasswordRequestForm({
   email,
   setEmail,
-  setIsResetPasswordRequest
+  setFormType
 }: {
   email: string;
   setEmail: (value: string) => void;
-  setIsResetPasswordRequest: (value: boolean) => void;
+  setFormType: (
+    value:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
   const supabase = useSupabaseClient();
@@ -258,7 +279,7 @@ function ResetPasswordRequestForm({
       </form>
       <div className="flex flex-col gap-2 items-center">
         <button
-          onClick={() => setIsResetPasswordRequest(false)}
+          onClick={() => setFormType('sign-in')}
           className="ml-1 underline text-[#818181]"
         >
           Go back.
@@ -270,9 +291,16 @@ function ResetPasswordRequestForm({
 }
 
 function ResetPasswordForm({
-  setIsResetPassword
+  setFormType
 }: {
-  setIsResetPassword: (value: boolean) => void;
+  setFormType: (
+    value:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   const [password, setPassword] = useState('');
   const [errorState, setErrorState] = useState<React.ReactNode | null>(null);
@@ -291,7 +319,7 @@ function ResetPasswordForm({
         <span className="text-red-500 text-center">{error.message}</span>
       );
     else if (data) {
-      setIsResetPassword(false);
+      setFormType('sign-in');
       setErrorState(
         <span className="text-[#49ff86] text-center">
           Password reset succesfully
@@ -327,28 +355,36 @@ function ResetPasswordForm({
 }
 
 export default function SignIn({
-  setSignInOpen,
-  isResetPassword,
-  setIsResetPassword
+  formType,
+  setFormType
 }: {
-  setSignInOpen: any;
-  isResetPassword: boolean;
-  setIsResetPassword: (value: boolean) => void;
+  formType:
+    | 'sign-in'
+    | 'sign-up'
+    | 'reset-password'
+    | 'reset-password-request'
+    | 'none';
+  setFormType: (
+    value:
+      | 'sign-in'
+      | 'sign-up'
+      | 'reset-password'
+      | 'reset-password-request'
+      | 'none'
+  ) => void;
 }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [isResetPasswordRequest, setIsResetPasswordRequest] = useState(false);
   const router = useRouter();
   const user = useUser();
   const supabaseClient = useSupabaseClient();
 
-  if (!user || isResetPassword)
+  if (!user || formType === 'reset-password')
     return (
       <div className="fixed z-[9999] w-full h-full flex items-center justify-center inset-0 ">
         <div className="relative w-full h-full">
           <div
-            onClick={() => setSignInOpen(false)}
+            onClick={() => setFormType('none')}
             className="absolute inset-0 w-full h-full backdrop-blur-xl bg-black/80 z-0 cursor-pointer"
           ></div>
           <div className="max-w-xl absolute z-10 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col h-fit py-16 px-24 rounded-2xl border-[2px] border-[#202020] bg-gradient-to-br from-[#000000] to-[#1A1A1A]">
@@ -414,34 +450,33 @@ export default function SignIn({
               </svg>
             </div>
             <div className="flex flex-col">
-              {isSignUp && !isResetPasswordRequest && !isResetPassword && (
+              {formType === 'sign-up' && (
                 <SignUpForm
                   email={email}
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  setIsSignUp={setIsSignUp}
+                  setFormType={setFormType}
                 />
               )}
-              {!isSignUp && !isResetPasswordRequest && !isResetPassword && (
+              {formType === 'sign-in' && (
                 <SignInForm
                   email={email}
                   setEmail={setEmail}
                   password={password}
                   setPassword={setPassword}
-                  setIsSignUp={setIsSignUp}
-                  setIsResetPasswordRequest={setIsResetPasswordRequest}
+                  setFormType={setFormType}
                 />
               )}
-              {isResetPasswordRequest && !isResetPassword && (
+              {formType === 'reset-password-request' && (
                 <ResetPasswordRequestForm
                   email={email}
                   setEmail={setEmail}
-                  setIsResetPasswordRequest={setIsResetPasswordRequest}
+                  setFormType={setFormType}
                 />
               )}
-              {isResetPassword && (
-                <ResetPasswordForm setIsResetPassword={setIsResetPassword} />
+              {formType === 'reset-password' && (
+                <ResetPasswordForm setFormType={setFormType} />
               )}
               {/* <Auth
                 supabaseClient={supabaseClient}
