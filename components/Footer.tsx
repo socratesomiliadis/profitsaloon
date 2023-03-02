@@ -77,29 +77,29 @@ export default function Footer() {
             title="Products"
             links={[
               {
-                title: 'Razer',
-                href: 'https://www.razer.com/store',
-                external: true
+                title: 'Courses',
+                href: '/account/courses',
+                external: false
               }
             ]}
           />
           <FooterLinkColumn
-            title="Web"
+            title="Resources"
             links={[
               {
-                title: 'Aeva',
-                href: 'https://aevateam.com',
-                external: true
+                title: 'Support',
+                href: '/support',
+                external: false
               },
               {
-                title: 'Razer',
-                href: 'https://www.razer.com',
-                external: true
+                title: 'FAQ',
+                href: '/faq',
+                external: false
               },
               {
-                title: 'Links',
-                href: 'https://links.aevateam.com',
-                external: true
+                title: 'Contact',
+                href: '/contact',
+                external: false
               }
             ]}
           />
@@ -107,28 +107,29 @@ export default function Footer() {
             title="Social Media"
             links={[
               {
-                title: 'Discord',
-                href: 'https://aevateam.com/discord',
+                title: 'Twitter',
+                href: 'https://twitter.com/ProfitSaloon',
                 external: true
               },
               {
                 title: 'Instagram',
-                href: 'https://www.instagram.com/aevateam/',
+                href: 'https://www.instagram.com/profitsaloon/',
                 external: true
               },
               {
                 title: 'YouTube',
-                href: 'https://www.youtube.com/@aevateam',
+                href: 'https://www.youtube.com/@profitsaloon',
                 external: true
               },
-              {
-                title: 'Twitter',
-                href: 'https://twitter.com/aevateam',
-                external: true
-              },
+
               {
                 title: 'TikTok',
-                href: 'https://www.tiktok.com/@aevateam',
+                href: 'https://www.tiktok.com/@profitsaloon',
+                external: true
+              },
+              {
+                title: 'LinkedIn',
+                href: 'https://www.linkedin.com/company/profitsaloon/',
                 external: true
               }
             ]}

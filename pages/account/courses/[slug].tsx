@@ -39,12 +39,6 @@ that are programmed to think and learn like humans."
 export const getStaticPaths = async () => {
   const coursePaths = await sanityClient.fetch(coursesSlugsQuery);
 
-  //   const paths = coursePaths.map((coursePath: any) => ({
-  //     params: {
-  //       slug: coursePaths.slug.current
-  //     }
-  //   }));
-
   return {
     paths: coursePaths.map((slug: any) => ({ params: { slug } })),
     fallback: 'blocking'

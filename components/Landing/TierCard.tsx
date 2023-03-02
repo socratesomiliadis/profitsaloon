@@ -106,7 +106,9 @@ export default function TierCard({
               </defs>
             </svg>
 
-            <span className="text-base text-[#f5f5f5]">{title}</span>
+            <span className="text-base text-[#f5f5f5] select-none">
+              {title}
+            </span>
           </div>
         </div>
       </div>
@@ -115,7 +117,7 @@ export default function TierCard({
           <span className="text-2xl text-[#ededed]">{title}</span>
           <span className="text-base font-light text-[#C1C1C1]">${price}</span>
         </div>
-        <div className="tier-card-selector relative flex flex-row items-center rounded-full border-[1px] border-[#3a3a3a] text-white text-sm">
+        <div className="select-none tier-card-selector relative flex flex-row items-center rounded-full border-[1px] border-[#3a3a3a] text-white text-sm">
           <div className="indicator absolute h-[70%] bg-[#252525] z-0"></div>
           <button className="tier-card-selector-left -mb-1 z-[1] py-4 pl-6 pr-4">
             Benefits

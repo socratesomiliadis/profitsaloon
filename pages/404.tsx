@@ -8,8 +8,8 @@ export default function Error404() {
         <meta name="description" content="Created by SOHub" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className="w-screen h-screen error-404 flex flex-row items-center  px-32">
-        <div className="error-404-text flex flex-col items-start gap-4">
+      <main className="w-screen h-screen error-404 flex flex-row items-center px-32">
+        <div className="error-404-text flex flex-col items-start gap-4 z-20">
           <span className="text-xl font-medium uppercase text-[#818181]">
             Error 404
           </span>
@@ -25,7 +25,7 @@ export default function Error404() {
             refer to join our courses.
           </p>
         </div>
-      </div>
+      </main>
     </>
   );
 }
