@@ -78,7 +78,7 @@ export default function MainSection() {
       <div className="mt-44 relative w-full flex flex-row justify-center">
         <div className="absolute w-full h-1/3 left-0 bottom-0 bg-gradient-to-t from-black to-transparent"></div>
         <Image
-          src="/static/images/HeroMockup.png"
+          src="/static/images/heroMockup.png"
           width={2560}
           height={1440}
           alt=""

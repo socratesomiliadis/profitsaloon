@@ -28,7 +28,7 @@ export default function TierSection() {
         <TierCard
           title="Expert"
           price="988,99"
-          imgURL="/static/images/cards/expert.png"
+          imgURL="/static/images/cards/Expert.png"
         />
       </div>
       <div className="relative w-full h-[150vh]">
