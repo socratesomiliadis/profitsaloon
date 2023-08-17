@@ -1,4 +1,6 @@
-import { Price } from "../types";
+import { useAuth } from "@clerk/clerk-react";
+import { createClient } from "@supabase/supabase-js";
+import { Price } from "@/types";
 
 export const getURL = () => {
   let url =
@@ -12,12 +14,25 @@ export const getURL = () => {
   return url;
 };
 
+export const supabaseClientWithAuth = async (supabaseAccessToken: string) => {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
+    {
+      global: { headers: { Authorization: `Bearer ${supabaseAccessToken}` } },
+    }
+  );
+  // set Supabase JWT on the client object,
+  // so it is sent up with all Supabase requests
+  return supabase;
+};
+
 export const postData = async ({
   url,
   data,
 }: {
   url: string;
-  data?: { quantity?: number; metadata?: object; price?: Price };
+  data?: { price: Price };
 }) => {
   console.log("posting,", url, data);
 
@@ -42,3 +57,8 @@ export const toDateTime = (secs: number) => {
   t.setSeconds(secs);
   return t;
 };
+
+export const supabaseClient = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+);

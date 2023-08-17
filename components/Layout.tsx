@@ -1,13 +1,10 @@
 import Header from "@/components/Navigation/Header";
-// import AuthPopup from "./AuthPopup";
-import { AnimatePresence } from "framer-motion";
+import AuthPopup from "./AuthPopup";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="layout-wrapper bg-white">
-      {/* <AnimatePresence mode="wait">
-        <AuthPopup key="authPop" />
-      </AnimatePresence> */}
+      <AuthPopup />
       <Header />
       {children}
     </div>
