@@ -1,30 +1,16 @@
-import '../styles/globals.css';
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+import Layout from "@/components/Layout";
+import { Inter } from "next/font/google";
 
-import { useEffect, useState } from 'react';
-import Layout from '@/components/Layout';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { AppProps } from 'next/app';
-import { MyUserContextProvider } from 'utils/useUser';
-import type { Database } from 'types_db';
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  const [supabaseClient] = useState(() =>
-    createBrowserSupabaseClient<Database>()
-  );
-  useEffect(() => {
-    document.body.classList?.remove('loading');
-  }, []);
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="bg-black">
-      <SessionContextProvider supabaseClient={supabaseClient}>
-        <MyUserContextProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </MyUserContextProvider>
-      </SessionContextProvider>
+    <div style={inter.style} className="font-wrapper">
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </div>
   );
 }

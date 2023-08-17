@@ -2,39 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'AcidGrotesk';
-  src: local('AcidGrotesk'), url(/fonts/AcidGrotesk-Light.woff2) format('woff2');
-  font-weight: 300;
-  font-display: swap;
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+
+  --radius: 0.5rem;
 }
-@font-face {
-  font-family: 'AcidGrotesk';
-  src: local('AcidGrotesk'),
-    url(/fonts/AcidGrotesk-Regular.woff2) format('woff2');
-  font-weight: 400;
-  font-display: swap;
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
 }
-@font-face {
-  font-family: 'AcidGrotesk';
-  src: local('AcidGrotesk'),
-    url(/fonts/AcidGrotesk-Medium.woff2) format('woff2');
-  font-weight: 500;
-  font-display: swap;
+
+* {
+  @apply border-border;
 }
-@font-face {
-  font-family: 'AcidGrotesk';
-  src: local('AcidGrotesk'), url(/fonts/AcidGrotesk-Bold.woff2) format('woff2');
-  font-weight: 600;
-  font-display: swap;
+body {
+  @apply bg-background text-foreground;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+a,
+button,
+img {
+  user-select: none;
+}
+
+#profitHero {
+  filter: drop-shadow(0px 4px 4px rgba(46, 46, 46, 0.14))
+    drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.69));
+}
+
+@media (min-width: 1024px) {
+  #profitHero {
+    filter: drop-shadow(0px 4px 4px rgba(46, 46, 46, 0.14))
+      drop-shadow(0px 0px 110px rgba(0, 0, 0, 0.69));
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #1a1a1a;
+  background-color: #d7d7d7;
   -webkit-border-radius: 25px;
   border-radius: 25px;
 }
@@ -42,31 +106,15 @@
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 25px;
   border-radius: 25px;
-  background: #2f2f2f;
-}
-
-html {
-  font-family: 'AcidGrotesk';
-  overflow-x: hidden;
-  background: #1a1a1a;
-}
-
-::-moz-selection {
-  /* Code for Firefox */
-  color: #0f0f0f;
-  background: #49ff86;
-}
-
-::selection {
-  color: #0f0f0f;
-  background: #49ff86;
+  background: #fff;
 }
 
 .tier-section {
   background: radial-gradient(
-    61.82% 58.3% at 50% 58.3%,
-    #232323 0%,
-    #000000 100%
+    61.92% 58.3% at 50% 58.3%,
+    #121212 0%,
+    #000 50%,
+    #000 100%
   );
 }
 
@@ -136,14 +184,6 @@ img {
   transform: scale(1.2);
 }
 
-.error-404 {
-  background: radial-gradient(
-    37.32% 68.87% at 50% 50%,
-    #232323 0%,
-    #101010 100%
-  );
-}
-
 .left-light-grad {
   background: conic-gradient(
     from 181deg at 57% 0%,
@@ -182,111 +222,3 @@ img {
   background: linear-gradient(180deg, #505050 0%, #44f27f 195%);
   border-radius: 3px;
 }
-
-.affiliate-page {
-  background: radial-gradient(
-      27.79% 51.28% at 88.98% 87.55%,
-      #232323 0%,
-      #0b0b0b 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-}
-
-.rive-canvas > canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.icon {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.icon.current {
-  height: 60px;
-  transform: translateY(-10px);
-}
-
-.icon.prev {
-  height: 50px;
-  transform: translateY(-6px);
-}
-
-.icon.next {
-  height: 50px;
-  transform: translateY(-6px);
-}
-
-.label-inner {
-  background: linear-gradient(90deg, #101010 0%, #1b1b1b 50.52%, #101010 100%);
-}
-
-.label-stroke {
-  background: linear-gradient(0deg, #81818100 0%, #818181 100%);
-}
-
-.teacher-intro-swiper.test {
-  transform: none !important;
-}
-
-.teacher-intro-swiper.test .swiper-wrapper {
-  transform: none !important;
-}
-
-.teacher-intro-swiper.test .swiper-slide {
-  transform: none !important;
-}
-
-.video-outer.fixed {
-  position: fixed;
-  z-index: 9999;
-  backdrop-filter: blur(8px);
-}
-
-.video-outer.fixed .video-thumbnail {
-  opacity: 0;
-}
-
-.video-button {
-  transition: opacity 0.35s ease;
-}
-
-.video-button.off {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.logo-strip {
-  background-color: #0f0f0f;
-  background-size: 100% 100%;
-  background-position-y: 0;
-  animation-name: move;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes move {
-  0% {
-    background-position-x: 0;
-  }
-}
-
-.menu-item-icon-wrapper {
-  filter: drop-shadow(0px -0.5px 0.5px rgba(255, 255, 255, 0.3));
-}
-
-.menu-item-icon-wrapper svg {
-  filter: drop-shadow(0px 0px 14px #48ff86);
-}
-
-.profile-menu.active {
-  display: flex;
-}
-
-/*.swiper-slide {
-  transition: width 0.35s ease;
-}
-
-.swiper-slide:has(.teacher-intro-slide.video) {
-  width: 100% !important;
-}*/
