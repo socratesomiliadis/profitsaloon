@@ -18,19 +18,19 @@ export const upsertUserRecord = async (user: any) => {
   const userData = {
     user_id: user.id,
     username: user.username,
-    avatar_url: user.profile_image_url,
+    avatar_url: user.users_image_url,
     first_name: user.first_name,
     last_name: user.last_name,
   };
 
-  const { error } = await supabaseAdmin.from("profile").upsert([userData]);
+  const { error } = await supabaseAdmin.from("users").upsert([userData]);
   if (error) throw error;
   console.log(`User inserted/updated: ${user.id}`);
 };
 
 export const deleteUserRecord = async (userId: any) => {
   const { error } = await supabaseAdmin
-    .from("profile")
+    .from("users")
     .delete()
     .eq("user_id", userId);
   if (error) throw error;
