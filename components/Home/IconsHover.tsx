@@ -23,7 +23,7 @@ function AppIcon({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [35, 70, 35]);
+  let widthSync = useTransform(distance, [-150, 0, 150], [35, 60, 35]);
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
@@ -49,6 +49,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 32 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

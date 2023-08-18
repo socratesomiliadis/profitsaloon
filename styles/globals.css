@@ -223,6 +223,6 @@ img {
 }
 
 .light-bar {
-  background: linear-gradient(180deg, #505050 0%, #44f27f 195%);
+  background: linear-gradient(180deg, #505050 0%, white 195%);
   border-radius: 3px;
 }
