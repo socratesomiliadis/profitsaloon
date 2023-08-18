@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import FeaturedCourses from "@/components/Home/FeaturedCourses";
 import HeroMasked from "@/components/Home/HeroMasked";
 import MainSection from "@/components/Home/HeroSection";
@@ -11,6 +12,7 @@ export default function Home() {
       <MainSection />
       <TierSection />
       <FeaturedCourses />
+      <Footer />
     </main>
   );
 }
