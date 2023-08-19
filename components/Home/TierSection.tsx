@@ -31,7 +31,7 @@ export default function TierSection() {
           imgURL="/static/images/cards/Expert.png"
         />
       </div>
-      <div className="relative w-full h-[150vh]">
+      <div className="relative mt-[5%] w-full h-[150vh]">
         <div className="labels-section z-10">
           <div className="tier-label flex flex-row items-start gap-4 absolute left-[35%] top-[22.3%]">
             <svg

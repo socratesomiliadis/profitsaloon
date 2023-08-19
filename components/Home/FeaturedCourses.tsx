@@ -25,7 +25,7 @@ export default function FeaturedCourses() {
         <div className="light-bar w-[50%] h-[10px]"></div>
         <div className="relative flex w-full h-[60vh] items-center justify-center isolate z-0">
           <div className="absolute left-1/2 -translate-x-1/2 -translate-y-[80%] h-fit flex flex-col items-center gap-8 z-50 text-transparent bg-clip-text bg-gradient-to-b from-black to-black/70">
-            <span className="text-center text-5xl font-semibold">
+            <span className="text-center text-5xl font-medium">
               Copywriting
             </span>
             <p className="text-center text-xl font-medium">
