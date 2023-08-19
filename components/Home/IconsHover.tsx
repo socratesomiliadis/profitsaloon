@@ -23,14 +23,14 @@ function AppIcon({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [35, 60, 35]);
+  let widthSync = useTransform(distance, [-150, 0, 150], [36, 46, 36]);
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
     <motion.div
       ref={ref}
       style={{ width }}
-      className="w-10 text-[#818181] hover:text-white cursor-pointer transition-colors duration-300 ease-out"
+      className="w-9 h-9 text-[#818181] hover:text-white cursor-pointer transition-colors duration-300 ease-out"
     >
       {children}
     </motion.div>
@@ -44,7 +44,7 @@ export default function IconsHover() {
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className="icons-div flex flex-row items-center gap-10"
+      className="icons-div flex flex-row items-center gap-12"
     >
       <AppIcon mouseX={mouseX}>
         <svg
@@ -71,6 +71,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 42 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +89,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 40 38"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -113,6 +115,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 43 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +153,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 42 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +176,8 @@ export default function IconsHover() {
       </AppIcon>
       <AppIcon mouseX={mouseX}>
         <svg
-          width="100%"
+          width="90%"
+          height="100%"
           viewBox="0 0 38 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -188,6 +193,7 @@ export default function IconsHover() {
       <AppIcon mouseX={mouseX}>
         <svg
           width="100%"
+          height="100%"
           viewBox="0 0 44 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

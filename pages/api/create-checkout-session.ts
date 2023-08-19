@@ -6,7 +6,7 @@ import { getAuth } from "@clerk/nextjs/server";
 
 const CreateCheckoutSession: NextApiHandler = async (req, res) => {
   if (req.method === "POST") {
-    const { price, quantity = 1, metadata = {} } = req.body;
+    const { quantity = 1, metadata = {} } = req.body;
     const { userId, user } = getAuth(req);
 
     try {
@@ -25,7 +25,7 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
         customer,
         line_items: [
           {
-            price: price.id,
+            price: "price_1MUENlGuEyK30WCUTizeN2wY",
             quantity,
           },
         ],

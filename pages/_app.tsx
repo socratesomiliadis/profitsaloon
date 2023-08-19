@@ -24,13 +24,13 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
         {...pageProps}
       >
-        <MyUserContextProvider>
-          <AuthPopupProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </AuthPopupProvider>
-        </MyUserContextProvider>
+        {/* <MyUserContextProvider> */}
+        <AuthPopupProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthPopupProvider>
+        {/* </MyUserContextProvider> */}
       </ClerkProvider>
     </div>
   );

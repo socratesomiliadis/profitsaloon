@@ -32,7 +32,7 @@ export const postData = async ({
   data,
 }: {
   url: string;
-  data?: { price: Price };
+  data?: { price?: Price; quantity?: number; metadata?: any };
 }) => {
   console.log("posting,", url, data);
 

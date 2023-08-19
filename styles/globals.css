@@ -98,15 +98,13 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #d7d7d7;
-  -webkit-border-radius: 25px;
-  border-radius: 25px;
+  background-color: #000;
 }
 
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 25px;
   border-radius: 25px;
-  background: #fff;
+  background: #282828;
 }
 
 .cl-internal-3fgo0t {
@@ -225,4 +223,56 @@ img {
 .light-bar {
   background: linear-gradient(180deg, #505050 0%, white 195%);
   border-radius: 3px;
+}
+
+.marquee {
+  --gap: 6rem;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: var(--gap);
+  animation: marqueeScroll 32s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+.video-outer {
+  backdrop-filter: blur(0px);
+}
+
+.video-outer.fixed {
+  position: fixed;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
+.video-outer.fixed .video-thumbnail {
+  opacity: 0;
+}
+
+.video-outer.fixed .teacher-name {
+  opacity: 0;
+}
+
+.video-button {
+  transition: opacity 0.35s ease;
+}
+
+.video-button.off {
+  opacity: 0;
+  pointer-events: none;
 }

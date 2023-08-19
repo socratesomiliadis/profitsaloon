@@ -39,7 +39,7 @@ export default function MailchimpForm() {
             </svg>
           </div>
           <input
-            className="bg-transparent block focus:outline-none"
+            className="bg-transparent text-white block focus:outline-none"
             placeholder="Type your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

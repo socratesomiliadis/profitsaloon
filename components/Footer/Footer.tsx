@@ -10,7 +10,7 @@ export default function Footer() {
         <svg
           width="100%"
           viewBox="0 0 1622 216"
-          className="-mb-[1%] z-[1]"
+          className="-mb-[3%] z-[1]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -183,7 +183,7 @@ export default function Footer() {
           </defs>
         </svg>
       </span>
-      <div className="w-full flex flex-col gap-16 md:gap-64 border-t-[1px] border-[#1a1a1a] justify-between pt-14 px-6 lg:px-16 xl:px-[6vw] 2xl:px-[8vw]">
+      <div className="w-full flex flex-col gap-16 md:gap-64 border-t-[1px] border-[#1a1a1a] justify-between pt-24 px-6 lg:px-16 xl:px-[6vw] 2xl:px-[8vw]">
         <div className="flex flex-row w-full items-start justify-between z-20">
           <div className="flex flex-col gap-16 w-full 2xl:w-fit">
             <MailchimpForm />

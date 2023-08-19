@@ -11,7 +11,7 @@ export default function TierCard({
 }) {
   return (
     <div className="tier-card backdrop-blur-[1px] pt-8 flex h-fit basis-1/3 flex-col rounded-3xl border-[1px] border-[#202020] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50">
-      <div className="w-full px-16 py-6">
+      <div className="w-full px-20 py-6">
         <Image
           className="aspect-[350/200] h-auto w-full rounded-xl"
           src={imgURL}
@@ -95,21 +95,32 @@ export default function TierCard({
           </div>
         </div> */}
       </div>
-      <div className="flex w-full flex-row items-center justify-between px-16 pb-8">
+      <div className="flex w-full flex-row items-center justify-between mt-3 px-20 pb-12">
         <div className="flex flex-col">
-          <span className="text-2xl text-[#ededed]">{title}</span>
-          <span className="text-base font-light text-[#C1C1C1]">${price}</span>
+          <span className="text-lg leading-none text-[#ededed]">{title}</span>
+          <span className="text-sm font-light text-[#C1C1C1]">
+            ${price} per month
+          </span>
         </div>
-        <div className="select-none tier-card-selector relative flex flex-row items-center rounded-full border-[1px] border-[#3a3a3a] text-white text-sm">
-          <div className="indicator absolute h-[70%] bg-[#252525] z-0"></div>
-          <button className="tier-card-selector-left z-[1] py-3 pl-6 pr-4">
-            Benefits
-          </button>
-          <div className="h-[18px] w-[1px] bg-gradient-to-t from-[#222222] via-[#3C3C3C] to-[#222222]"></div>
-          <button className="tier-card-selector-right z-[1] py-3 pr-6 pl-4">
-            Buy
-          </button>
-        </div>
+        <button className="relative w-1/2 group rounded-full p-[1px] bg-gradient-to-t from-white/25 via-[#121212]/25 to-white/25">
+          <span className="flex w-full items-center justify-center gap-2 relative overflow-hidden text-sm py-2 rounded-full bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212] text-white">
+            <span>Get Started</span>
+            <span className="w-0 group-hover:w-3 transition-[width] duration-300 ease-out">
+              <svg
+                width="100%"
+                viewBox="0 0 10 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.40258 6.89249C6.40258 6.89249 8.90383 4.64 9.87777 3.763C9.95944 3.69 10 3.594 10 3.498C10 3.402 9.95944 3.306 9.87777 3.233C8.90438 2.356 6.40869 0.108501 6.40869 0.108501C6.32868 0.0365007 6.22312 0.000500407 6.11812 2.09406e-07C6.01089 2.14093e-07 5.90366 0.0370009 5.82143 0.110501C5.65865 0.257001 5.65809 0.4935 5.81921 0.639L8.57937 3.123L0.41669 3.123C0.186677 3.123 -1.62126e-07 3.291 -1.53077e-07 3.498C-1.44029e-07 3.705 0.186677 3.873 0.41669 3.873L8.57937 3.873L5.81366 6.3625C5.65309 6.507 5.6542 6.743 5.81699 6.88949C5.89922 6.96349 6.00644 7.00049 6.11367 6.99999C6.21868 6.99999 6.32313 6.96449 6.40258 6.89249Z"
+                  fill="#fff"
+                />
+              </svg>
+            </span>
+            <span className="absolute w-12 h-2 bg-white left-1/2 -translate-x-1/2 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300"></span>
+          </span>
+        </button>
       </div>
     </div>
   );
