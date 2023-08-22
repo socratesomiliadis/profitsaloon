@@ -23,14 +23,14 @@ function AppIcon({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [36, 46, 36]);
+  let widthSync = useTransform(distance, [-150, 0, 150], [36, 50, 36]);
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
     <motion.div
       ref={ref}
       style={{ width }}
-      className="w-9 h-9 text-[#818181] hover:text-white cursor-pointer transition-colors duration-300 ease-out"
+      className="w-9 h=9 text-[#818181] hover:text-white cursor-pointer transition-colors duration-300 ease-out"
     >
       {children}
     </motion.div>

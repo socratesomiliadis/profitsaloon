@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <header className="absolute select-none left-0 z-[99] pt-8 lg:pt-12 top-0 w-screen flex flex-row items-center justify-between px-6 lg:px-32 2xl:px-44">
-      <div className="relative w-[140px] lg:w-[180px]">
+      <Link href="/" className="relative w-[140px] lg:w-[180px]">
         <svg
           width="100%"
           viewBox="0 0 229 45"
@@ -64,7 +64,7 @@ export default function Header() {
             fill="#282828"
           />
         </svg>
-      </div>
+      </Link>
       <div className="flex flex-row items-center gap-12">
         <SignedIn>
           <button

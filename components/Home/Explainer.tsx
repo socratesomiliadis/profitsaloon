@@ -186,8 +186,8 @@ export default function Explainer() {
               y2="0.0039191"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#0D0D0D" />
-              <stop offset="1" stop-color="#2E2E2E" stop-opacity="0" />
+              <stop stopColor="#0D0D0D" />
+              <stop offset="1" stopColor="#2E2E2E" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_2261_3426"
@@ -197,8 +197,8 @@ export default function Explainer() {
               y2="422.004"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="white" />
-              <stop offset="1" stop-color="#555555" stop-opacity="0" />
+              <stop stopColor="white" />
+              <stop offset="1" stopColor="#555555" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_2261_3426"
@@ -208,8 +208,8 @@ export default function Explainer() {
               y2="120.369"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#0D0D0D" />
-              <stop offset="1" stop-color="#2E2E2E" stop-opacity="0" />
+              <stop stopColor="#0D0D0D" />
+              <stop offset="1" stopColor="#2E2E2E" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint3_linear_2261_3426"
@@ -219,8 +219,8 @@ export default function Explainer() {
               y2="119.345"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="white" />
-              <stop offset="1" stop-color="#555555" stop-opacity="0" />
+              <stop stopColor="white" />
+              <stop offset="1" stopColor="#555555" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

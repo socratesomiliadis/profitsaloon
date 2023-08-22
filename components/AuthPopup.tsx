@@ -86,7 +86,7 @@ export default function AuthPopup() {
           <PopupWrapper>
             {authPopupType === "signIn" && (
               <SignIn
-                signUpUrl={paths.signUp}
+                signUpUrl="/onboarding"
                 afterSignInUrl={paths.afterSuccess}
                 afterSignUpUrl={paths.afterSuccess}
                 appearance={{

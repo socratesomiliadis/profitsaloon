@@ -107,6 +107,15 @@ img {
   background: #282828;
 }
 
+.onboarding {
+  background: radial-gradient(
+    61.92% 58.3% at 50% 58.3%,
+    #121212 0%,
+    #000 100%,
+    #000 100%
+  );
+}
+
 .cl-internal-3fgo0t {
   display: none;
 }
@@ -164,6 +173,20 @@ img {
   animation-timing-function: ease-in-out;
 }
 
+.bob {
+  animation-name: bob;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.profit-coin {
+  animation-name: bobCoin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
 @keyframes bob {
   0% {
     transform: translateY(0px);
@@ -175,6 +198,42 @@ img {
 
   100% {
     transform: translateY(0px);
+  }
+}
+
+.breathe {
+  transform-origin: top;
+  animation: breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1) translateY(-50%);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2) translateY(-50%);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1) translateY(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes bobCoin {
+  0% {
+    transform: translateY(calc(-50% - 0px)) translateX(-50%);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 10px)) translateX(-50%);
+  }
+
+  100% {
+    transform: translateY(calc(-50% - 0px)) translateX(-50%);
   }
 }
 

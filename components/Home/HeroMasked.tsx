@@ -1,6 +1,6 @@
 export default function HeroMasked() {
   return (
-    <section className="h-[25vh] hidden lg:block w-screen relative overflow-hidden">
+    <section className="h-[25vh] bg-white hidden lg:block w-screen relative overflow-hidden">
       <div className="h-[75%] lg:h-[80%] absolute left-1/2 -translate-x-1/2 -bottom-[10%]">
         <svg
           height="100%"
