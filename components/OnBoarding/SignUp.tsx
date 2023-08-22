@@ -29,9 +29,10 @@ export default function SignUp() {
     setExpired(false);
     setVerified(false);
 
+    console.log(data);
     // Start the sign up flow, by collecting
     // the user's email address.
-    await signUp?.create({
+    await signUp.create({
       firstName: data.name,
       emailAddress: data.email,
       unsafeMetadata: { age: data.age },
@@ -43,7 +44,7 @@ export default function SignUp() {
     // email inbox.
     // su will hold the updated sign up object.
     const su = await startMagicLinkFlow({
-      redirectUrl: "/verification",
+      redirectUrl: "https://profitsaloon.vercel.app/verification",
     });
 
     // Check the verification result.

@@ -14,8 +14,8 @@ export default function Verification() {
     async function verify() {
       try {
         await handleMagicLinkVerification({
-          redirectUrl: "/onboarding",
-          redirectUrlComplete: "/onboarding",
+          redirectUrl: "/",
+          redirectUrlComplete: "/",
         });
         // If we're not redirected at this point, it means
         // that the flow has completed on another device.
