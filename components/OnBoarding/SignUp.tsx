@@ -8,7 +8,7 @@ export default function SignUp() {
   const [expired, setExpired] = useState(false);
   const [verified, setVerified] = useState(false);
   const router = useRouter();
-  const { signUp, isLoaded, setActive } = useSignUp();
+  const { signUp, isLoaded, setSession } = useSignUp();
 
   const {
     register,
@@ -43,7 +43,7 @@ export default function SignUp() {
     // email inbox.
     // su will hold the updated sign up object.
     const su = await startMagicLinkFlow({
-      redirectUrl: "https://profitsaloon.vercel.app/verification",
+      redirectUrl: "/verification",
     });
 
     // Check the verification result.
@@ -64,8 +64,8 @@ export default function SignUp() {
     if (su.status === "complete") {
       // Sign up is complete, we have a session.
       // Navigate to the after sign up URL.
-      //@ts-expect-error
-      setActive(su.createdSessionId, null, () => router.push("/onboarding"));
+
+      setSession(su.createdSessionId, () => router.push("/acc"));
       return;
     }
   };

@@ -14,8 +14,8 @@ export default function Verification() {
     async function verify() {
       try {
         await handleMagicLinkVerification({
-          redirectUrl: "https://profitsaloon.vercel.app/onboarding",
-          redirectUrlComplete: "https://profitsaloon.vercel.app/onboarding",
+          redirectUrl: "/onboarding",
+          redirectUrlComplete: "/onboarding",
         });
         // If we're not redirected at this point, it means
         // that the flow has completed on another device.
