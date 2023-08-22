@@ -5,7 +5,7 @@ import { MagicLinkErrorCode, isMagicLinkError, useClerk } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 // the final step in the magic link flow.
-function Verification() {
+export default function Verification() {
   const [verificationStatus, setVerificationStatus] = useState("loading");
 
   const { handleMagicLinkVerification } = useClerk();
@@ -14,8 +14,8 @@ function Verification() {
     async function verify() {
       try {
         await handleMagicLinkVerification({
-          redirectUrl: "https://redirect-to-pending-sign-up",
-          redirectUrlComplete: "https://redirect-when-sign-up-complete",
+          redirectUrl: "https://profitsaloon.vercel.app/onboarding",
+          redirectUrlComplete: "https://profitsaloon.vercel.app/onboarding",
         });
         // If we're not redirected at this point, it means
         // that the flow has completed on another device.
