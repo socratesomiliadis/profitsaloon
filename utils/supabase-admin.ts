@@ -17,9 +17,9 @@ const supabaseAdmin = createClient(
 export const upsertUserRecord = async (user: any) => {
   const userData = {
     user_id: user.id,
-    avatar_url: user.users_image_url,
+    avatar_url: user.image_url,
     name: user.first_name,
-    email: user.primary_email_address,
+    email: user.email_addresses[0].email_address,
     country: user.unsafe_metadata?.country,
     phone_number: user.unsafe_metadata?.phone_number,
     birth_year: user.unsafe_metadata?.birth_year,
