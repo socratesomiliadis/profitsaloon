@@ -8,7 +8,7 @@ import { Inter } from "next/font/google";
 import AuthPopupProvider from "@/hooks/useAuthPopup";
 import { AnimatePresence } from "framer-motion";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+export const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (

@@ -23,6 +23,7 @@ export const upsertUserRecord = async (user: any) => {
     country: user.unsafe_metadata?.country,
     phone_number: user.unsafe_metadata?.phone_number,
     birth_year: user.unsafe_metadata?.birth_year,
+    goals: user.unsafe_metadata?.goals,
   };
 
   const { error } = await supabaseAdmin.from("users").upsert([userData]);

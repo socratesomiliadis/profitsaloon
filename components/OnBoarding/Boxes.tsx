@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import SignUp from "./SignUp";
 import { useUser } from "@clerk/nextjs";
 import Goals from "./Goals";
+import Referal from "./Referal";
 
 function Counter({ current, total }: { current: number; total: number }) {
   return (
@@ -49,6 +50,8 @@ function Counter({ current, total }: { current: number; total: number }) {
 export default function Boxes({ children }: { children?: React.ReactNode }) {
   const { isSignedIn, user, isLoaded } = useUser();
   const [active, setActive] = useState(0);
+  const [goalsDone, setGoalsDone] = useState(false);
+  const [referalsDone, setReferalsDone] = useState(false);
 
   useEffect(() => {
     if (isSignedIn) {
@@ -230,6 +233,7 @@ export default function Boxes({ children }: { children?: React.ReactNode }) {
             index={1}
             isActive={active === 1}
             setActive={setActive}
+            isDone={goalsDone}
           />
           <LeftItem
             icon={
@@ -265,10 +269,23 @@ export default function Boxes({ children }: { children?: React.ReactNode }) {
           />
         </div>
       </aside>
-      <main className="w-[70%] z-[1] relative flex flex-col items-start justify-center py-10 px-[10%] gap-12">
+      <main className="w-[70%] z-[1] relative flex flex-col items-start justify-center py-10 pl-[15%] gap-12">
         <Counter current={active + 1} total={3} />
         {active === 0 && <SignUp stepIndex={0} setActiveStep={setActive} />}
-        {active === 1 && <Goals stepIndex={1} setActiveStep={setActive} />}
+        {active === 1 && (
+          <Goals
+            stepIndex={1}
+            setActiveStep={setActive}
+            setGoalsDone={setGoalsDone}
+          />
+        )}
+        {active === 2 && (
+          <Referal
+            stepIndex={2}
+            setActiveStep={setActive}
+            setReferalsDone={setReferalsDone}
+          />
+        )}
       </main>
     </div>
   );

@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
-import { set } from "sanity";
 import PhoneInput from "../PhoneInput";
 
 export default function SignUp({
@@ -128,10 +127,10 @@ export default function SignUp({
           key="sign-up-form"
         >
           <div className="flex flex-col gap-1">
-            <h2 className="text-white text-4xl">What are your main goals?</h2>
-            <p className="text-[#5c5c5c]">
-              What are you looking to get out of Profit Saloon?
-            </p>
+            <h2 className="text-white text-4xl font-medium">
+              Time to start making Profit.
+            </h2>
+            <p className="text-[#5c5c5c]">Sign up to get started!</p>
           </div>
           <form
             noValidate
@@ -311,6 +310,12 @@ export default function SignUp({
             },
           }}
         >
+          <div className="flex flex-col text-white">
+            <h2 className="text-4xl font-medium">
+              We&apos;ve sent you a verification code!
+            </h2>
+            <p className="text-[#5c5c5c]">Check your email inbox.</p>
+          </div>
           <Input
             type="text"
             label="Code"
