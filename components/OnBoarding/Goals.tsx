@@ -164,6 +164,7 @@ export default function Goals({
               setLoading(true);
               user?.update({
                 unsafeMetadata: {
+                  ...user.unsafeMetadata,
                   goals: selected,
                 },
               });
