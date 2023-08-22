@@ -83,7 +83,7 @@ export default function Referal({
           <button
             type="submit"
             onClick={() => {
-              setActiveStep(stepIndex + 1);
+              router.push("/");
               setReferalsDone(true);
             }}
             className="px-6 py-2 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"
@@ -102,7 +102,7 @@ export default function Referal({
           </button>
           <button
             onClick={() => {
-              setActiveStep(stepIndex + 1);
+              router.push("/");
               setReferalsDone(true);
             }}
             className="text-[#5C5C5C]"

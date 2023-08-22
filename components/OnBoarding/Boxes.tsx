@@ -266,6 +266,7 @@ export default function Boxes({ children }: { children?: React.ReactNode }) {
             index={2}
             isActive={active === 2}
             setActive={setActive}
+            isDone={referalsDone}
           />
         </div>
       </aside>
