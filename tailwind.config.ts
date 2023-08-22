@@ -87,17 +87,14 @@ module.exports = {
     nextui({
       defaultTheme: "dark", // default theme from the themes object
       defaultExtendTheme: "dark",
-      // themes: {
-      //   dark: {
-      //     colors: {
-      //       primary: {
-      //         DEFAULT: "#BEF264",
-      //         foreground: "#000000",
-      //       },
-      //       focus: "#BEF264",
-      //     },
-      //   },
-      // },
+      themes: {
+        dark: {
+          colors: {
+            danger: "#ef4444",
+            focus: "#01FF57",
+          },
+        },
+      },
     }),
   ],
 };

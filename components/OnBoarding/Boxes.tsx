@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeftItem from "./LeftItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import SignUp from "./SignUp";
+import { useUser } from "@clerk/nextjs";
+import Goals from "./Goals";
 
 function Counter({ current, total }: { current: number; total: number }) {
   return (
@@ -45,7 +47,14 @@ function Counter({ current, total }: { current: number; total: number }) {
 }
 
 export default function Boxes({ children }: { children?: React.ReactNode }) {
+  const { isSignedIn, user, isLoaded } = useUser();
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      setActive(1);
+    }
+  }, [isSignedIn]);
 
   return (
     <div className="relative w-[75%] h-[85vh] rounded-3xl border-[#2B2B2B] border-[1px] flex flex-row">
@@ -196,6 +205,7 @@ export default function Boxes({ children }: { children?: React.ReactNode }) {
             index={0}
             isActive={active === 0}
             setActive={setActive}
+            isDone={isSignedIn}
           />
           <LeftItem
             icon={
@@ -255,9 +265,10 @@ export default function Boxes({ children }: { children?: React.ReactNode }) {
           />
         </div>
       </aside>
-      <main className="w-[70%] z-[1] relative flex flex-col items-start justify-center py-10 px-[10%] gap-8">
+      <main className="w-[70%] z-[1] relative flex flex-col items-start justify-center py-10 px-[10%] gap-12">
         <Counter current={active + 1} total={3} />
-        {active === 0 && <SignUp />}
+        {active === 0 && <SignUp stepIndex={0} setActiveStep={setActive} />}
+        {active === 1 && <Goals stepIndex={1} setActiveStep={setActive} />}
       </main>
     </div>
   );
