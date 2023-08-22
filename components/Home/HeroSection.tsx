@@ -35,7 +35,7 @@ function NewsBtn({ text, link }: { text: string; link: string }) {
 
 export default function MainSection() {
   return (
-    <section className="flex overflow-hidden flex-col items-center relative min-h-[80vh] w-screen px-4 lg:px-0">
+    <section className="flex bg-white overflow-hidden flex-col items-center relative min-h-[80vh] w-screen px-4 lg:px-0">
       <div className="w-[50vw] -mt-[1%]">
         <svg
           width="100%"
