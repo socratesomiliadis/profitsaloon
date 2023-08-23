@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   return (
-    <div className="layout-wrapper bg-white">
+    <div className="layout-wrapper bg-black">
       <AuthPopup />
       {!router.asPath.includes("studio") && <Header />}
       {children}

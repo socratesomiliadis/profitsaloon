@@ -63,13 +63,6 @@ export default function AuthPopup() {
         afterSuccess: `${currentPathNoTrailSlash}`,
       });
       setAuthPopupType("signIn");
-    } else if (router.query.auth === "signUp") {
-      setPaths({
-        signIn: `${currentPathNoTrailSlash}/?auth=signIn`,
-        signUp: `${currentPathNoTrailSlash}/?auth=signUp`,
-        afterSuccess: `${currentPathNoTrailSlash}`,
-      });
-      setAuthPopupType("signUp");
     } else setAuthPopupType("none");
   }, [router.query]);
 
@@ -85,32 +78,7 @@ export default function AuthPopup() {
         {authPopupType !== "none" && (
           <PopupWrapper>
             {authPopupType === "signIn" && (
-              <SignIn
-                signUpUrl="/onboarding"
-                afterSignInUrl={paths.afterSuccess}
-                afterSignUpUrl={paths.afterSuccess}
-                appearance={{
-                  elements: {
-                    formButtonPrimary:
-                      "font-medium pt-3 pb-2 bg-black hover:bg-black text-sm normal-case",
-                    footerActionLink: "text-black hover:text-black",
-                  },
-                }}
-              />
-            )}
-            {authPopupType === "signUp" && (
-              <SignUp
-                signInUrl={paths.signIn}
-                afterSignInUrl={paths.afterSuccess}
-                afterSignUpUrl={paths.afterSuccess}
-                appearance={{
-                  elements: {
-                    formButtonPrimary:
-                      "font-medium pt-3 pb-2 bg-black hover:bg-black text-sm normal-case",
-                    footerActionLink: "text-black hover:text-black",
-                  },
-                }}
-              />
+              <div className="h-[60vh] w-[25vw] rounded-xl bg-gradient-to-r from-[#1e1e1e] to-black"></div>
             )}
           </PopupWrapper>
         )}

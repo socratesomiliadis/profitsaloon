@@ -1,9 +1,15 @@
-import Boxes from "@/components/OnBoarding/Boxes";
+import Boxes from "@/components/SignIn/Boxes";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { gsap } from "gsap";
+import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/router";
+import { sign } from "crypto";
 
-export default function OnBoarding() {
+export default function SignIn() {
+  const { isSignedIn, isLoaded } = useUser();
+  const router = useRouter();
+
   useEffect(() => {
     gsap.to("header", {
       opacity: 0,
@@ -19,6 +25,17 @@ export default function OnBoarding() {
       });
     };
   }, []);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push("/account");
+    }
+  }, [isSignedIn]);
+
+  if (!isLoaded || isSignedIn) {
+    return null;
+  }
+
   return (
     <>
       <motion.div

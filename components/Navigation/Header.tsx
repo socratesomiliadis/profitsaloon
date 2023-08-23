@@ -70,12 +70,7 @@ export default function Header() {
           <UserButton />
         </SignedIn>
         <SignedOut>
-          <button
-            onClick={() => {
-              router.push(`${router.asPath.split("?")[0]}?auth=signIn`);
-            }}
-            className="flex flex-row items-center gap-2"
-          >
+          <Link href="/sign-in" className="flex flex-row items-center gap-2">
             <svg
               width="16"
               height="16"
@@ -95,7 +90,7 @@ export default function Header() {
             <span className="font-medium text-profitBlack text-sm lg:text-base">
               Log in
             </span>
-          </button>
+          </Link>
         </SignedOut>
         <Link
           href="/"
