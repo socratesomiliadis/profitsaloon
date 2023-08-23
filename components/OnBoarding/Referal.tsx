@@ -73,6 +73,13 @@ export default function Referal({
               ],
               pre: "font-[inherit]",
             }}
+            tooltipProps={{
+              delay: 0,
+              closeDelay: 0,
+              classNames: {
+                base: "text-white",
+              },
+            }}
             hideSymbol
             codeString="https://profitsaloon.com/?ref=123456"
           >

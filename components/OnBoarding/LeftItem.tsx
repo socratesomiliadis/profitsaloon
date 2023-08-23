@@ -16,14 +16,11 @@ export default function LeftItem({
   setActive: React.Dispatch<React.SetStateAction<number>>;
 }) {
   return (
-    <button
-      onClick={() => {
-        if (!isDone) setActive(index);
-      }}
+    <div
       style={{
         pointerEvents: isDone ? "none" : "all",
       }}
-      className="flex group flex-row items-center justify-between w-full"
+      className="flex select-none group flex-row items-center justify-between w-full"
     >
       <div className="flex flex-row items-center gap-3">
         <div
@@ -73,7 +70,7 @@ export default function LeftItem({
         </div>
       </div>
       <span
-        className={`text-xs w-[0.35rem] group-hover:translate-x-1 transition-transform duration-200 ease-out ${
+        className={`text-xs w-[0.35rem] ${
           isDone ? "text-[#282828]" : "text-white"
         }`}
       >
@@ -91,6 +88,6 @@ export default function LeftItem({
           />
         </svg>
       </span>
-    </button>
+    </div>
   );
 }
