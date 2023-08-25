@@ -22,7 +22,9 @@ export default function Course({
   allCourses: any[];
 }) {
   const [activeSection, setActiveSection] = useState<string>(
-    course?.studentSections[0]?.title.replace(/\s/g, "")
+    course?.studentSections
+      ? course?.studentSections[0]?.title.replace(/\s/g, "")
+      : ""
   );
   const title = `${course?.title} — Profit Saloon`;
 
@@ -61,9 +63,11 @@ export default function Course({
       btn.style.paddingBottom = "0rem";
     });
 
-    (activeBtn?.style).color = "#fff";
-    (activeBtn?.style).paddingTop = "1rem";
-    (activeBtn?.style).paddingBottom = "1rem";
+    if (activeBtn) {
+      (activeBtn?.style).color = "#fff";
+      (activeBtn?.style).paddingTop = "1rem";
+      (activeBtn?.style).paddingBottom = "1rem";
+    }
   }, [activeSection]);
 
   return !!course ? (
