@@ -37,9 +37,9 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
         },
         success_url: `${getURL()}/account`,
         cancel_url: `${getURL()}/`,
-        consent_collection: {
-          terms_of_service: "required",
-        },
+        // consent_collection: {
+        //   terms_of_service: "required",
+        // },
       });
 
       return res.status(200).json({ sessionId: session.id });
