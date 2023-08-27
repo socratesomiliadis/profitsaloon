@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/lib/sanity/sanityClient";
+import { useEffect, useState } from "react";
 
 const coursesQuery = groq`*[_type == 'course'] | order(orderRank)`;
 
@@ -17,6 +18,12 @@ const tiersInfo: TierInfoType[] = [
       "1 free category to choose",
       "8 ways to make money",
     ],
+    calcPrice: (quantity: number) => {
+      if (quantity <= 0) return 0;
+      if (quantity <= 2) return quantity * 28.99;
+      if (quantity > 2) return 2 * 28.99 + (quantity - 2) * 14;
+      return 0;
+    },
   },
   {
     name: "Scholar",
@@ -25,6 +32,12 @@ const tiersInfo: TierInfoType[] = [
       "1 free category to choose",
       "8 ways to make money",
     ],
+    calcPrice: (quantity: number) => {
+      if (quantity <= 0) return 0;
+      if (quantity <= 2) return quantity * 28.99;
+      if (quantity > 2) return 2 * 28.99 + (quantity - 2) * 14;
+      return 0;
+    },
   },
   {
     name: "Expert",
@@ -33,6 +46,12 @@ const tiersInfo: TierInfoType[] = [
       "1 free category to choose",
       "8 ways to make money",
     ],
+    calcPrice: (quantity: number) => {
+      if (quantity <= 0) return 0;
+      if (quantity <= 2) return quantity * 28.99;
+      if (quantity > 2) return 2 * 28.99 + (quantity - 2) * 14;
+      return 0;
+    },
   },
 ];
 

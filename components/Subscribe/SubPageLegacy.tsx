@@ -10,7 +10,7 @@ import { CircularProgress } from "@nextui-org/react";
 
 function CourseItem({ title, register }: { title: string; register: any }) {
   return (
-    <div className="px-12 relative cursor-pointer flex flex-row items-center justify-between order-[1] border-b-[1px] border-[#2a2a2a] py-5 w-full gap-4">
+    <div className="px-12 select-none relative cursor-pointer flex flex-row items-center justify-between order-[1] border-b-[1px] border-[#2a2a2a] py-5 w-full gap-4">
       <div className="flex peer-checked:[data-checked='true'] flex-row items-center gap-2  basis-1/2">
         <input
           {...register("courses")}
@@ -35,22 +35,29 @@ export default function SubPage({
   tierInfo: TierInfoType[];
   allCourses: any[];
 }) {
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
     watch,
-  } = useForm();
-
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  } = useForm({
+    defaultValues: {
+      courses: selectedCourses,
+    },
+  });
 
   useEffect(() => {
+    console.log(selectedCourses);
     const subscription = watch((value, { name, type }) =>
+      //@ts-expect-error
       setSelectedCourses(value.courses)
     );
+
     return () => subscription.unsubscribe();
   }, [watch]);
 
@@ -87,7 +94,7 @@ export default function SubPage({
   };
 
   return (
-    <div className="w-screen bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 h-screen flex flex-row">
+    <div className="w-screen relative bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 h-screen flex flex-row">
       <div className="basis-[30%] 2xl:basis-[45%] h-screen left-side relative z-[1]">
         <div className="absolute hidden 2xl:block bottom-0 right-[-350px] z-[2]">
           <div className="relative">
@@ -106,7 +113,7 @@ export default function SubPage({
                 <span className="w-full h-[1px] bg-[#232323]"></span>
               </div>
               <div className="flex flex-col w-full">
-                <span className="text-[#c1c1c1]">Total</span>
+                <span className="text-[#c1c1c1]">From</span>
                 <div className="flex flex-row items-end gap-2">
                   <span className="text-white text-3xl font-medium">
                     $28,99
@@ -124,22 +131,6 @@ export default function SubPage({
                   </div>
                 ))}
               </div>
-              <button
-                onClick={handleCheckout}
-                className="w-full py-3 rounded-full bg-white text-black flex flex-row items-center justify-center gap-3"
-              >
-                {loading && (
-                  <CircularProgress
-                    size="sm"
-                    color="default"
-                    aria-label="Loading..."
-                    classNames={{
-                      svg: "w-4 h-4",
-                    }}
-                  />
-                )}
-                <span> Subscribe</span>
-              </button>
             </div>
           </div>
         </div>
@@ -213,6 +204,65 @@ export default function SubPage({
               ))}
             </AnimatePresence>
           </div>
+        </div>
+      </div>
+      <div
+        style={{
+          transform:
+            selectedCourses.length > 0 ? "translateY(0%)" : "translateY(100%)",
+        }}
+        className="summary flex flex-row items-center justify-between transition-transform duration-300 ease-out px-32 left-0 bottom-0 border-t-[1px] border-[#232323] fixed z-[100] w-screen py-6 bg-gradient-to-r from-black via-[#121212] to-black"
+      >
+        <div className="flex flex-col gap-1">
+          <span className="text-[#c1c1c1] text-sm">Selected</span>
+          <span className="text-white text-2xl">
+            {selectedCourses.length} courses
+          </span>
+        </div>
+        <div className="flex flex-row items-center gap-16">
+          <div className="flex flex-col">
+            <span className="text-[#c1c1c1]">Total</span>
+            <div className="flex flex-row items-end gap-2">
+              <span className="text-white text-3xl font-medium">
+                $
+                {tierInfo[tier - 1]
+                  .calcPrice(selectedCourses.length)
+                  .toFixed(2)}
+              </span>
+              <span className="text-[#c1c1c1] text-sm mb-1">per month</span>
+            </div>
+          </div>
+          <button
+            onClick={handleCheckout}
+            className="px-10 py-2 rounded-full bg-white text-black flex flex-row items-center justify-center gap-3"
+          >
+            {loading && (
+              <CircularProgress
+                size="sm"
+                color="default"
+                aria-label="Loading..."
+                classNames={{
+                  svg: "w-4 h-4",
+                }}
+              />
+            )}
+            <span>Proceed to checkout</span>
+            <span className="block w-1 -mb-[2px]">
+              <svg
+                width="100%"
+                viewBox="0 0 3 5"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M0.163363 0.146447C0.381181 -0.0488155 0.734334 -0.0488155 0.952152 0.146447L2.59159 1.61612C3.13614 2.10427 3.13614 2.89573 2.59159 3.38388L0.952152 4.85355C0.734334 5.04882 0.381181 5.04882 0.163363 4.85355C-0.0544545 4.65829 -0.0544545 4.34171 0.163363 4.14645L1.8028 2.67678C1.91171 2.57915 1.91171 2.42086 1.8028 2.32322L0.163363 0.853553C-0.0544545 0.658291 -0.0544545 0.341709 0.163363 0.146447Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
       </div>
     </div>

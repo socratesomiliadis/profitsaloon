@@ -10,6 +10,7 @@ function NavItem({ text, tier }: { text: string; tier: number }) {
   return (
     <Link
       href={`/subscribe?tier=${tier}`}
+      shallow
       className={`${
         currentTier === tier ? "" : "hover:text-white/60"
       } relative rounded-full px-3 py-1.5 text-sm text-white outline-sky-400 transition focus-visible:outline-2`}
@@ -32,7 +33,7 @@ function NavItem({ text, tier }: { text: string; tier: number }) {
 
 export default function SubHeader() {
   return (
-    <header className="w-screen flex flex-row items-center gap-8 px-16 py-6 bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212]">
+    <header className="w-screen fixed z-[100] flex flex-row items-center gap-8 px-16 py-6 bg-gradient-to-b from-black to-transparent">
       <Link href="/" className="w-8">
         <svg
           width="100%"
