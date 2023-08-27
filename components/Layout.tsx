@@ -8,7 +8,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="layout-wrapper bg-black">
       <AuthPopup />
-      {!router.asPath.includes("studio") && <Header />}
+      {!router.asPath.includes("studio") &&
+        !router.asPath.includes("subscribe") && <Header />}
       {children}
     </div>
   );

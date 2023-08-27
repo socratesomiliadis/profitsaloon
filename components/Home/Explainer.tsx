@@ -87,7 +87,7 @@ export default function Explainer() {
               rx="64.75"
               stroke="url(#paint1_linear_2261_3426)"
               strokeOpacity="0.4"
-              stroke-width="0.5"
+              strokeWidth="0.5"
             />
           </g>
           <g filter="url(#filter1_b_2261_3426)">
@@ -104,7 +104,7 @@ export default function Explainer() {
               r="48.75"
               stroke="url(#paint3_linear_2261_3426)"
               strokeOpacity="0.4"
-              stroke-width="0.5"
+              strokeWidth="0.5"
             />
           </g>
           <path
@@ -139,7 +139,7 @@ export default function Explainer() {
               width="987"
               height="720"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="78" />
@@ -162,7 +162,7 @@ export default function Explainer() {
               width="410"
               height="410"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feGaussianBlur in="BackgroundImageFix" stdDeviation="78" />

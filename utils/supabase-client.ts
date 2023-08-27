@@ -1,11 +1,8 @@
-import {
-  createBrowserSupabaseClient,
-  User,
-} from "@supabase/auth-helpers-nextjs";
+import { createPagesBrowserClient, User } from "@supabase/auth-helpers-nextjs";
 import { ProductWithPrice } from "../types";
 import type { Database } from "../types_db";
 
-export const supabase = createBrowserSupabaseClient<Database>();
+export const supabase = createPagesBrowserClient<Database>();
 
 export const getActiveProductsWithPrices = async (): Promise<
   ProductWithPrice[]
