@@ -25,7 +25,7 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
         customer,
         line_items: [
           {
-            price: "price_1MUENlGuEyK30WCUTizeN2wY",
+            price: "price_1NkXTlGuEyK30WCU9WQGj3Kx",
             quantity,
           },
         ],

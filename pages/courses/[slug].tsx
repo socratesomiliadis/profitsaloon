@@ -4,10 +4,11 @@ import { groq } from "next-sanity";
 import { useEffect, useState } from "react";
 import { assetUrlFor, sanityClient, urlFor } from "@/lib/sanity/sanityClient";
 import gsap from "gsap";
-import { ScrollShadow } from "@nextui-org/react";
+import { CircularProgress, ScrollShadow } from "@nextui-org/react";
 import { PortableText } from "@portabletext/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Footer from "@/components/Footer/Footer";
+import { useUser } from "@/utils/getUser";
 gsap.registerPlugin(ScrollTrigger);
 
 const coursesSlugsQuery = groq`*[_type == 'course'] | order(orderRank)`;
@@ -21,6 +22,7 @@ export default function Course({
   course: any;
   allCourses: any[];
 }) {
+  const { subscription, isLoading } = useUser();
   const [activeSection, setActiveSection] = useState<string>(
     course?.studentSections
       ? course?.studentSections[0]?.title.replace(/\s/g, "")
@@ -35,20 +37,28 @@ export default function Course({
   const nextCourse = allCourses[nextCourseIndex];
 
   useEffect(() => {
-    course?.studentSections?.forEach((section: any) => {
-      ScrollTrigger.create({
-        trigger: `#sec${section.title.replace(/\s/g, "")}`,
-        start: "top 10%",
-        end: "bottom 10%",
-        onEnter: () => {
-          setActiveSection(section.title.replace(/\s/g, ""));
-        },
-        onEnterBack: () => {
-          setActiveSection(section.title.replace(/\s/g, ""));
-        },
+    if (!isLoading) {
+      course?.studentSections?.forEach((section: any) => {
+        ScrollTrigger.create({
+          trigger: `#sec${section.title.replace(/\s/g, "")}`,
+          start: "top 10%",
+          end: "bottom 10%",
+          onEnter: () => {
+            setActiveSection(section.title.replace(/\s/g, ""));
+          },
+          onEnterBack: () => {
+            setActiveSection(section.title.replace(/\s/g, ""));
+          },
+        });
       });
-    });
-  }, []);
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [isLoading, subscription?.metadata]);
 
   useEffect(() => {
     const activeBtn = document.getElementById(
@@ -68,7 +78,25 @@ export default function Course({
       (activeBtn?.style).paddingTop = "1rem";
       (activeBtn?.style).paddingBottom = "1rem";
     }
-  }, [activeSection]);
+  }, [isLoading, activeSection]);
+
+  useEffect(() => {
+    console.log(subscription?.metadata);
+  }, [subscription?.metadata]);
+
+  if (isLoading)
+    return (
+      <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
+        <CircularProgress color="primary" />
+      </div>
+    );
+
+  if (subscription!.metadata![course?.courseCode] !== "true")
+    return (
+      <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
+        You don&apos;t have access to this course.
+      </div>
+    );
 
   return !!course ? (
     <>

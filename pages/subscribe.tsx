@@ -1,12 +1,10 @@
-import Footer from "@/components/Footer/Footer";
 import SubHeader from "@/components/Subscribe/SubHeader";
-import SubPage from "@/components/Subscribe/SubPageLegacy";
+import SubPage from "@/components/Subscribe/SubPage";
 import { TierInfoType } from "@/lib/types";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/lib/sanity/sanityClient";
-import { useEffect, useState } from "react";
 
 const coursesQuery = groq`*[_type == 'course'] | order(orderRank)`;
 
