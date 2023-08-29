@@ -134,6 +134,25 @@ export default function SubPage({
             </div>
           </div>
         </div>
+        <p className="text-2xl text-[#ededed] left-[10%] absolute top-[15%] z-[2]">
+          Transform future revenue <br />
+          into up-front{" "}
+          <span className="text-[#c1c1c1]">
+            capital with the <br />
+            click of a button.
+          </span>
+        </p>
+        <div className="text-xl flex flex-col gap-4 items-start text-[#c1c1c1] left-[10%] absolute bottom-[15%] z-[2]">
+          <p>
+            Need flexible access to capital?
+            <br />
+            <span className="text-[#ededed]">Get started</span> with Profit
+            Saloon now.
+          </p>
+          <button className="bg-[#8A8A8A]/20 py-2 px-10 text-white rounded-full text-sm outline outline-1 outline-offset-4 outline-white">
+            Learn More
+          </button>
+        </div>
         <Image
           src="/static/images/sub/studentElem.png"
           width={1600}

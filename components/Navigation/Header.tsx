@@ -104,10 +104,10 @@ export default function Header() {
           </Link>
         </SignedOut>
         <Link
-          href="/"
+          href="/subscribe"
           className="bg-[#F3F3F3] px-12 py-2 rounded-full text-profitBlack text-base"
         >
-          Become an affiliate
+          Get Started
         </Link>
       </div>
     </header>

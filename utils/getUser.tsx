@@ -30,14 +30,15 @@ export const MyUserContextProvider = (props: Props) => {
   const getUserDetails = async () => {
     const token = await getToken({ template: "supabase" });
     const supabase = await supabaseClientWithAuth(token as string);
-    return supabase.from("profile").select("*").eq("user_id", userId).single();
+    return supabase.from("users").select("*").eq("user_id", userId).single();
   };
+
   const getSubscription = async () => {
     const token = await getToken({ template: "supabase" });
     const supabase = await supabaseClientWithAuth(token as string);
     return supabase
       .from("subscriptions")
-      .select("*, prices(*, products(*))")
+      .select("*")
       .in("status", ["trialing", "active"])
       .single();
   };
