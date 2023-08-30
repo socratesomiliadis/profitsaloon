@@ -5,7 +5,6 @@ import { MyUserContextProvider } from "@/utils/getUser";
 import { NextUIProvider } from "@nextui-org/react";
 import Layout from "@/components/Layout";
 import { Inter } from "next/font/google";
-import AuthPopupProvider from "@/hooks/useAuthPopup";
 import { AnimatePresence } from "framer-motion";
 
 export const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -26,8 +25,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         }}
         {...pageProps}
       >
-        {/* <MyUserContextProvider> */}
-        <AuthPopupProvider>
+        <MyUserContextProvider>
           <Layout>
             <NextUIProvider>
               <AnimatePresence mode="wait">
@@ -35,8 +33,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
               </AnimatePresence>
             </NextUIProvider>
           </Layout>
-        </AuthPopupProvider>
-        {/* </MyUserContextProvider> */}
+        </MyUserContextProvider>
       </ClerkProvider>
     </div>
   );

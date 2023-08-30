@@ -11,7 +11,12 @@ import type { Database } from "../types_db";
 // as it has admin priviliges and overwrites RLS policies!
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  process.env.SUPABASE_SERVICE_ROLE_KEY as string
+  process.env.SUPABASE_SERVICE_ROLE_KEY as string,
+  {
+    auth: {
+      persistSession: false,
+    },
+  }
 );
 
 export const upsertUserRecord = async (user: any) => {

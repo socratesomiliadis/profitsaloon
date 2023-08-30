@@ -75,6 +75,14 @@ html {
   overflow-x: hidden;
 }
 
+h1,
+h2,
+h3,
+p,
+span {
+  @apply tracking-tight;
+}
+
 a,
 button,
 img {

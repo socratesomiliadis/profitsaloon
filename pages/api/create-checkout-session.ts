@@ -25,7 +25,7 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
         customer,
         line_items: [
           {
-            price: "price_1MUENlGuEyK30WCUTizeN2wY",
+            price: "price_1NkXTlGuEyK30WCU9WQGj3Kx",
             quantity,
           },
         ],
@@ -36,7 +36,10 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
           metadata,
         },
         success_url: `${getURL()}/account`,
-        cancel_url: `${getURL()}/`,
+        cancel_url: `${getURL()}/subscribe`,
+        // consent_collection: {
+        //   terms_of_service: "required",
+        // },
       });
 
       return res.status(200).json({ sessionId: session.id });

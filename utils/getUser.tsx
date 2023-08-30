@@ -27,11 +27,12 @@ export const MyUserContextProvider = (props: Props) => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
-  const getUserDetails = async () => {
-    const token = await getToken({ template: "supabase" });
-    const supabase = await supabaseClientWithAuth(token as string);
-    return supabase.from("profile").select("*").eq("user_id", userId).single();
-  };
+  // const getUserDetails = async () => {
+  //   const token = await getToken({ template: "supabase" });
+  //   const supabase = await supabaseClientWithAuth(token as string);
+  //   return supabase.from("users").select("*").eq("user_id", userId).single();
+  // };
+
   const getSubscription = async () => {
     const token = await getToken({ template: "supabase" });
     const supabase = await supabaseClientWithAuth(token as string);
@@ -45,25 +46,23 @@ export const MyUserContextProvider = (props: Props) => {
   useEffect(() => {
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsloadingData(true);
-      Promise.allSettled([getUserDetails(), getSubscription()]).then(
-        (results) => {
-          const userDetailsPromise = results[0];
-          const subscriptionPromise = results[1];
+      Promise.allSettled([getSubscription()]).then((results) => {
+        // const userDetailsPromise = results[0];
+        const subscriptionPromise = results[0];
 
-          if (userDetailsPromise.status === "fulfilled")
-            setUserDetails(userDetailsPromise.value.data as UserDetails);
+        // if (userDetailsPromise.status === "fulfilled")
+        //   setUserDetails(userDetailsPromise.value.data as UserDetails);
 
-          if (subscriptionPromise.status === "fulfilled")
-            setSubscription(subscriptionPromise.value.data as Subscription);
-
+        if (subscriptionPromise.status === "fulfilled") {
+          setSubscription(subscriptionPromise.value.data as Subscription);
           setIsloadingData(false);
-        }
-      );
-    } else if (!user && isLoaded && !isLoadingData) {
+        } else setIsloadingData(false);
+      });
+    } else if (!user) {
       setUserDetails(null);
       setSubscription(null);
     }
-  }, [user, isLoaded]);
+  }, [user]);
 
   const value = {
     user,

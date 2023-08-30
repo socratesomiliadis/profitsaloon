@@ -1,6 +1,7 @@
 import { useAuth } from "@clerk/clerk-react";
 import { createClient } from "@supabase/supabase-js";
 import { Price } from "@/types";
+import { auth } from "@clerk/nextjs";
 
 export const getURL = () => {
   let url =
@@ -60,5 +61,10 @@ export const toDateTime = (secs: number) => {
 
 export const supabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
+  {
+    auth: {
+      persistSession: false,
+    },
+  }
 );
