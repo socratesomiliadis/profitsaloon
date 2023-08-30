@@ -34,35 +34,42 @@ export const MyUserContextProvider = (props: Props) => {
   // };
 
   const getSubscription = async () => {
+    setIsloadingData(true);
     const token = await getToken({ template: "supabase" });
     const supabase = await supabaseClientWithAuth(token as string);
-    return supabase
+    const { data, error } = await supabase
       .from("subscriptions")
       .select("*, prices(*, products(*))")
       .in("status", ["trialing", "active"])
       .single();
+    setSubscription(data as Subscription);
   };
 
   useEffect(() => {
-    if (user && !isLoadingData && !userDetails && !subscription) {
-      setIsloadingData(true);
-      Promise.allSettled([getSubscription()]).then((results) => {
-        // const userDetailsPromise = results[0];
-        const subscriptionPromise = results[0];
+    // if (user && !isLoadingData && !userDetails && !subscription) {
+    //   setIsloadingData(true);
+    //   Promise.allSettled([getSubscription()]).then((results) => {
+    //     // const userDetailsPromise = results[0];
+    //     const subscriptionPromise = results[0];
 
-        // if (userDetailsPromise.status === "fulfilled")
-        //   setUserDetails(userDetailsPromise.value.data as UserDetails);
+    //     // if (userDetailsPromise.status === "fulfilled")
+    //     //   setUserDetails(userDetailsPromise.value.data as UserDetails);
 
-        if (subscriptionPromise.status === "fulfilled") {
-          setSubscription(subscriptionPromise.value.data as Subscription);
-          setIsloadingData(false);
-        } else setIsloadingData(false);
-      });
-    } else if (!user) {
-      setUserDetails(null);
-      setSubscription(null);
+    //     if (subscriptionPromise.status === "fulfilled") {
+    //       setSubscription(subscriptionPromise.value.data as Subscription);
+    //       setIsloadingData(false);
+    //     } else setIsloadingData(false);
+    //   });
+    // } else if (!user) {
+    //   setUserDetails(null);
+    //   setSubscription(null);
+    // }
+    if (user) {
+      getSubscription()
+        .catch((err) => console.error(err))
+        .finally(() => setIsloadingData(false));
     }
-  }, [user]);
+  }, [isLoaded]);
 
   const value = {
     user,

@@ -34,10 +34,10 @@ export default function Footer() {
 
     function handleMouseOver(e: MouseEvent) {
       card!.style.transition = "";
-      let x = e.offsetX - hoverTarget?.offsetWidth / 2;
-      let y = e.offsetY - hoverTarget?.offsetHeight / 2;
-      let normalizedX = (1 * 8 * x) / hoverTarget?.offsetWidth;
-      let normalizedY = (1 * (5 * y)) / hoverTarget?.offsetHeight;
+      let x = e.clientX - hoverTarget?.offsetWidth / 2;
+      let y = e.clientY - hoverTarget?.offsetHeight / 2;
+      let normalizedX = (1 * 15 * x) / hoverTarget?.offsetWidth;
+      let normalizedY = (1 * (8 * y)) / hoverTarget?.offsetHeight;
       gsap.to(card, {
         duration: 0.1,
         rotateY: -normalizedX,
@@ -55,11 +55,11 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer
-      ref={hoverRef}
-      className="w-full relative min-h-[80vh] py-8 lg:py-32 bg-black flex flex-col items-center"
-    >
-      <div className="relative video-wrapper w-full flex items-center justify-center overflow-visible z-[1]">
+    <footer className="w-full relative min-h-[80vh] py-8 lg:py-32 bg-black flex flex-col items-center">
+      <div
+        ref={hoverRef}
+        className="relative video-wrapper w-full flex items-center justify-center overflow-visible z-[1]"
+      >
         <div className="z-[2] absolute w-full h-2/3 left-0 bottom-0 bg-gradient-to-t from-black to-transparent"></div>
         <video
           ref={cardRef}
