@@ -81,6 +81,19 @@ img {
   user-select: none;
 }
 
+.video-wrapper {
+  perspective: var(--service-card-width);
+}
+
+.footer-vid {
+  transform-style: preserve-3d;
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(16, 16, 16, 0.2) 1%
+  );
+}
+
 #profitHero {
   filter: drop-shadow(0px 4px 4px rgba(46, 46, 46, 0.14))
     drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.69));
