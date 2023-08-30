@@ -45,10 +45,9 @@ export default function SignIn({
       });
 
       if (result.status === "complete") {
-        console.log(result);
         setLoading(false);
         await setActive({ session: result.createdSessionId });
-        router.push("/");
+        router.push("/account");
       } else {
         /*Investigate why the login hasn't completed */
         console.log(result);

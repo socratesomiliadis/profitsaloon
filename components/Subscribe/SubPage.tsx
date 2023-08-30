@@ -96,7 +96,7 @@ export default function SubPage({
   return (
     <div className="w-screen relative bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 h-screen flex flex-row">
       <div className="basis-[30%] 2xl:basis-[45%] h-screen left-side relative z-[1]">
-        <div className="absolute hidden 2xl:block bottom-0 right-[-350px] z-[2]">
+        <div className="absolute hidden 2xl:block bottom-0 right-[-18vw] z-[2]">
           <div className="relative">
             <Image
               src="/static/images/sub/phoneTransp.png"
@@ -105,9 +105,9 @@ export default function SubPage({
               alt=""
               priority
               quality={100}
-              className="h-[100vh] pointer-events-none aspect-[1600/1400] max-w-none object-contain object-bottom w-[1000px] z-[3] relative"
+              className="h-[100vh] pointer-events-none aspect-[1600/1400] max-w-none object-contain object-bottom w-[52vw] z-[3] relative"
             />
-            <div className="bg-gradient-to-b px-8 pt-12 flex flex-col gap-10 from-black to-[#232323] h-[70%] w-[290px] absolute z-[2] bottom-[10%] right-[33%] rounded-3xl">
+            <div className="bg-gradient-to-b px-8 pt-12 flex flex-col gap-10 from-black to-[#232323] aspect-[2/4.7] h-auto w-[15vw] absolute z-[2] bottom-[10%] right-[33%] rounded-3xl">
               <div className="flex flex-col gap-1 w-full text-white">
                 <h2 className="text-xl">{tierInfo[tier - 1].name}</h2>
                 <span className="w-full h-[1px] bg-[#232323]"></span>
@@ -163,8 +163,8 @@ export default function SubPage({
           className="h-full aspect-[1600/1627] max-w-[45vw] absolute object-bottom w-auto translate-y-[5%] z-[1]"
         />
       </div>
-      <div className="basis-[70%] 2xl:basis-[55%] h-screen right-side relative flex items-start pt-16 justify-end pr-16 z-[2]">
-        <div className="h-[80%] overflow-hidden rounded-3xl border-[0.5px] text-[#818181] border-[#2b2b2b] w-[80%] flex flex-col">
+      <div className="basis-[70%] 2xl:basis-[55%] h-screen right-side relative flex items-start pt-12 3xl:pt-32 justify-end pr-16 z-[2]">
+        <div className="h-[80%] 3xl:h-[70%] overflow-hidden rounded-3xl border-[0.5px] text-[#818181] border-[#2b2b2b] w-[80%] flex flex-col">
           <div className="px-12 py-6">
             <div className="flex flex-row items-center gap-3">
               <span className="w-4 block">
