@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Spline from "@splinetool/react-spline";
 
 function NewsBtn({ text, link }: { text: string; link: string }) {
   return (
@@ -77,6 +78,7 @@ export default function MainSection() {
       </div>
       <div className="mt-44 relative w-full flex flex-row justify-center">
         <div className="absolute w-full h-1/3 left-0 bottom-0 bg-gradient-to-t from-black to-transparent"></div>
+
         <Image
           src="/static/images/heroMockup.png"
           width={2560}

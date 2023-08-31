@@ -91,7 +91,10 @@ export default function Course({
       </div>
     );
 
-  if (subscription!.metadata![course?.courseCode] !== "true")
+  if (
+    subscription?.metadata &&
+    subscription!.metadata![course?.courseCode] !== "true"
+  )
     return (
       <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
         You don&apos;t have access to this course.

@@ -7,6 +7,7 @@ import { postData } from "@/utils/helpers";
 import { getStripe } from "@/utils/stripe-client";
 import { set } from "sanity";
 import { CircularProgress } from "@nextui-org/react";
+import Spline from "@splinetool/react-spline";
 
 function CourseItem({ title, register }: { title: string; register: any }) {
   return (
@@ -153,6 +154,7 @@ export default function SubPage({
             Learn More
           </button>
         </div>
+
         <Image
           src="/static/images/sub/studentElem.png"
           width={1600}
