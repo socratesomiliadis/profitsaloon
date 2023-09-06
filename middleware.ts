@@ -10,7 +10,7 @@ export default authMiddleware({
     }
     // redirect them to organization selection page
   },
-  publicRoutes: ["/", "/sign-in", "/onboarding", "/studio"],
+  publicRoutes: ["/", "/sign-in", "/onboarding", "/studio", "/(videos)(.*)"],
   ignoredRoutes: ["/api/clerk-webhook", "/api/stripe-webhook"],
   signInUrl: "/sign-in",
 });
