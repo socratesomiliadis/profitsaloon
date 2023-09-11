@@ -13,22 +13,22 @@ function NavItem({
 }) {
   const router = useRouter();
   const asPath = router.asPath;
+  const isWatch = href === "/videos/watch";
+  const isActive = isWatch ? asPath.includes(href) : asPath === href;
 
   return (
     <Link
       href={href}
       aria-label={text}
       className={`${
-        asPath === href
-          ? "text-[#01FF57]"
-          : "text-[#818181] hover:text-[#01FF57]"
+        isActive ? "text-[#01FF57]" : "text-[#818181] hover:text-[#01FF57]"
       } relative w-full h-14 flex flex-row items-center justify-center`}
       style={{
         WebkitTapHighlightColor: "transparent",
       }}
     >
       <span className="w-6 h-6 block">{icon}</span>
-      {asPath === href && (
+      {isActive && (
         <motion.span
           layoutId="line"
           className="absolute w-[1px] h-[120%] right-0 z-10 bg-[#01FF57]"
@@ -41,7 +41,7 @@ function NavItem({
 
 export default function SideNav() {
   return (
-    <aside className="h-full w-fit flex flex-col items-center py-16 px-10 relative border-r-[1px] border-[#1D1D1D]">
+    <aside className="h-full bg-transparent w-fit flex flex-col items-center py-16 px-10 relative border-r-[1px] border-[#1D1D1D]">
       <Link href="/" className="w-10 block text-white">
         <svg
           width="100%"
@@ -96,7 +96,7 @@ export default function SideNav() {
             </svg>
           }
           text="Live"
-          href="/videos/live"
+          href="/videos/watch"
         />
         <NavItem
           icon={

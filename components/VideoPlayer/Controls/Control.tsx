@@ -26,7 +26,6 @@ const Control = ({
   currentTime,
   onMouseSeekDown,
   controlRef,
-  title,
   toggleFullScreen,
   isFullScreen,
 }: {
@@ -46,7 +45,6 @@ const Control = ({
   currentTime: string;
   onMouseSeekDown: (e: any) => void;
   controlRef: any;
-  title: string;
   toggleFullScreen: () => void;
   isFullScreen: boolean;
 }) => {
@@ -55,16 +53,9 @@ const Control = ({
       style={{
         borderRadius: isFullScreen ? "0" : "1rem",
       }}
-      className="absolute overflow-hidden pointer-events-none z-[3] inset-0 w-full h-full flex flex-col justify-between"
+      className="absolute overflow-hidden pointer-events-none z-[3] inset-0 w-full h-full flex flex-col justify-end"
       ref={controlRef}
     >
-      <div
-        className={
-          "text-white w-full px-6 pt-4 pb-8 bg-gradient-to-b from-black/60 to-transparent"
-        }
-      >
-        <h2 className="text-xl">{title}</h2>
-      </div>
       <div className="bottom-wrapper pointer-events-auto w-full px-6 pt-8 pb-4 bg-gradient-to-t from-black/80 to-transparent">
         <div className="w-full">
           <Slider

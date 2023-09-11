@@ -39,7 +39,7 @@ function AffBtn({ text, link }: { text: string; link: string }) {
 export default function TopNav() {
   return (
     <header className="sticky flex flex-row items-center justify-end z-10 w-full top-0 px-24 py-8">
-      <div className="flex flex-row pl-6 pr-32 py-3 items-center gap-3 bg-[#1d1d1d] rounded-full absolute left-1/2 -translate-x-1/2">
+      <div className="flex flex-row pl-6 pr-32 py-3 items-center gap-3 bg-[#1d1d1d]/50 backdrop-blur-xl rounded-full absolute left-1/2 -translate-x-1/2">
         <span className="w-6 block">
           <svg
             width="100%"

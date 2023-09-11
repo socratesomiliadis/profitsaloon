@@ -259,37 +259,41 @@ export default function Player({
       onMouseMove={() => {
         setResetTimer((prev) => !prev);
       }}
-      className="w-[70%]"
+      className="w-full"
     >
       <div
-        className="relative w-full aspect-video h-auto"
+        className="relative w-full aspect-video h-auto flex items-center justify-center"
         onMouseMove={mouseMoveHandler}
       >
         {hasWindow && (
-          <ReactPlayer
-            ref={videoPlayerRef}
+          <div
             style={{
               borderRadius: videoState.isFullScreen ? "0" : "1rem",
             }}
-            className="w-full h-full z-[1] relative overflow-hidden"
-            url={url}
-            width="100%"
-            height="100%"
-            playing={playing}
-            volume={volume}
-            muted={muted}
-            onProgress={progressHandler}
-            onBuffer={bufferStartHandler}
-            onBufferEnd={bufferEndHandler}
-          />
+            className="video-wrapper z-[1] w-full h-full overflow-hidden"
+          >
+            <ReactPlayer
+              ref={videoPlayerRef}
+              className="w-full h-full relative overflow-hidden"
+              url={url}
+              width="100%"
+              height="100%"
+              playing={playing}
+              volume={volume}
+              muted={muted}
+              onProgress={progressHandler}
+              onBuffer={bufferStartHandler}
+              onBufferEnd={bufferEndHandler}
+            />
+          </div>
         )}
         {hasWindow && (
           <ReactPlayer
             ref={blurVideoPlayerRef}
-            className="w-full h-full z-[0] absolute inset-0 blur-[80px] opacity-80"
+            className="aspect-video h-auto z-[0] absolute blur-[80px] opacity-80"
             url={blurURL}
-            width="100%"
-            height="100%"
+            width={videoState.isFullScreen ? "100%" : "90%"}
+            height={videoState.isFullScreen ? "100%" : "90%"}
             playing={playing}
             muted={true}
           />
@@ -312,7 +316,6 @@ export default function Player({
           className="absolute z-[2] inset-0"
         ></div>
         <Control
-          title="Reit Otsi Mamotsi"
           controlRef={controlRef}
           onPlayPause={playPauseHandler}
           playing={playing}
