@@ -50,6 +50,7 @@ export default function SignUp({
 
     try {
       await signUp.create({
+        username: data.username,
         firstName: data.name,
         emailAddress: data.email,
         password: data.password,
@@ -137,24 +138,48 @@ export default function SignUp({
             onSubmit={handleSubmit(onSubmit)}
             className="mt-10 flex flex-col items-start gap-4"
           >
-            <Input
-              type="text"
-              label="Name"
-              size="sm"
-              errorMessage={
-                errors.name && "Your name must be at least 3 characters long"
-              }
-              validationState={errors.name ? "invalid" : "valid"}
-              classNames={{
-                inputWrapper: [
-                  "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
-                ],
-              }}
-              {...register("name", {
-                required: true,
-                validate: (value) => value.length >= 3,
-              })}
-            />
+            <div className="flex w-[400px] flex-row items-center gap-3">
+              <Input
+                type="text"
+                label="Username"
+                size="sm"
+                className="basis-1/2"
+                errorMessage={
+                  errors.username &&
+                  "Your username must be at least 3 characters long"
+                }
+                validationState={errors.username ? "invalid" : "valid"}
+                classNames={{
+                  inputWrapper: [
+                    "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                  ],
+                }}
+                {...register("username", {
+                  required: true,
+                  validate: (value) => value.length >= 3,
+                })}
+              />
+              <Input
+                type="text"
+                label="Name"
+                size="sm"
+                className="basis-1/2"
+                autoComplete="fullName"
+                errorMessage={
+                  errors.name && "Your name must be at least 3 characters long"
+                }
+                validationState={errors.name ? "invalid" : "valid"}
+                classNames={{
+                  inputWrapper: [
+                    "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                  ],
+                }}
+                {...register("name", {
+                  required: true,
+                  validate: (value) => value.length >= 3,
+                })}
+              />
+            </div>
             <Input
               type="email"
               label="E-mail"

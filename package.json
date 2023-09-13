@@ -28,9 +28,14 @@
     "@supabase/auth-helpers-nextjs": "^0.7.4",
     "@supabase/auth-helpers-react": "^0.4.2",
     "@supabase/supabase-js": "^2.32.0",
+    "@tiptap/extension-link": "^2.1.8",
+    "@tiptap/pm": "^2.1.8",
+    "@tiptap/react": "^2.1.8",
+    "@tiptap/starter-kit": "^2.1.8",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "@uploadthing/react": "^5.5.0",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -43,6 +48,7 @@
     "postcss": "8.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.4",
     "react-phone-number-input": "^3.3.4",
     "react-player": "^2.12.0",
@@ -54,6 +60,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "uploadthing": "^5.5.3"
   }
 }

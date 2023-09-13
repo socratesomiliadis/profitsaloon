@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
+const { withUt } = require("uploadthing/tw");
 
-module.exports = {
+module.exports = withUt({
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -98,4 +99,4 @@ module.exports = {
       },
     }),
   ],
-};
+});

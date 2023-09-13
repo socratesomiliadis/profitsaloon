@@ -1,34 +1,44 @@
+import TiptapDisplay from "@/components/TiptapDisplay";
 import Player from "@/components/VideoPlayer/Player";
 import SidebarVideoItem from "@/components/Videos/ui/SidebarVideoItem";
+import { formatDate } from "@/lib/utils";
+import { supabase } from "@/utils/supabase-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-export default function VideoPage() {
+export default function VideoPage({ videoData }: { videoData: any }) {
   const router = useRouter();
   const videoName = router.query.slug as string;
+
+  useEffect(() => {
+    console.log(videoData);
+  }, [videoData]);
 
   return (
     <div className="bg-black w-full pl-12 pr-6 pt-12 grid grid-cols-3 gap-8">
       <div className="player-wrapper w-full col-span-2 flex flex-col">
-        <Player
-          url={`/static/videos/${videoName}.mp4`}
-          blurURL={`/static/videos/${videoName}Blur.mp4`}
-        />
+        {/* {videoData?.video_url && ( */}
+        <Player url={videoData?.video_url} blurURL={videoData?.video_url} />
+        {/* )} */}
         <h1 className="text-white text-4xl font-medium mt-6">
-          This is how powerful Marketing and Productivity really are.
+          {videoData?.title}
         </h1>
         <div className="flex flex-row items-center gap-5 mt-5 text-[#818181]">
-          <Link href="/videos/iman" className="flex flex-row items-center">
+          <Link
+            href="/videos/iman"
+            className="flex flex-row items-center gap-1"
+          >
             <Image
-              src="/static/images/testPFP.png"
+              src={videoData?.users?.avatar_url}
               width={200}
               height={200}
               alt=""
               className="w-10 h-10 rounded-full"
             />
-            <span className="ml-2 flex flex-row items-center gap-1">
-              Iman Gadzilovits
+            <span className="ml-2 flex flex-row items-center gap-2">
+              {videoData?.users?.name}
               <span className="block w-4">
                 <svg
                   width="100%"
@@ -56,8 +66,8 @@ export default function VideoPage() {
               <circle cx="1.5" cy="1.5" r="1.5" fill="#818181" />
             </svg>
           </span>
-          <div className="text-[#818181] flex flex-row items-center gap-1">
-            <span className="w-4 block">
+          <div className="text-[#818181] flex flex-row items-center gap-2">
+            <span className="w-5 block">
               <svg
                 width="100%"
                 viewBox="0 0 12 9"
@@ -82,7 +92,7 @@ export default function VideoPage() {
               <circle cx="1.5" cy="1.5" r="1.5" fill="#818181" />
             </svg>
           </span>
-          <div className="text-[#818181] flex flex-row items-center gap-1">
+          <div className="text-[#818181] flex flex-row items-center gap-2">
             <span className="w-4 block">
               <svg
                 width="100%"
@@ -99,7 +109,7 @@ export default function VideoPage() {
                 />
               </svg>
             </span>
-            <span>Jan 27, 2022</span>
+            <span>{formatDate(videoData?.created_at)}</span>
           </div>
         </div>
         <div className="mt-7 buttons-wrapper flex flex-row items-center gap-4">
@@ -111,51 +121,12 @@ export default function VideoPage() {
           </button>
         </div>
         <div className="w-full h-[1px] bg-[#1D1D1D] my-12"></div>
-        <div className="rounded-xl border-[1px] border-[#818181]/10 p-6 bg-gradient-to-r from-[#1E1E1E]/10 to-[#818181]/0 flex flex-col">
+
+        <div className="rounded-xl text-white border-[1px] border-[#818181]/10 h-[300px] p-6 bg-gradient-to-r from-[#1E1E1E]/10 to-[#818181]/0 flex flex-col">
           <span className="text-[#818181] text-sm">Description</span>
-          <p className="text-white mt-3 text-lg">
-            If you liked this, watch this monk mode video:{" "}
-            <Link
-              href="https://www.youtube.com/watch?v=56AD4lejvag&t=301s&ab_channel=ImanGadzhi"
-              target="_blank"
-              className="text-[#00FF0A]"
-            >
-              https://www.youtube.com/watch?v=56AD4lejvag&t=301s&ab_channel=ImanGadzhi
-            </Link>
-            <br />
-            <br />
-            How to take back CONTROL over YOUR LIFE:
-            <br />
-            <br />
-            <span className="text-[#00FF0A]">01:10</span> - What is monk mode?{" "}
-            <br />
-            <span className="text-[#00FF0A]">02:15</span> - Why monk mode?{" "}
-            <br />
-            <span className="text-[#00FF0A]">03:44</span> - 1 Meditation <br />
-            <span className="text-[#00FF0A]">03:55</span> - 2 Exercise <br />
-            <span className="text-[#00FF0A]">04:40</span> - 3 No alcohol or any
-            other drugs <br />
-            <span className="text-[#00FF0A]">06:50</span> - Other Variables{" "}
-            <br />
-            <span className="text-[#00FF0A]">07:55</span> - How I&apos;m doing
-            monk mode? <br />
-            <span className="text-[#00FF0A]">09:12</span> - How long do you have
-            to do monk mode? <br />
-            <span className="text-[#00FF0A]">10:13</span> - Change up your
-            cycles <br />
-            <span className="text-[#00FF0A]">11:11</span> - How does it compare?{" "}
-            <br />
-            <span className="text-[#00FF0A]">15:14</span> - Monk mode feedback{" "}
-            <br /> <br />
-            For those who asked, here is my monk mode protocol. You should do
-            monk mode on a minimum of 21 days including the no negotiables. So
-            guys, if you do this I guarantee you will have success in any area
-            you are looking for. <br /> <br />
-            Connect With Me On Other Platforms: <br /> <br />
-            Instagram: <span className="text-[#00FF0A]">@imangadzhi</span>{" "}
-            <br />
-            Twitter: <span className="text-[#00FF0A]">@GadzhiIman</span>
-          </p>
+          {videoData?.description && (
+            <TiptapDisplay editorContent={videoData?.description} />
+          )}
         </div>
       </div>
       <div className="w-full flex flex-col items-start gap-16">
@@ -222,3 +193,23 @@ $1,000,000"
     </div>
   );
 }
+
+export async function getStaticPaths() {
+  const { data, error } = await supabase.from("videos").select("id");
+  const paths = data?.map((post) => ({
+    params: { id: JSON.stringify(post.id) },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export const getStaticProps = async ({ params }: { params: any }) => {
+  const { data, error } = await supabase
+    .from("videos")
+    .select("*, users(*)")
+    .eq("id", params.id)
+    .single();
+  return { props: { videoData: data } };
+};

@@ -20,3 +20,11 @@ export const formatTime = (time: number) => {
     return `${hours}:${minutes.toString().padStart(2, "0")} `;
   } else return `${minutes}:${seconds}`;
 };
+
+export const formatDate = (date: any) => {
+  return new Date(date).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};

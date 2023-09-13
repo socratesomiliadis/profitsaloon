@@ -40,7 +40,7 @@ export default function SignIn({
 
     try {
       const result = await signIn.create({
-        identifier: data.email,
+        identifier: data.email_or_username,
         password: data.password,
       });
 
@@ -95,18 +95,20 @@ export default function SignIn({
         >
           <Input
             type="email"
-            label="E-mail"
+            label="E-mail or username"
             size="md"
-            errorMessage={errors.email && "Please enter a valid email"}
-            validationState={errors.email ? "invalid" : "valid"}
+            errorMessage={
+              errors.email_or_username &&
+              "Please enter a valid email or username"
+            }
+            validationState={errors.email_or_username ? "invalid" : "valid"}
             classNames={{
               inputWrapper: [
                 "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
               ],
             }}
-            {...register("email", {
+            {...register("email_or_username", {
               required: true,
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
             })}
           />
           <div className="w-[400px] flex flex-col items-end">

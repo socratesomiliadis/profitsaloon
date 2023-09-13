@@ -49,8 +49,8 @@ export default function SidebarVideoItem({
       </div>
       <div className="w-[55%] flex flex-col h-full justify-between">
         <div className="flex flex-col">
-          <Link
-            href="/videos/iman"
+          <button
+            // href="/videos/iman"
             className="flex flex-row items-center text-[#818181]"
           >
             <span className="flex flex-row items-center gap-1 text-sm">
@@ -71,7 +71,7 @@ export default function SidebarVideoItem({
                 </svg>
               </span>
             </span>
-          </Link>
+          </button>
           <p className="text-white">{title}</p>
         </div>
         <div className="text-[#818181] flex flex-row items-center gap-1">

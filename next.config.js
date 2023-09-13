@@ -11,8 +11,19 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
     ],
     formats: ["image/avif", "image/webp"],
+  },
+  experimental: {
+    esmExternals: false, // THIS IS THE FLAG THAT MATTERS
   },
 };
 
