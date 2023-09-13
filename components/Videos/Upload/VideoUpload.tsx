@@ -1,6 +1,7 @@
 import { UploadDropzone } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import Link from "next/link";
+import { VideoDrop } from "./VideoDrop";
 
 export default function VideoUpload({
   setActiveStep,
@@ -15,6 +16,8 @@ export default function VideoUpload({
 }) {
   return (
     <div className="w-full h-full relative">
+      {/* <VideoDrop /> */}
+
       <UploadDropzone
         content={{
           uploadIcon() {

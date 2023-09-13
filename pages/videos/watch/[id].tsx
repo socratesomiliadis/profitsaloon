@@ -16,6 +16,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
     console.log(videoData);
   }, [videoData]);
 
+  if (!videoData?.users?.username) return null;
   return (
     <div className="bg-black w-full pl-12 pr-6 pt-12 grid grid-cols-3 gap-8">
       <div className="player-wrapper w-full col-span-2 flex flex-col">
@@ -27,7 +28,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
         </h1>
         <div className="flex flex-row items-center gap-5 mt-5 text-[#818181]">
           <Link
-            href="/videos/iman"
+            href={`/videos/${videoData?.users?.username}`}
             className="flex flex-row items-center gap-1"
           >
             <Image

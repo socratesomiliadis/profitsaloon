@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { SignedIn } from "@clerk/clerk-react";
 
 function NavItem({
   icon,
@@ -95,8 +96,27 @@ export default function SideNav() {
               />
             </svg>
           }
-          text="Live"
+          text="Watch"
           href="/videos/watch"
+        />
+        <NavItem
+          icon={
+            <svg
+              width="100%"
+              viewBox="0 0 21 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.5 23C15.7467 23 20 18.7135 20 13.2023C20 7.07539 14.4004 2.72368 12.1011 1.19504C11.5617 0.836392 10.846 0.990445 10.4706 1.50902L7.53791 5.55983C7.10079 6.1636 6.20581 6.23937 5.66682 5.71824C5.18809 5.25536 4.4069 5.25248 3.97747 5.75856C1.99249 8.09781 1 11.0122 1 13.2023C1 18.7135 5.25329 23 10.5 23ZM10.5 23C12.5987 23 14.3 21.1223 14.3 18.8061C14.3 16.2548 12.1934 14.3961 11.1172 13.613C10.7474 13.3439 10.2526 13.3439 9.88283 13.613C8.80662 14.3961 6.7 16.2548 6.7 18.8061C6.7 21.1223 8.40132 23 10.5 23Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+            </svg>
+          }
+          text="Trending"
+          href="/videos/trending"
         />
         <NavItem
           icon={
@@ -122,25 +142,6 @@ export default function SideNav() {
           icon={
             <svg
               width="100%"
-              viewBox="0 0 21 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.5 23C15.7467 23 20 18.7135 20 13.2023C20 7.07539 14.4004 2.72368 12.1011 1.19504C11.5617 0.836392 10.846 0.990445 10.4706 1.50902L7.53791 5.55983C7.10079 6.1636 6.20581 6.23937 5.66682 5.71824C5.18809 5.25536 4.4069 5.25248 3.97747 5.75856C1.99249 8.09781 1 11.0122 1 13.2023C1 18.7135 5.25329 23 10.5 23ZM10.5 23C12.5987 23 14.3 21.1223 14.3 18.8061C14.3 16.2548 12.1934 14.3961 11.1172 13.613C10.7474 13.3439 10.2526 13.3439 9.88283 13.613C8.80662 14.3961 6.7 16.2548 6.7 18.8061C6.7 21.1223 8.40132 23 10.5 23Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-            </svg>
-          }
-          text="Trending"
-          href="/videos/trending"
-        />
-        <NavItem
-          icon={
-            <svg
-              width="100%"
               viewBox="0 0 21 19"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -156,6 +157,28 @@ export default function SideNav() {
           text="Liked"
           href="/videos/liked"
         />
+        <SignedIn>
+          <NavItem
+            icon={
+              <svg
+                width="100%"
+                viewBox="0 0 22 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 15.25V7.75M11 7.75L13.5 10.25M11 7.75L8.5 10.25M14 15.25H17.125C19.4032 15.25 21.25 13.4032 21.25 11.125C21.25 8.84683 19.4032 7 17.125 7C17.0814 7 17.038 7.00068 16.9948 7.00202C16.9983 6.91844 17 6.83442 17 6.75C17 3.43629 14.3137 0.75 11 0.75C8.3716 0.75 6.13793 2.44009 5.32647 4.7928C2.74507 5.12339 0.75 7.32871 0.75 10C0.75 12.8995 3.10051 15.25 6 15.25H8"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
+            text="Upload"
+            href="/videos/upload"
+          />
+        </SignedIn>
       </div>
     </aside>
   );

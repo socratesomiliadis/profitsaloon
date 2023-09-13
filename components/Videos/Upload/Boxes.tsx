@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 import SignUp from "./VideoUpload";
 import { useUser } from "@clerk/nextjs";
 import Goals from "./Metadata";
-import Referal from "./Referal";
+import Referal from "./ShareVideo";
 import VideoUpload from "./VideoUpload";
 import Metadata from "./Metadata";
+import ShareVideo from "./ShareVideo";
 
 function Counter({ current, total }: { current: number; total: number }) {
   return (
@@ -57,6 +58,7 @@ export default function Boxes() {
   const [videoURL, setVideoURL] = useState("");
   const [descContent, setDescContent] = useState("");
   const [uploadID, setUploadID] = useState("");
+  const [shareDone, setShareDone] = useState(false);
 
   return (
     <div className="relative w-[75%] h-[85vh] rounded-3xl border-[#2B2B2B] border-[1px] flex flex-row">
@@ -234,6 +236,7 @@ export default function Boxes() {
             index={1}
             isActive={active === 1}
             setActive={setActive}
+            isDone={metadataDone}
           />
           <LeftItem
             icon={
@@ -261,11 +264,12 @@ export default function Boxes() {
                 />
               </svg>
             }
-            title="Share and get a 50% sale"
-            desc="Connect with others and get a 50% off."
+            title="Share your video"
+            desc="Share your video with the world."
             index={2}
             isActive={active === 2}
             setActive={setActive}
+            isDone={shareDone}
           />
         </div>
       </aside>
@@ -305,6 +309,14 @@ export default function Boxes() {
             setDescContent={setDescContent}
             videoURL={videoURL}
             setUploadID={setUploadID}
+          />
+        )}
+        {active === 2 && (
+          <ShareVideo
+            stepIndex={2}
+            setActiveStep={setActive}
+            setShareDone={setShareDone}
+            videoID={uploadID}
           />
         )}
       </main>

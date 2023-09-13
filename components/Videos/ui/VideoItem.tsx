@@ -21,7 +21,7 @@ export default function VideoItem({
   return (
     <Link
       href={videoURL}
-      className="rounded-3xl w-full p-5 border-[1px] border-[#202020] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50"
+      className="rounded-3xl w-full p-5 border-[1px] border-[#202020] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 flex flex-col justify-between"
     >
       <div className="relative w-full aspect-[16/8.5] h-auto">
         <Image

@@ -164,6 +164,7 @@ export default function Player({
 
   const handleSpaceBar = (e: any) => {
     if (e.code === "Space") {
+      e.preventDefault();
       playPauseHandler();
     }
   };
@@ -292,8 +293,8 @@ export default function Player({
             ref={blurVideoPlayerRef}
             className="aspect-video h-auto z-[0] absolute blur-[80px] opacity-80"
             url={blurURL}
-            width={videoState.isFullScreen ? "100%" : "90%"}
-            height={videoState.isFullScreen ? "100%" : "90%"}
+            width={videoState.isFullScreen ? "100%" : "95%"}
+            height={videoState.isFullScreen ? "100%" : "95%"}
             playing={playing}
             muted={true}
           />

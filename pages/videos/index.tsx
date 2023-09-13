@@ -1,7 +1,13 @@
 import Player from "@/components/VideoPlayer/Player";
 import VideoItem from "@/components/Videos/ui/VideoItem";
+import { supabase } from "@/utils/supabase-client";
+import { useEffect } from "react";
 
-export default function VideosTest() {
+export default function VideosTest({ homeVids }: { homeVids: any }) {
+  useEffect(() => {
+    console.log(homeVids);
+  }, [homeVids]);
+
   return (
     <>
       <main className="w-full h-[200vh] flex flex-col items-start pb-24 justify-start px-10">
@@ -40,8 +46,21 @@ export default function VideosTest() {
         <div className="bg-[#1D1D1D] mt-24 text-white py-4 px-10 rounded-lg">
           Recommended
         </div>
+
         <div className="mt-8 grid grid-cols-3 gap-8">
-          <VideoItem
+          {homeVids.map((vid: any) => (
+            <VideoItem
+              key={vid?.id}
+              thumbnailURL={vid?.thumbnail_url}
+              videoURL={`/videos/watch/${vid?.id}`}
+              title={vid?.title}
+              channelName={vid?.users?.name}
+              viewcount="1,030,085"
+              duration={103}
+              profileImageURL={vid?.users?.avatar_url}
+            />
+          ))}
+          {/* <VideoItem
             thumbnailURL="/static/images/testThumb.png"
             videoURL="/videos/watch/imanTest"
             title="This is how powerful Marketing really
@@ -70,9 +89,20 @@ export default function VideosTest() {
             viewcount="1,030,085"
             duration={103}
             profileImageURL="/static/images/testThumb.png"
-          />
+          /> */}
         </div>
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const homeVids = await supabase.from("videos").select("*, users(*)").limit(3);
+
+  return {
+    props: {
+      homeVids: homeVids.data,
+    },
+    revalidate: 1,
+  };
 }

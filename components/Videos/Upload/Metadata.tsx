@@ -65,13 +65,17 @@ export default function Metadata({
         user_id: userId,
       })
       .select();
-    // if (error) {
-    //   setLoading(false);
-    //   console.error(error);
-    //   return;
-    // }
-    if (data) console.log(data[0].id);
-    setLoading(false);
+    if (error) {
+      setLoading(false);
+      console.error(error);
+      return;
+    }
+    if (data) {
+      setMetadataDone(true);
+      setLoading(false);
+      setUploadID(data[0].id);
+      setActiveStep(stepIndex + 1);
+    }
   };
 
   return (
@@ -159,7 +163,6 @@ export default function Metadata({
         </div>
       </div>
       <div className="w-full flex items-center justify-between">
-        <span className="text-red-400">{errorsOther}</span>
         <button
           onClick={onSubmit}
           className="px-6 py-2 mt-6 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"
@@ -176,6 +179,7 @@ export default function Metadata({
           )}
           <span>Complete</span>
         </button>
+        <span className="text-red-400">{errorsOther}</span>
       </div>
     </motion.div>
   );
