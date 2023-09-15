@@ -1,14 +1,20 @@
 import Boxes from "@/components/SignIn/Boxes";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { gsap } from "gsap";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
 export default function SignIn() {
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
+  const redirectURL = useMemo(() => {
+    if (typeof router.query.redirect_url === "string") {
+      return router.query.redirect_url;
+    }
+    return "/account";
+  }, [router.query.redirect_url]);
 
   useEffect(() => {
     gsap.to("header", {
@@ -28,7 +34,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push("/account");
+      router.push(redirectURL);
     }
   }, [isSignedIn]);
 

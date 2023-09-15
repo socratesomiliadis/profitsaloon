@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Snippet } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function ShareVideo({

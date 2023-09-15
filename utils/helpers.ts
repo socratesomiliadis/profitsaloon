@@ -1,7 +1,5 @@
-import { useAuth } from "@clerk/clerk-react";
 import { createClient } from "@supabase/supabase-js";
 import { Price } from "@/types";
-import { auth } from "@clerk/nextjs";
 
 export const getURL = () => {
   let url =

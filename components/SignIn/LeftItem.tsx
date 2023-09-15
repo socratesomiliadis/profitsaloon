@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
 
 export default function LeftItem({
   icon,
@@ -11,9 +13,20 @@ export default function LeftItem({
   desc: string;
   index: number;
 }) {
+  const router = useRouter();
+  const redirectURL = useMemo(() => {
+    if (typeof router.query.redirect_url === "string") {
+      return router.query.redirect_url;
+    }
+    return "/account";
+  }, [router.query.redirect_url]);
+
   return (
     <Link
-      href="/onboarding?test=lost"
+      href={{
+        pathname: "/onboarding",
+        query: { redirect_url: redirectURL },
+      }}
       className="flex group flex-row items-center justify-between w-full"
     >
       <div className="flex flex-row items-center gap-3">

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 
 const goals = [
   {

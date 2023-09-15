@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ThumbUpload from "./ThumbnailUpload";
 import { useState } from "react";
 import { supabaseClientWithAuth } from "@/utils/helpers";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
 import { set } from "sanity";
 
 export default function Metadata({

@@ -8,6 +8,7 @@ export default authMiddleware({
       const signIn = new URL("/sign-in", req.url);
       return NextResponse.redirect(signIn);
     }
+
     // redirect them to organization selection page
   },
   publicRoutes: [

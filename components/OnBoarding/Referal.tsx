@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Snippet } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function Referal({
@@ -18,6 +18,12 @@ export default function Referal({
 }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const redirectURL = useMemo(() => {
+    if (typeof router.query.redirect_url === "string") {
+      return router.query.redirect_url;
+    }
+    return "/account";
+  }, [router.query.redirect_url]);
   const { user } = useUser();
 
   const {
@@ -90,7 +96,7 @@ export default function Referal({
           <button
             type="submit"
             onClick={() => {
-              router.push("/");
+              router.push(redirectURL);
               setReferalsDone(true);
             }}
             className="px-6 py-2 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"
@@ -109,7 +115,7 @@ export default function Referal({
           </button>
           <button
             onClick={() => {
-              router.push("/");
+              router.push(redirectURL);
               setReferalsDone(true);
             }}
             className="text-[#5C5C5C]"
