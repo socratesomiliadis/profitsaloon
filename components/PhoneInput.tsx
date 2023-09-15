@@ -33,7 +33,6 @@ export default function PhoneInput({
   return (
     <div className="w-[400px] flex flex-row items-start justify-between gap-1">
       <Select
-        //@ts-expect-error
         size="sm"
         className="w-[120px] bg-transparent"
         label="Country"

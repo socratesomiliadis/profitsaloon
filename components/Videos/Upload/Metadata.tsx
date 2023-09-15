@@ -126,7 +126,6 @@ export default function Metadata({
         <div className="flex flex-col mt-4">
           <span className="text-[#818181]">Categories</span>
           <Select
-            //@ts-expect-error
             size="md"
             className="w-full mt-2 bg-transparent"
             label="Select Categories"
