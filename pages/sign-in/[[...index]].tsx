@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
-import { sign } from "crypto";
 import Head from "next/head";
 
 export default function SignIn() {

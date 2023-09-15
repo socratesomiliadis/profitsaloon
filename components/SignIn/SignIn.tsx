@@ -17,6 +17,13 @@ export default function SignIn({
   const [isVisible, setIsVisible] = useState(false);
   const [clerkErrors, setClerkErrors] = useState<any>(null);
 
+  // const redirectURL = useMemo(() => {
+  //   if (typeof router.query.redirect_url === "string") {
+  //     return router.query.redirect_url;
+  //   }
+  //   return "/account";
+  // }, [router.query.redirect_url]);
+
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const {
@@ -47,7 +54,7 @@ export default function SignIn({
       if (result.status === "complete") {
         setLoading(false);
         await setActive({ session: result.createdSessionId });
-        router.push("/account");
+        router.push("/test");
       } else {
         /*Investigate why the login hasn't completed */
         console.log(result);

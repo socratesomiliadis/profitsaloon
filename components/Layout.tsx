@@ -5,7 +5,7 @@ import { Layout as VidLayout } from "./Videos/Layout";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
-  return !router.asPath.includes("videos") ? (
+  return !router.asPath.includes("/videos") ? (
     <div className="layout-wrapper bg-black">
       {!router.asPath.includes("studio") &&
         !router.asPath.includes("subscribe") &&

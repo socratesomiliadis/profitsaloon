@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function AffBtn({ text, link }: { text: string; link: string }) {
   return (
@@ -37,6 +38,8 @@ function AffBtn({ text, link }: { text: string; link: string }) {
 }
 
 export default function TopNav() {
+  const router = useRouter();
+
   return (
     <header className="sticky flex flex-row items-center justify-end z-10 w-full top-0 px-24 py-8">
       <div className="flex flex-row pl-6 pr-32 py-3 items-center gap-3 bg-[#1d1d1d]/50 backdrop-blur-xl rounded-full absolute left-1/2 -translate-x-1/2">
@@ -71,7 +74,13 @@ export default function TopNav() {
           <UserButton />
         </SignedIn>
         <SignedOut>
-          <Link href="/sign-in" className="flex flex-row items-center gap-2">
+          <Link
+            href={{
+              pathname: "/sign-in",
+              query: { redirect_url: router.asPath },
+            }}
+            className="flex flex-row items-center gap-2"
+          >
             <svg
               width="16"
               height="16"

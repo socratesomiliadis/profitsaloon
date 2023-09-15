@@ -81,7 +81,13 @@ export default function Header() {
           <UserButton />
         </SignedIn>
         <SignedOut>
-          <Link href="/sign-in" className="flex flex-row items-center gap-2">
+          <Link
+            href={{
+              pathname: "/sign-in",
+              query: { redirect_url: router.asPath },
+            }}
+            className="flex flex-row items-center gap-2"
+          >
             <svg
               width="16"
               height="16"

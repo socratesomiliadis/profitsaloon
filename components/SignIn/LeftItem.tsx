@@ -13,7 +13,7 @@ export default function LeftItem({
 }) {
   return (
     <Link
-      href="/onboarding"
+      href="/onboarding?test=lost"
       className="flex group flex-row items-center justify-between w-full"
     >
       <div className="flex flex-row items-center gap-3">
