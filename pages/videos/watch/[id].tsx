@@ -18,7 +18,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
     console.log(videoData);
   }, [videoData]);
 
-  if (!videoData?.users?.username) return null;
+  if (!videoData?.users?.username && !videoData?.thumbnail_url) return null;
 
   const title = `${videoData?.title} — Profit Saloon`;
 
