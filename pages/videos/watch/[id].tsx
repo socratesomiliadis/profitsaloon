@@ -225,18 +225,18 @@ $1,000,000"
   );
 }
 
-export async function getStaticPaths() {
-  const { data, error } = await supabase.from("videos").select("id");
-  const paths = data?.map((post) => ({
-    params: { id: JSON.stringify(post.id) },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   const { data, error } = await supabase.from("videos").select("id");
+//   const paths = data?.map((post) => ({
+//     params: { id: JSON.stringify(post.id) },
+//   }));
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
-export const getStaticProps = async ({ params }: { params: any }) => {
+export const getServerSideProps = async ({ params }: { params: any }) => {
   const { data, error } = await supabase
     .from("videos")
     .select("*, users(*)")

@@ -1,6 +1,7 @@
 import Player from "@/components/VideoPlayer/Player";
 import VideoItem from "@/components/Videos/ui/VideoItem";
 import { supabase } from "@/utils/supabase-client";
+import Head from "next/head";
 import { useEffect } from "react";
 
 export default function VideosTest({ homeVids }: { homeVids: any }) {
@@ -10,6 +11,27 @@ export default function VideosTest({ homeVids }: { homeVids: any }) {
 
   return (
     <>
+      <Head>
+        <title>Profit Saloon — Videos</title>
+        <meta
+          name="description"
+          content="Change your life with Profit Saloon. Never miss on money, an idea or connection."
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Profit Saloon — Videos" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="Change your life with Profit Saloon. Never miss on money, an idea or connection."
+        />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:image:alt" content="Profit Saloon — Videos" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="theme-color" content="#000000" />
+      </Head>
       <main className="w-full h-[200vh] flex flex-col items-start pb-24 justify-start px-10">
         <div className="mt-3 flex flex-row items-center gap-4">
           <span className="block w-2">
@@ -51,6 +73,7 @@ export default function VideosTest({ homeVids }: { homeVids: any }) {
           {homeVids.map((vid: any) => (
             <VideoItem
               key={vid?.id}
+              videoAssetURL={vid?.video_url}
               thumbnailURL={vid?.thumbnail_url}
               videoURL={`/videos/watch/${vid?.id}`}
               title={vid?.title}

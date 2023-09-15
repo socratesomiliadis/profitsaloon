@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function VideoItem({
   thumbnailURL,
@@ -9,6 +10,7 @@ export default function VideoItem({
   viewcount,
   duration,
   videoURL,
+  videoAssetURL,
 }: {
   thumbnailURL: string;
   profileImageURL: string;
@@ -17,19 +19,50 @@ export default function VideoItem({
   viewcount: string;
   duration: number;
   videoURL: string;
+  videoAssetURL?: string;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered && videoRef) {
+      const video = videoRef.current;
+      video?.play();
+    } else if (!isHovered && videoRef) {
+      const video = videoRef.current as HTMLVideoElement;
+      video?.pause();
+      video.currentTime = 0;
+    }
+  }, [isHovered]);
+
   return (
     <Link
       href={videoURL}
       className="rounded-3xl w-full p-5 border-[1px] border-[#202020] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 flex flex-col justify-between"
     >
-      <div className="relative w-full aspect-[16/8.5] h-auto">
-        <Image
-          src={thumbnailURL}
+      <div
+        onMouseOver={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="relative w-full aspect-[16/8.5] h-auto"
+      >
+        {!isHovered && (
+          <Image
+            src={thumbnailURL}
+            width={1280}
+            height={720}
+            alt=""
+            className="absolute inset-0 z-[1] w-full h-full object-cover rounded-xl"
+          />
+        )}
+        <video
+          ref={videoRef}
+          poster={thumbnailURL}
           width={1280}
+          muted
+          playsInline
           height={720}
-          alt=""
-          className="w-full h-full object-cover rounded-xl"
+          src={videoAssetURL}
+          className="w-full h-full z-[0] object-cover rounded-xl"
         />
       </div>
       <div className="flex flex-row items-center mt-4 gap-3 w-[80%]">
