@@ -1,6 +1,7 @@
 import TiptapDisplay from "@/components/TiptapDisplay";
 import Player from "@/components/VideoPlayer/Player";
 import SidebarVideoItem from "@/components/Videos/ui/SidebarVideoItem";
+import LikeBtn from "@/components/Videos/ui/LikeBtn";
 import { formatDate } from "@/lib/utils";
 import { supabase } from "@/utils/supabase-client";
 import Image from "next/image";
@@ -26,7 +27,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
         <h1 className="text-white text-4xl font-medium mt-6">
           {videoData?.title}
         </h1>
-        <div className="flex flex-row items-center gap-5 mt-5 text-[#818181]">
+        <div className="w-full flex flex-row items-center gap-5 mt-5 text-[#818181]">
           <Link
             href={`/videos/${videoData?.users?.username}`}
             className="flex flex-row items-center gap-1"
@@ -112,6 +113,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
             </span>
             <span>{formatDate(videoData?.created_at)}</span>
           </div>
+          {videoData?.id && <LikeBtn videoId={videoData?.id} />}
         </div>
         <div className="mt-7 buttons-wrapper flex flex-row items-center gap-4">
           <button className="bg-[#1D1D1D] text-white py-3 px-12 rounded-xl">
