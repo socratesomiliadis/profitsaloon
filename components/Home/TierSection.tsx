@@ -17,16 +17,19 @@ export default function TierSection() {
           title="Student"
           price="28,99"
           imgURL="/static/images/cards/student.png"
+          tier={1}
         />
         <TierCard
           title="Scholar"
           price="88,99"
           imgURL="/static/images/cards/scholar.png"
+          tier={2}
         />
         <TierCard
           title="Expert"
           price="988,99"
           imgURL="/static/images/cards/Expert.png"
+          tier={3}
         />
       </div>
       <div className="relative mt-[5%] w-full h-[150vh]">

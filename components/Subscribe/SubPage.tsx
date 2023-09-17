@@ -108,7 +108,7 @@ export default function SubPage({
               quality={100}
               className="h-[100vh] pointer-events-none aspect-[1600/1400] max-w-none object-contain object-bottom w-[52vw] z-[3] relative"
             />
-            <div className="bg-gradient-to-b px-8 pt-12 flex flex-col gap-10 from-black to-[#232323] aspect-[2/4.7] h-auto w-[15vw] absolute z-[2] bottom-[10%] right-[33%] rounded-3xl">
+            <div className="bg-gradient-to-b px-8 pt-12 flex flex-col gap-10 from-black to-[#232323] aspect-[2/4.68] h-auto w-[15vw] absolute z-[2] bottom-[11%] 3xl:bottom-[10%] right-[33%] rounded-3xl">
               <div className="flex flex-col gap-1 w-full text-white">
                 <h2 className="text-xl">{tierInfo[tier - 1].name}</h2>
                 <span className="w-full h-[1px] bg-[#232323]"></span>

@@ -1,13 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TierCard({
   title,
   price,
   imgURL,
+  tier,
 }: {
   title: string;
   price: string;
   imgURL: string;
+  tier: number;
 }) {
   return (
     <div className="tier-card backdrop-blur-[1px] pt-8 flex h-fit basis-1/3 flex-col rounded-3xl border-[1px] border-[#202020] bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50">
@@ -102,7 +105,15 @@ export default function TierCard({
             ${price} per month
           </span>
         </div>
-        <button className="relative w-1/2 group rounded-full p-[1px] bg-gradient-to-t from-white/25 via-[#121212]/25 to-white/25">
+        <Link
+          href={{
+            pathname: "/subscribe",
+            query: {
+              tier: tier,
+            },
+          }}
+          className="relative w-1/2 group rounded-full p-[1px] bg-gradient-to-t from-white/25 via-[#121212]/25 to-white/25"
+        >
           <span className="flex w-full items-center justify-center gap-2 relative overflow-hidden text-sm py-2 rounded-full bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212] text-white">
             <span>Get Started</span>
             <span className="w-0 group-hover:w-3 transition-[width] duration-300 ease-out">
@@ -120,7 +131,7 @@ export default function TierCard({
             </span>
             <span className="absolute w-12 h-2 bg-white left-1/2 -translate-x-1/2 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300"></span>
           </span>
-        </button>
+        </Link>
       </div>
     </div>
   );
