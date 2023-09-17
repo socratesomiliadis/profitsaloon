@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Spline from "@splinetool/react-spline";
+import { useEffect } from "react";
+import gsap from "gsap";
 
 function NewsBtn({ text, link }: { text: string; link: string }) {
   return (
@@ -35,6 +37,56 @@ function NewsBtn({ text, link }: { text: string; link: string }) {
 }
 
 export default function MainSection() {
+  useEffect(() => {
+    let rotateTl = gsap.timeline({
+      paused: false,
+    });
+    rotateTl.to(".orbit-1 .p-div", {
+      rotateZ: "-=360",
+      duration: 80,
+      ease: "none",
+      stagger: 0.1,
+      repeat: -1,
+    });
+    rotateTl.to(
+      ".orbit-1 .planet",
+      {
+        rotateZ: "+=360",
+        duration: 80,
+        ease: "none",
+        stagger: 0.1,
+        repeat: -1,
+      },
+      0
+    );
+    rotateTl.to(
+      ".orbit-2 .p-div",
+      {
+        rotateZ: "+=360",
+        duration: 90,
+        ease: "none",
+        stagger: 0.1,
+        repeat: -1,
+      },
+      0
+    );
+    rotateTl.to(
+      ".orbit-2 .planet",
+      {
+        rotateZ: "-=360",
+        duration: 90,
+        ease: "none",
+        stagger: 0.1,
+        repeat: -1,
+      },
+      0
+    );
+
+    return () => {
+      rotateTl.kill();
+    };
+  }, []);
+
   return (
     <section className="flex bg-white overflow-hidden flex-col items-center relative min-h-[80vh] w-screen px-4 lg:px-0">
       <div className="w-[50vw] -mt-[1%]">
@@ -76,8 +128,74 @@ export default function MainSection() {
           Never miss on money, an idea or connection.
         </p>
       </div>
-      <div className="mt-44 relative w-full flex flex-row justify-center">
-        <div className="absolute w-full h-1/3 left-0 bottom-0 bg-gradient-to-t from-black to-transparent"></div>
+      <div className="mt-[28rem] relative w-full flex flex-row justify-center">
+        <div className="orbit-div z-[2] -mt-[10%] flex items-center justify-center w-full inset-0 absolute">
+          <div className="orbit-1 border-[1px] border-[#f0f0f0] w-[900px] h-[900px] absolute rounded-full">
+            <div
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="p-div planet-div-1 absolute top-0 bottom-0 left-0 right-0"
+            >
+              <Image
+                src="/static/images/planets/cryptoPlanet.png"
+                width={300}
+                height={300}
+                alt="Profit Saloon Crypto Planet"
+                className="planet planet-1 w-[110px] h-[110px] absolute -top-2 left-52 bottom-auto right-auto"
+              />
+            </div>
+            <div
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="p-div planet-div-2 absolute top-0 bottom-0 left-0 right-0"
+            >
+              <Image
+                src="/static/images/planets/openSeaPlanet.png"
+                width={300}
+                height={300}
+                alt="Profit Saloon OpenSea Planet"
+                className="planet planet-2 w-[110px] h-[110px] absolute top-auto left-auto bottom-20 right-16"
+              />
+            </div>
+          </div>
+          <div className="orbit-2 border-[1px] border-[#f0f0f0] w-[1250px] h-[1250px] absolute rounded-full">
+            <div
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="p-div planet-div-3 absolute top-0 bottom-0 left-0 right-0"
+            >
+              <Image
+                src="/static/images/planets/copywritingPlanet.png"
+                width={300}
+                height={300}
+                alt="Profit Saloon Copywriting Planet"
+                className="planet planet-3 w-[80px] h-[80px] absolute top-20 left-auto bottom-auto right-52"
+              />
+            </div>
+            <div
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="p-div planet-div-4 absolute top-0 bottom-0 left-0 right-0"
+            >
+              <Image
+                src="/static/images/planets/aiPlanet.png"
+                width={300}
+                height={300}
+                alt="Profit Saloon AI Planet"
+                className="planet planet-4 w-[80px] h-[80px] absolute top-20 left-52 bottom-auto right-auto"
+              />
+            </div>
+            <div
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="p-div planet-div-5 absolute top-0 bottom-0 left-0 right-0"
+            >
+              <Image
+                src="/static/images/planets/marketingPlanet.png"
+                width={300}
+                height={300}
+                alt="Profit Saloon Marketing Planet"
+                className="planet planet-5 w-[80px] h-[80px] absolute top-auto left-[36rem] -bottom-11 right-auto"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="absolute z-[4] w-full h-1/3 left-0 bottom-0 bg-gradient-to-t from-black to-transparent"></div>
 
         <Image
           src="/static/images/heroMockup.png"
@@ -86,7 +204,7 @@ export default function MainSection() {
           alt=""
           quality={100}
           priority
-          className="w-[130%] ml-[12%] max-w-none object-center object-cover"
+          className="w-[130%] ml-[12%] z-[3] max-w-none object-center object-cover opacity-100"
         />
       </div>
     </section>

@@ -1,17 +1,45 @@
 import VideoItem from "@/components/Videos/ui/VideoItem";
 import { supabase } from "@/utils/supabase-client";
-import { useEffect } from "react";
-import { getAuth } from "@clerk/nextjs/server";
+import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 import { GetServerSideProps } from "next";
+import { supabaseClientWithAuth } from "@/utils/helpers";
 
-export default function Liked({ likedVids }: { likedVids: any }) {
+export default function Liked() {
+  const [likedVids, setLikedVids] = useState([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const { isLoaded: isLoadedClerk, userId, getToken } = useAuth();
+
+  async function getLiked() {
+    const supabaseAccessToken = await getToken({ template: "supabase" });
+    const supabase = await supabaseClientWithAuth(
+      supabaseAccessToken as string
+    );
+    const { data, error } = await supabase
+      .from("likes_video")
+      .select("videos(*, users(*))")
+      .eq("user_id", userId);
+
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      //@ts-expect-error
+      if (data.length > 0) setLikedVids(data);
+      else setLikedVids([]);
+      setIsLoaded(true);
+    }
+  }
+
   useEffect(() => {
-    console.log(likedVids);
-  }, [likedVids]);
+    if (isLoadedClerk) {
+      getLiked().catch((err) => console.log(err));
+    }
+  }, [isLoadedClerk]);
 
   return (
     <>
-      <main className="w-full h-[200vh] flex flex-col items-start pb-24 justify-start px-10">
+      <main className="w-full h-screen flex flex-col items-start pb-24 justify-start px-10">
         <div className="mt-3 flex flex-row items-center gap-4">
           <span className="block w-2">
             <svg
@@ -70,26 +98,26 @@ export default function Liked({ likedVids }: { likedVids: any }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { userId } = getAuth(ctx.req);
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const { userId } = getAuth(ctx.req);
 
-  if (!userId) {
-    return {
-      props: {
-        likedVids: null,
-      },
-      revalidate: 1,
-    };
-  }
+//   if (!userId) {
+//     return {
+//       props: {
+//         likedVids: null,
+//       },
+//       revalidate: 1,
+//     };
+//   }
 
-  const likedVids = await supabase
-    .from("likes_video")
-    .select("videos(*, users(*))")
-    .eq("user_id", "user_2VLH0n9tcpgeqNQsjshhUHOn6im");
+//   const likedVids = await supabase
+//     .from("likes_video")
+//     .select("videos(*, users(*))")
+//     .eq("user_id", "user_2VLH0n9tcpgeqNQsjshhUHOn6im");
 
-  return {
-    props: {
-      likedVids: likedVids.data,
-    },
-  };
-};
+//   return {
+//     props: {
+//       likedVids: likedVids.data,
+//     },
+//   };
+// };

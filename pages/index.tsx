@@ -16,6 +16,7 @@ import Explainer from "@/components/Home/Explainer";
 import { postData } from "@/utils/helpers";
 import { getStripe } from "@/utils/stripe-client";
 import Head from "next/head";
+import MockupSection from "@/components/Home/MockupSection";
 const teacherQuery = groq`*[_type == "teacher"] | order(orderRank)`;
 
 interface Props {
@@ -76,19 +77,20 @@ export default function Home({ products, teachers }: Props) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#000000" />
       </Head>
-      <main className="bg-white selection:bg-profitGreen selection:text-profitBlack h-screen">
+      <main className="bg-white selection:bg-profitGreen selection:text-profitBlack">
         <HeroMasked />
         <MainSection />
         <TierSection />
         <FeaturedCourses />
         <Tools />
-        <TeacherSection teachers={teachers} />
-        <Explainer />
-        <div className="bg-black w-screen h-[20vh] flex items-center justify-center">
+        <MockupSection />
+        {/* <TeacherSection teachers={teachers} /> */}
+        {/* <Explainer /> */}
+        {/* <div className="bg-black w-screen h-[20vh] flex items-center justify-center">
           <button onClick={handleCheckout} className="text-white">
             Test Checkout
           </button>
-        </div>
+        </div> */}
         <Footer />
       </main>
     </>

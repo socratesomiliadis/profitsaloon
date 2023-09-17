@@ -8,16 +8,16 @@ export default function Header() {
 
   return (
     <header
-      style={{
-        position: router.asPath === "/" ? "absolute" : "fixed",
-      }}
+      // style={{
+      //   position: router.asPath === "/" ? "absolute" : "fixed",
+      // }}
       className="absolute select-none left-0 z-[99] pt-8 lg:pt-12 top-0 w-screen flex flex-row items-center justify-between px-6 lg:px-32 2xl:px-44"
     >
       <div className="flex flex-col gap-3">
         <Link
           href="/"
           style={{
-            color: router.asPath === "/" ? "#282828" : "#fff",
+            color: router.asPath !== "/" ? "#fff" : "#282828",
           }}
           className="relative w-[140px] lg:w-[180px]"
         >
@@ -79,7 +79,13 @@ export default function Header() {
         </Link>
         <span className="text-[#818181]">
           Go to{" "}
-          <Link href="/videos" className="underline text-black">
+          <Link
+            style={{
+              color: router.asPath !== "/" ? "#fff" : "#282828",
+            }}
+            href="/videos"
+            className="underline text-black"
+          >
             Videos
           </Link>
         </span>

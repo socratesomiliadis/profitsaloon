@@ -135,6 +135,43 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.glowing-cirlce {
+  margin: -8% auto;
+  -webkit-mask-image: radial-gradient(
+    circle at center center,
+    black,
+    transparent 80%
+  );
+}
+
+.glowing-cirlce > svg {
+  -webkit-mask-image: radial-gradient(
+    circle at center bottom,
+    black,
+    transparent
+  );
+}
+
+.glowing-cirlce::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: radial-gradient(circle at bottom center, #fff, transparent 70%);
+  opacity: 0.4;
+}
+
+.glowing-cirlce::after {
+  content: "";
+  position: absolute;
+  background: black;
+  width: 200%;
+  left: -50%;
+  aspect-ratio: 1 / 1.5;
+  border-radius: 50%;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  top: 50%;
+}
+
 .tiptap a {
   color: #00ff0a;
 }

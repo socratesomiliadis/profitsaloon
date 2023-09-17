@@ -14,9 +14,11 @@ let count = 0;
 export default function Player({
   url,
   blurURL,
+  doAutoPlay = true,
 }: {
   url: string;
-  blurURL: string;
+  blurURL?: string;
+  doAutoPlay?: boolean;
 }) {
   const videoPlayerRef = useRef<ReactPlayer>(null);
   const blurVideoPlayerRef = useRef<ReactPlayer>(null);
@@ -33,7 +35,7 @@ export default function Player({
   }, []);
 
   const [videoState, setVideoState] = useState({
-    playing: true,
+    playing: doAutoPlay,
     muted: false,
     volume: 0.5,
     playbackRate: 1.0,
@@ -288,7 +290,7 @@ export default function Player({
             />
           </div>
         )}
-        {hasWindow && (
+        {hasWindow && !!blurURL && (
           <ReactPlayer
             ref={blurVideoPlayerRef}
             className="aspect-video h-auto z-[0] absolute blur-[80px] opacity-80"

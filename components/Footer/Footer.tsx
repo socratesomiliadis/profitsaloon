@@ -55,7 +55,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-full relative min-h-[80vh] py-8 lg:py-32 bg-black flex flex-col items-center">
+    <footer className="w-full relative py-8 lg:pt-32 pb-16 bg-black flex flex-col items-center">
       <div
         ref={hoverRef}
         className="relative video-wrapper w-full flex items-center justify-center overflow-visible z-[1]"
@@ -71,7 +71,7 @@ export default function Footer() {
           playsInline
         />
       </div>
-      <div className="w-full relative z-[2] bg-black flex flex-col gap-16 md:gap-64 border-t-[1px] border-[#1a1a1a] justify-between pt-24 px-6 lg:px-16 xl:px-[6vw] 2xl:px-[8vw]">
+      <div className="w-full relative z-[2] bg-black flex flex-col gap-16 md:gap-32 border-t-[1px] border-[#1a1a1a] justify-between pt-24 px-6 lg:px-16 xl:px-[6vw] 2xl:px-[8vw]">
         <div className="flex flex-row w-full items-start justify-between z-20">
           <div className="flex flex-col gap-16 w-full 2xl:w-fit">
             <MailchimpForm />

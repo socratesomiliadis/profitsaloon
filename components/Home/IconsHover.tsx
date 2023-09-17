@@ -23,7 +23,7 @@ function AppIcon({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [36, 50, 36]);
+  let widthSync = useTransform(distance, [-150, 0, 150], [28, 45, 28]);
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
@@ -44,7 +44,7 @@ export default function IconsHover() {
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className="icons-div flex flex-row items-center gap-12"
+      className="icons-div flex flex-row items-center gap-8"
     >
       <AppIcon mouseX={mouseX}>
         <svg

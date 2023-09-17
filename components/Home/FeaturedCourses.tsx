@@ -6,18 +6,20 @@ export default function FeaturedCourses() {
     <section className="featured-courses relative w-screen min-h-screen bg-[#000]">
       <div className="left-0 w-full h-[30vh] absolute z-0 top-0 -translate-y-[99%] bg-gradient-to-t from-[#000] to-transparent"></div>
       <div className="flex flex-col items-center gap-4 z-50 relative">
-        <span className="text-center text-4xl font-medium text-[#ededed]">
-          Stop chasing the meta. Be the meta.
-        </span>
-        <p className="text-center text-xl text-[#818181]">
-          Join a supportive community to enhance your growth as an <br />
-          entrepreneur, artist, and more.
-        </p>
+        <div className="flex flex-col items-center gap-2 z-10">
+          <span className="text-transparent text-xl font-medium bg-clip-text bg-gradient-to-t from-[#00FF0A] to-[#E9FF54]">
+            Stop chasing the meta. Be the meta.
+          </span>
+          <h3 className="text-center text-5xl font-medium text-[#ededed]">
+            Join a supportive community to
+            <br /> enhance your growth.
+          </h3>
+        </div>
       </div>
-      <div className="mt-32 w-full flex flex-col items-center z-[4] relative">
+      <div className="mt-12 w-full flex flex-col items-center z-[4] relative">
         <div className="flex flex-row items-center justify-center w-full gap-6">
           {/* <ArrowBtn width={26} height={26} className="scale-x-[-1]" /> */}
-          <div className="border-[1px] z-10 border-[#202020] w-[60%] h-[110px] rounded-full bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 flex items-center justify-center">
+          <div className="border-[1px] z-10 border-[#202020] w-[60%] h-[80px] rounded-full bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 flex items-center justify-center">
             <IconsHover />
           </div>
           {/* <ArrowBtn width={26} height={26} /> */}

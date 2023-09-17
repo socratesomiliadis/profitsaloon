@@ -4,15 +4,13 @@ import TierCard from "./TierCard";
 export default function TierSection() {
   return (
     <section className="tier-section flex bg-black w-screen flex-col items-center relative noisy">
-      <div className="flex flex-col -mt-[5%] pt-32 pb-20 items-center gap-4 z-10 w-full">
-        <h3 className="text-center text-4xl font-medium text-[#ededed] mt-4">
-          Start. Your. Subscription.
+      <div className="flex flex-col -mt-[5%] pt-32 pb-20 items-center gap-2 z-10 w-full ">
+        <span className="text-transparent text-xl font-medium bg-clip-text bg-gradient-to-t from-[#00FF0A] to-[#E9FF54]">
+          Student, Scholar & Expert
+        </span>
+        <h3 className="text-center text-5xl font-medium text-[#ededed]">
+          Start your subscription today.
         </h3>
-        <p className="text-center text-2xl text-[#818181] w-[48%]">
-          Participate in a professional community where individuals are
-          dedicated to building successful businesses, creating strong brands,
-          and increasing revenue.
-        </p>
       </div>
       <div className="flex w-full flex-row items-center gap-14 px-28 3xl:px-64 z-10">
         <TierCard
