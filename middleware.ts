@@ -21,6 +21,7 @@ export default authMiddleware({
     "/studio",
     "/videos/watch(.*)",
     "/videos",
+    "/tiers",
     "/videos/trending(.*)",
     "/api(.*)",
   ],

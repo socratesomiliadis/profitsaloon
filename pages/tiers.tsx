@@ -1,10 +1,16 @@
 import Head from "next/head";
 import Footer from "@/components/Footer/Footer";
 import TiersHero from "@/components/Tiers/TiersHero";
-import TiersNav from "@/components/Tiers/TiersNav";
 import TiersFeatures from "@/components/Tiers/TiersFeatures";
+import { useHeaderTheme } from "@/hooks/useHeaderTheme";
+import { useLayoutEffect } from "react";
 
 export default function Tiers() {
+  const { setHeaderTheme } = useHeaderTheme();
+  useLayoutEffect(() => {
+    setHeaderTheme("dark");
+  }, []);
+
   return (
     <>
       <Head>

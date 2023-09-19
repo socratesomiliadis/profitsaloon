@@ -6,6 +6,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import Layout from "@/components/Layout";
 import { Inter } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
+import HeaderThemeProvider from "@/hooks/useHeaderTheme";
 
 export const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -26,13 +27,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
         {...pageProps}
       >
         <MyUserContextProvider>
-          <Layout>
-            <NextUIProvider>
-              <AnimatePresence mode="wait">
-                <Component {...pageProps} key={router.asPath} />
-              </AnimatePresence>
-            </NextUIProvider>
-          </Layout>
+          <HeaderThemeProvider>
+            <Layout>
+              <NextUIProvider>
+                <AnimatePresence mode="wait">
+                  <Component {...pageProps} key={router.asPath} />
+                </AnimatePresence>
+              </NextUIProvider>
+            </Layout>
+          </HeaderThemeProvider>
         </MyUserContextProvider>
       </ClerkProvider>
     </div>
