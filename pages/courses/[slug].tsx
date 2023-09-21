@@ -86,19 +86,52 @@ export default function Course({
 
   if (isLoading)
     return (
-      <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
-        <CircularProgress color="primary" />
-      </div>
+      <>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={course?.description} />
+          <link rel="icon" href="/favicon.ico" />
+          <meta property="og:title" content={title} />
+          <meta property="og:type" content="article" />
+          <meta property="og:description" content={course?.description} />
+          <meta property="og:image:width" content="1600" />
+          <meta property="og:image:height" content="900" />
+          <meta property="og:image:alt" content={title} />
+          <meta property="og:image:type" content="image/png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="theme-color" content="#000000" />
+        </Head>
+        <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
+          <CircularProgress color="primary" />
+        </div>
+      </>
     );
 
   if (
-    subscription?.metadata &&
-    subscription!.metadata![course?.courseCode] !== "true"
+    !subscription ||
+    (subscription?.metadata &&
+      subscription!.metadata![course?.courseCode] !== "true")
   )
     return (
-      <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
-        You don&apos;t have access to this course.
-      </div>
+      <>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={course?.description} />
+          <link rel="icon" href="/favicon.ico" />
+          <meta property="og:title" content={title} />
+          <meta property="og:type" content="article" />
+          <meta property="og:description" content={course?.description} />
+          <meta property="og:image:width" content="1600" />
+          <meta property="og:image:height" content="900" />
+          <meta property="og:image:alt" content={title} />
+          <meta property="og:image:type" content="image/png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="theme-color" content="#000000" />
+        </Head>
+        <div className="h-screen w-screen text-white text-xl flex items-center justify-center">
+          You don&apos;t have access to this course.
+        </div>
+      </>
     );
 
   return !!course ? (
