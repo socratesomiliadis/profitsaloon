@@ -153,7 +153,7 @@ export default function VideoPage({ videoData }: { videoData: any }) {
           <div className="w-full h-[1px] bg-[#1D1D1D] my-12"></div>
 
           <div className="rounded-xl text-white border-[1px] border-[#818181]/10 h-[300px] p-6 bg-gradient-to-r from-[#1E1E1E]/10 to-[#818181]/0 flex flex-col">
-            <span className="text-[#818181] text-sm">Description</span>
+            <span className="text-[#818181] text-sm mb-2">Description</span>
             {videoData?.description && (
               <TiptapDisplay editorContent={videoData?.description} />
             )}

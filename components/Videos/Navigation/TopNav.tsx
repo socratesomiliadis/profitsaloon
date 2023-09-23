@@ -1,3 +1,4 @@
+import AccountDropdown from "@/components/Account/AccountDropdown";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -71,7 +72,7 @@ export default function TopNav() {
       </div>
       <div className="flex flex-row items-center gap-12">
         <SignedIn>
-          <UserButton />
+          <AccountDropdown />
         </SignedIn>
         <SignedOut>
           <Link

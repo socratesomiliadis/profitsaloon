@@ -20,9 +20,7 @@ const TiptapDisplay = ({ editorContent }: { editorContent: string }) => {
     },
   });
 
-  return (
-    <EditorContent className="mt-2 h-full overflow-auto" editor={editor} />
-  );
+  return <EditorContent className="h-full overflow-auto" editor={editor} />;
 };
 
 export default TiptapDisplay;

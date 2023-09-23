@@ -20,12 +20,16 @@ const supabaseAdmin = createClient(
 );
 
 export const upsertUserRecord = async (user: any) => {
+  const primaryEmail = user.email_addresses.find(
+    (email: any) => email.id === user.primary_email_id
+  );
+
   const userData = {
     user_id: user.id,
     username: user.username,
     avatar_url: user.image_url,
     name: user.first_name,
-    email: user.email_addresses[0].email_address,
+    email: primaryEmail,
     country: user.unsafe_metadata?.country,
     phone_number: user.unsafe_metadata?.phone_number,
     birth_year: user.unsafe_metadata?.birth_year,

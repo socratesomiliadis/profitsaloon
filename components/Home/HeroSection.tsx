@@ -139,6 +139,7 @@ export default function MainSection() {
                 src="/static/images/planets/cryptoPlanet.png"
                 width={300}
                 height={300}
+                priority
                 alt="Profit Saloon Crypto Planet"
                 className="planet planet-1 w-[110px] h-[110px] absolute -top-2 left-52 bottom-auto right-auto"
               />
@@ -151,6 +152,7 @@ export default function MainSection() {
                 src="/static/images/planets/openSeaPlanet.png"
                 width={300}
                 height={300}
+                priority
                 alt="Profit Saloon OpenSea Planet"
                 className="planet planet-2 w-[110px] h-[110px] absolute top-auto left-auto bottom-20 right-16"
               />
@@ -164,6 +166,7 @@ export default function MainSection() {
               <Image
                 src="/static/images/planets/copywritingPlanet.png"
                 width={300}
+                priority
                 height={300}
                 alt="Profit Saloon Copywriting Planet"
                 className="planet planet-3 w-[80px] h-[80px] absolute top-20 left-auto bottom-auto right-52"
@@ -177,6 +180,7 @@ export default function MainSection() {
                 src="/static/images/planets/aiPlanet.png"
                 width={300}
                 height={300}
+                priority
                 alt="Profit Saloon AI Planet"
                 className="planet planet-4 w-[80px] h-[80px] absolute top-20 left-52 bottom-auto right-auto"
               />
@@ -189,6 +193,7 @@ export default function MainSection() {
                 src="/static/images/planets/marketingPlanet.png"
                 width={300}
                 height={300}
+                priority
                 alt="Profit Saloon Marketing Planet"
                 className="planet planet-5 w-[80px] h-[80px] absolute top-auto left-[36rem] -bottom-11 right-auto"
               />

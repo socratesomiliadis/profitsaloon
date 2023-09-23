@@ -148,7 +148,7 @@ export default function SignUp({
                   errors.username &&
                   "Your username must be at least 3 characters long"
                 }
-                validationState={errors.username ? "invalid" : "valid"}
+                isInvalid={!!errors.username}
                 classNames={{
                   inputWrapper: [
                     "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
@@ -168,7 +168,7 @@ export default function SignUp({
                 errorMessage={
                   errors.name && "Your name must be at least 3 characters long"
                 }
-                validationState={errors.name ? "invalid" : "valid"}
+                isInvalid={!!errors.name}
                 classNames={{
                   inputWrapper: [
                     "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
@@ -185,7 +185,7 @@ export default function SignUp({
               label="E-mail"
               size="sm"
               errorMessage={errors.email && "Please enter a valid email"}
-              validationState={errors.email ? "invalid" : "valid"}
+              isInvalid={!!errors.email}
               classNames={{
                 inputWrapper: [
                   "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
@@ -208,7 +208,7 @@ export default function SignUp({
                 errors.password &&
                 "Your password must be at least 8 characters long"
               }
-              validationState={errors.password ? "invalid" : "valid"}
+              isInvalid={!!errors.password}
               endContent={
                 <button
                   className="focus:outline-none mr-1"
@@ -278,7 +278,7 @@ export default function SignUp({
               errorMessage={
                 errors.birthYear && "Please enter a valid birth year"
               }
-              validationState={errors.birthYear ? "invalid" : "valid"}
+              isInvalid={!!errors.birthYear}
               classNames={{
                 inputWrapper: [
                   "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",

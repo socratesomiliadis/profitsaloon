@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import { Inter } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
 import HeaderThemeProvider from "@/hooks/useHeaderTheme";
+import { Toaster } from "sonner";
 
 export const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -17,24 +18,43 @@ export default function App({ Component, pageProps, router }: AppProps) {
         appearance={{
           variables: {
             fontFamily: inter.style.fontFamily,
-            colorPrimary: "#1400FF",
-            colorAlphaShade: "#0f0f0f",
+            fontWeight: 400,
+            colorPrimary: "#fff",
+            colorText: "#fff",
+            fontSmoothing: "never",
           },
           elements: {
-            badge: "pt-1 pb-[0.1rem] px-2 text-xs",
+            badge:
+              "py-1 px-4 rounded-md text-xs bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212]",
+            formFieldInput:
+              "bg-transparent focus:shadow-none bg-gradient-to-r w-[500px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+            formButtonPrimary:
+              "rounded-full font-normal capitalize text-sm px-8 py-2 bg-white text-black tracking-tight",
+            formButtonReset:
+              "rounded-full font-normal capitalize text-sm px-8 py-2 bg-[#282828] text-white tracking-tight",
+            otpCodeFieldInput: "text-white",
+            profileSectionPrimaryButton: "w-[230px] hover:bg-[#282828]/50",
+            form: "items-start",
+            formFieldInput__signOutOfOtherSessions: "checkbox-clerk",
+            accordionTriggerButton: "focus:shadow-none",
           },
         }}
         {...pageProps}
       >
         <MyUserContextProvider>
           <HeaderThemeProvider>
-            <Layout>
-              <NextUIProvider>
+            <NextUIProvider
+              style={{
+                fontFamily: inter.style.fontFamily,
+              }}
+            >
+              <Layout>
+                <Toaster richColors />
                 <AnimatePresence mode="wait">
-                  <Component {...pageProps} key={router.asPath} />
+                  <Component {...pageProps} key={router.pathname} />
                 </AnimatePresence>
-              </NextUIProvider>
-            </Layout>
+              </Layout>
+            </NextUIProvider>
           </HeaderThemeProvider>
         </MyUserContextProvider>
       </ClerkProvider>

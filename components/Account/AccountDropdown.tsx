@@ -18,9 +18,10 @@ export default function AccountDropdown() {
     <Dropdown
       showArrow
       radius="sm"
+      className="bg-black"
       classNames={{
-        base: "p-0 border-small border-divider bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50",
-        arrow: "bg-default-200",
+        base: "p-0 border-small border-divider bg-gradient-to-r from-[#121212]/20 via-[#232323]/20 to-[#121212]/20",
+        arrow: "bg-[#232323]",
       }}
     >
       <DropdownTrigger>
@@ -74,7 +75,12 @@ export default function AccountDropdown() {
           <DropdownItem onClick={() => router.push("/account")} key="account">
             Account
           </DropdownItem>
-          <DropdownItem key="settings">Billing</DropdownItem>
+          <DropdownItem
+            key="billing"
+            onClick={() => router.push("/account?tab=billing")}
+          >
+            Billing
+          </DropdownItem>
         </DropdownSection>
 
         <DropdownSection aria-label="Help & Feedback">

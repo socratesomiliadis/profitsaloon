@@ -9,8 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   if (router.asPath.includes("/videos") && !router.asPath.includes("/account"))
     return <VidLayout>{children}</VidLayout>;
 
-  if (router.asPath.includes("/account"))
-    return <AccLayout>{children}</AccLayout>;
+  if (router.asPath.includes("/account")) return children;
 
   return (
     <div className="layout-wrapper bg-black">

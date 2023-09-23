@@ -172,6 +172,14 @@ input:-webkit-autofill:active {
   top: 50%;
 }
 
+.checkbox-clerk {
+  width: 0.7rem !important;
+}
+
+.cl-profileSectionContent button[aria-label="Delete account"] {
+  @apply font-normal capitalize text-sm px-8 py-2 rounded-full focus:shadow-none;
+}
+
 .tiptap a {
   color: #00ff0a;
 }

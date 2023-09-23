@@ -15,6 +15,9 @@ export default function PhoneInput({
   countryCode,
   setCountryCode,
   hasError,
+  width = "400px",
+  defaultCountry = "United States",
+  defaultPhoneNumberWithCode,
 }: {
   register: any;
   countryName: string;
@@ -22,6 +25,9 @@ export default function PhoneInput({
   countryCode: string;
   setCountryCode: React.Dispatch<React.SetStateAction<string>>;
   hasError: boolean;
+  width?: string;
+  defaultCountry?: string;
+  defaultPhoneNumberWithCode?: string;
 }) {
   const labels = en;
   const sorted = getCountries().sort(function (a, b) {
@@ -30,11 +36,38 @@ export default function PhoneInput({
     return textA < textB ? -1 : textA > textB ? 1 : 0;
   });
 
+  const getCountryCodeFromName = (name: string) => {
+    const country = Object.keys(labels).find(
+      //@ts-expect-error
+      (country: any) => labels[country] === name
+    );
+    return country;
+  };
+
+  const defaultCountryCode = getCountryCodeFromName(
+    defaultCountry || "United States"
+  );
+
+  const defaultCountryNumberCode = `+${getCountryCallingCode(
+    //@ts-expect-error
+    defaultCountryCode
+  )}`;
+  const defaultPhoneNumberWithoutCode = !!defaultPhoneNumberWithCode
+    ? defaultPhoneNumberWithCode?.replace(defaultCountryNumberCode, "")
+    : undefined;
+
+  const defaultKey = `${defaultCountry} (${defaultCountryNumberCode})`;
+
   return (
-    <div className="w-[400px] flex flex-row items-start justify-between gap-1">
+    <div
+      style={{
+        width: width,
+      }}
+      className="w-[400px] flex flex-row items-start justify-between gap-2"
+    >
       <Select
         size="sm"
-        className="w-[120px] bg-transparent"
+        className="basis-[25%] bg-transparent"
         label="Country"
         scrollShadowProps={{
           isEnabled: false,
@@ -46,7 +79,7 @@ export default function PhoneInput({
           setCountryCode(countryNumberCode);
           setCountryName(e.target.value.split("(")[0].trim());
         }}
-        defaultSelectedKeys={["United States (+1)"]}
+        defaultSelectedKeys={[defaultKey]}
         classNames={{
           trigger:
             "bg-gradient-to-r text-white border-[#282828] rounded-xl border-[1px] from-[#121212] via-[#232323] to-[#121212]",
@@ -89,16 +122,17 @@ export default function PhoneInput({
         label="Phone Number"
         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
         size="sm"
-        className="w-[276px]"
+        className="basis-[80%]"
         errorMessage={hasError && "Please provide a valid phone number"}
-        validationState={hasError ? "invalid" : "valid"}
+        isInvalid={hasError}
         {...register("phoneNumber", {
           required: true,
           pattern: /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
         })}
+        defaultValue={defaultPhoneNumberWithoutCode ?? ""}
         classNames={{
           inputWrapper: [
-            "bg-gradient-to-r w-[276px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+            "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
           ],
         }}
       />
