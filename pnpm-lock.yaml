@@ -88,7 +88,7 @@ dependencies:
     version: 18.2.7
   '@uploadthing/react':
     specifier: ^5.6.0
-    version: 5.6.0(next@13.5.2)(react@18.2.0)(uploadthing@5.6.0)(zod@3.22.2)
+    version: 5.6.0(next@13.5.2)(react@18.2.0)(uploadthing@5.5.3)(zod@3.22.2)
   autoprefixer:
     specifier: 10.4.15
     version: 10.4.15(postcss@8.4.28)
@@ -161,6 +161,9 @@ dependencies:
   svix:
     specifier: ^1.12.0
     version: 1.12.0
+  swiper:
+    specifier: ^10.3.0
+    version: 10.3.0
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -174,8 +177,8 @@ dependencies:
     specifier: 5.1.6
     version: 5.1.6
   uploadthing:
-    specifier: ^5.6.0
-    version: 5.6.0(zod@3.22.2)
+    specifier: ^5.5.3
+    version: 5.5.3(zod@3.22.2)
 
 devDependencies:
   '@types/formidable':
@@ -4936,7 +4939,7 @@ packages:
     resolution: {integrity: sha512-UDySsPbdi7wp52WG7mp5CiZwaTvokDubqhm1xhFm73Bqhp0PsGbwSSF5PdCXH4fe8Y4EKGrMyWQ4i1fF9+DVVQ==}
     dev: false
 
-  /@uploadthing/react@5.6.0(next@13.5.2)(react@18.2.0)(uploadthing@5.6.0)(zod@3.22.2):
+  /@uploadthing/react@5.6.0(next@13.5.2)(react@18.2.0)(uploadthing@5.5.3)(zod@3.22.2):
     resolution: {integrity: sha512-Yu7uODrgZrobz2vSzlvyWrScmzj35sao34v49HPfOCYBQS4npuvUz0EgMjU320OA8uFcBBnmPvIqtzUPc2wyxg==}
     peerDependencies:
       next: '*'
@@ -4952,7 +4955,7 @@ packages:
       next: 13.5.2(@babel/core@7.22.19)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       tailwind-merge: 1.14.0
-      uploadthing: 5.6.0(zod@3.22.2)
+      uploadthing: 5.5.3(zod@3.22.2)
     transitivePeerDependencies:
       - '@uploadthing/mime-types'
       - zod
@@ -10088,6 +10091,11 @@ packages:
       - encoding
     dev: false
 
+  /swiper@10.3.0:
+    resolution: {integrity: sha512-o81KZH4phL/dJxKFWpZ/zf78QxOyFMood+c86vJJO0ZeSOoniyzV8HWDsw12KOlQdm4WRxrc/6kfGImAcxcS3w==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
+
   /swr@2.2.0(react@18.2.0):
     resolution: {integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==}
     peerDependencies:
@@ -10481,8 +10489,8 @@ packages:
       picocolors: 1.0.0
     dev: false
 
-  /uploadthing@5.6.0(zod@3.22.2):
-    resolution: {integrity: sha512-IMJc33MheVlF7tTmAEfBTtqSoN9DVJgdfcKI8Ci+cmbcQHNzMAUi8+UarKtj9/HpdRiA+SeykQAiMK0bKeIqGA==}
+  /uploadthing@5.5.3(zod@3.22.2):
+    resolution: {integrity: sha512-ixqkQ7q5LVe2BQ99nwkdD7ChVQ1bfl/eFVotvJAUjdlXvXPWLE6gqHtNh5ijgVOIAU+7clRSvbRUHPq3AZLSbw==}
     dependencies:
       '@uploadthing/mime-types': 0.2.1
       '@uploadthing/shared': 5.2.2(@uploadthing/mime-types@0.2.1)(zod@3.22.2)

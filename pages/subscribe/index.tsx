@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/lib/sanity/sanityClient";
+import { motion } from "framer-motion";
 
 const coursesQuery = groq`*[_type == 'course'] | order(orderRank)`;
 
@@ -32,8 +33,8 @@ const tiersInfo: TierInfoType[] = [
     ],
     calcPrice: (quantity: number) => {
       if (quantity <= 0) return 0;
-      if (quantity <= 2) return quantity * 28.99;
-      if (quantity > 2) return 2 * 28.99 + (quantity - 2) * 14;
+      if (quantity <= 2) return quantity * 88.99;
+      if (quantity > 2) return 2 * 88.99 + (quantity - 2) * 44;
       return 0;
     },
   },
@@ -46,8 +47,8 @@ const tiersInfo: TierInfoType[] = [
     ],
     calcPrice: (quantity: number) => {
       if (quantity <= 0) return 0;
-      if (quantity <= 2) return quantity * 28.99;
-      if (quantity > 2) return 2 * 28.99 + (quantity - 2) * 14;
+      if (quantity <= 2) return quantity * 988.99;
+      if (quantity > 2) return 2 * 988.99 + (quantity - 2) * 494;
       return 0;
     },
   },
@@ -87,14 +88,25 @@ export default function Subscribe({ allCourses }: { allCourses: any[] }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#000000" />
       </Head>
-      <main className="flex flex-col h-screen overflow-hidden">
+      <motion.main
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        className="flex flex-col h-screen overflow-hidden"
+      >
         <SubHeader />
         <SubPage
           tier={currentTier}
           tierInfo={tiersInfo}
           allCourses={allCourses}
         />
-      </main>
+      </motion.main>
     </>
   );
 }

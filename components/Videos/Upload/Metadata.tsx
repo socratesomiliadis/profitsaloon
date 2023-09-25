@@ -6,6 +6,7 @@ import { useState } from "react";
 import { supabaseClientWithAuth } from "@/utils/helpers";
 import { useAuth } from "@clerk/nextjs";
 import { set } from "sanity";
+import { transformCategory } from "@/lib/utils";
 
 export default function Metadata({
   setActiveStep,
@@ -29,8 +30,23 @@ export default function Metadata({
   const [loading, setLoading] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [categories, setCategories] = useState(new Set(["crypto"]));
+  const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [errorsOther, setErrorsOther] = useState<string>("");
   const { isLoaded, getToken, userId, isSignedIn } = useAuth();
+
+  const getCategories = async () => {
+    const token = await getToken({ template: "supabase" });
+    const supabase = await supabaseClientWithAuth(token as string);
+    const { data, error } = await supabase.from("video_categories").select();
+    if (error) {
+      console.error(error);
+      return;
+    }
+    if (data) {
+      const categories = data.map((category) => category.title);
+      setAvailableCategories(categories);
+    }
+  };
 
   const onSubmit = async () => {
     setLoading(true);
@@ -106,7 +122,7 @@ export default function Metadata({
         errorMessage={
           title.length < 3 && "The title must be at least 3 characters long"
         }
-        validationState={title.length < 3 ? "invalid" : "valid"}
+        isInvalid={title.length < 3}
         classNames={{
           inputWrapper: [
             "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
@@ -143,21 +159,14 @@ export default function Metadata({
                 "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
             }}
           >
-            <SelectItem key="crypto" className="text-white">
-              Crypto
-            </SelectItem>
-            <SelectItem key="artificial-intelligence" className="text-white">
-              Artificial Intelligence
-            </SelectItem>
-            <SelectItem key="marketing" className="text-white">
-              Marketing
-            </SelectItem>
-            <SelectItem key="ecommerce" className="text-white">
-              Ecommerce
-            </SelectItem>
-            <SelectItem key="copywriting" className="text-white">
-              Copywriting
-            </SelectItem>
+            {availableCategories?.map((category) => (
+              <SelectItem
+                key={transformCategory(category)}
+                className="text-white"
+              >
+                {category}
+              </SelectItem>
+            ))}
           </Select>
         </div>
       </div>

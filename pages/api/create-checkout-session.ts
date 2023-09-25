@@ -35,7 +35,7 @@ const CreateCheckoutSession: NextApiHandler = async (req, res) => {
           // trial_from_plan: true,
           metadata,
         },
-        success_url: `${getURL()}/account`,
+        success_url: `${getURL()}/subscribe/success`,
         cancel_url: `${getURL()}/subscribe`,
         // consent_collection: {
         //   terms_of_service: "required",

@@ -299,6 +299,7 @@ export default function PlayerWithtThumbnail({
             width={1920}
             height={1080}
             alt=""
+            priority
             className="w-full h-full object-cover absolute z-10"
           />
         )}

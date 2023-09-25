@@ -140,14 +140,11 @@ export default function VideoPage({ videoData }: { videoData: any }) {
               </span>
               <span>{formatDate(videoData?.created_at)}</span>
             </div>
-            {videoData?.id && <LikeBtn videoId={videoData?.id} />}
           </div>
           <div className="mt-7 buttons-wrapper flex flex-row items-center gap-4">
-            <button className="bg-[#1D1D1D] text-white py-3 px-12 rounded-xl">
-              Subscribe
-            </button>
-            <button className="bg-gradient-to-b from-[#E9FF54] to-[#00FF0A] font-medium text-black py-3 px-12 rounded-xl">
-              Buy my Marketing course
+            {videoData?.id && <LikeBtn videoId={videoData?.id} />}
+            <button className="bg-gradient-to-b from-[#BD00FF] to-[#FF00A8] font-medium text-white py-3 px-12 rounded-xl">
+              Marketing Course
             </button>
           </div>
           <div className="w-full h-[1px] bg-[#1D1D1D] my-12"></div>

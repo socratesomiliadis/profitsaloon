@@ -21,6 +21,18 @@ export const formatTime = (time: number) => {
   } else return `${minutes}:${seconds}`;
 };
 
+export function capitalizeWords(str: string) {
+  const words = str.split(" ");
+
+  words
+    .map((word) => {
+      return word[0].toUpperCase() + word.substring(1);
+    })
+    .join(" ");
+
+  return words;
+}
+
 export const formatDate = (date: any) => {
   return new Date(date).toLocaleDateString("en-us", {
     year: "numeric",
@@ -28,3 +40,11 @@ export const formatDate = (date: any) => {
     day: "numeric",
   });
 };
+
+export function transformCategory(category: string) {
+  return category.toLowerCase().replace("& ", "and-").replace(" ", "-");
+}
+
+export function transformCategoryBack(category: string) {
+  return capitalizeWords(category.replace("-and-", "& ").replace("-", " "));
+}

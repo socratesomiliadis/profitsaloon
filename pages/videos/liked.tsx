@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { GetServerSideProps } from "next";
 import { supabaseClientWithAuth } from "@/utils/helpers";
+import { CircularProgress } from "@nextui-org/react";
 
 export default function Liked() {
   const [likedVids, setLikedVids] = useState([]);
@@ -40,7 +41,7 @@ export default function Liked() {
   return (
     <>
       <main className="w-full h-screen flex flex-col items-start pb-24 justify-start px-10">
-        <div className="mt-3 flex flex-row items-center gap-4">
+        {/* <div className="mt-3 flex flex-row items-center gap-4">
           <span className="block w-2">
             <svg
               width="100%"
@@ -71,28 +72,43 @@ export default function Liked() {
           <button className="bg-[#1D1D1D] text-white py-[0.3rem] px-10 rounded-lg">
             Copywriting
           </button>
-        </div>
-        <div className="bg-[#1D1D1D] mt-24 text-white py-4 px-10 rounded-lg">
-          Recommended
+        </div> */}
+        <div className="bg-[#1D1D1D] mt-12 text-white py-4 px-10 rounded-lg">
+          Your liked videos
         </div>
 
-        <div className="mt-8 grid grid-cols-3 gap-8">
-          {likedVids?.map((data: any) => {
-            const vid = data?.videos;
-            return (
-              <VideoItem
-                key={vid?.id}
-                thumbnailURL={vid?.thumbnail_url}
-                videoURL={`/videos/watch/${vid?.id}`}
-                title={vid?.title}
-                channelName={vid?.users?.name}
-                viewcount="1,030,085"
-                duration={103}
-                profileImageURL={vid?.users?.avatar_url}
-              />
-            );
-          })}
-        </div>
+        {likedVids.length > 0 && isLoaded ? (
+          <div className="mt-8 grid grid-cols-3 gap-8">
+            {likedVids?.map((data: any) => {
+              const vid = data?.videos;
+              return (
+                <VideoItem
+                  key={vid?.id}
+                  thumbnailURL={vid?.thumbnail_url}
+                  videoURL={`/videos/watch/${vid?.id}`}
+                  title={vid?.title}
+                  channelName={vid?.users?.name}
+                  viewcount="1,030,085"
+                  duration={103}
+                  profileImageURL={vid?.users?.avatar_url}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <>
+            {isLoaded && (
+              <span className="text-[#818181] text-lg absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                You don&apos;t have any liked videos.
+              </span>
+            )}
+            {!isLoaded && (
+              <span className="text-[#818181] absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                <CircularProgress color="primary" />
+              </span>
+            )}
+          </>
+        )}
       </main>
     </>
   );

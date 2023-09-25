@@ -94,6 +94,13 @@ export default function SubPage({
     }
   };
 
+  const getMinPrice = () => {
+    if (tier === 1) return "$28.99";
+    if (tier === 2) return "$88.99";
+    if (tier === 3) return "$988.99";
+    return 0;
+  };
+
   return (
     <div className="w-screen relative bg-gradient-to-r from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 h-screen flex flex-row">
       <div className="basis-[30%] 2xl:basis-[45%] h-screen left-side relative z-[1]">
@@ -117,7 +124,7 @@ export default function SubPage({
                 <span className="text-[#c1c1c1]">From</span>
                 <div className="flex flex-row items-end gap-2">
                   <span className="text-white text-3xl font-medium">
-                    $28,99
+                    {getMinPrice()}
                   </span>
                   <span className="text-[#c1c1c1] text-sm mb-1">per month</span>
                 </div>
@@ -155,15 +162,52 @@ export default function SubPage({
           </button>
         </div>
 
-        <Image
-          src="/static/images/sub/studentElem.png"
-          width={1600}
-          height={1627}
-          alt=""
-          priority
-          quality={100}
-          className="h-full aspect-[1600/1627] max-w-[45vw] absolute object-bottom w-auto translate-y-[5%] z-[1]"
-        />
+        <div className="h-full aspect-[1600/1627] max-w-[45vw] absolute object-bottom w-auto translate-y-[5%] z-[1]">
+          <div className="w-full h-full relative z-[1]">
+            <Image
+              src={`/static/images/sub/tier1Img.png`}
+              style={{
+                opacity: tier === 1 ? 1 : 0,
+                zIndex: tier === 1 ? 1 : 2,
+                transition: tier !== 1 ? "opacity 0.3s ease-out" : "",
+              }}
+              width={1600}
+              height={1627}
+              alt=""
+              priority
+              quality={100}
+              className="absolute w-full h-full object-contain z-[1]"
+            />
+            <Image
+              src={`/static/images/sub/tier2Img.png`}
+              style={{
+                opacity: tier === 2 ? 1 : 0,
+                zIndex: tier === 2 ? 1 : 2,
+                transition: tier !== 2 ? "opacity 0.3s ease-out" : "",
+              }}
+              width={1600}
+              height={1627}
+              alt=""
+              priority
+              quality={100}
+              className="absolute w-full h-full object-contain z-[1]"
+            />
+            <Image
+              src={`/static/images/sub/tier3Img.png`}
+              style={{
+                opacity: tier === 3 ? 1 : 0,
+                zIndex: tier === 3 ? 1 : 2,
+                transition: tier !== 3 ? "opacity 0.3s ease-out" : "",
+              }}
+              width={1600}
+              height={1627}
+              alt=""
+              priority
+              quality={100}
+              className="absolute w-full h-full object-contain z-[1]"
+            />
+          </div>
+        </div>
       </div>
       <div className="basis-[70%] 2xl:basis-[55%] h-screen right-side relative flex items-start pt-12 3xl:pt-32 justify-end pr-16 z-[2]">
         <div className="h-[80%] 3xl:h-[70%] overflow-hidden rounded-3xl border-[0.5px] text-[#818181] border-[#2b2b2b] w-[80%] flex flex-col">

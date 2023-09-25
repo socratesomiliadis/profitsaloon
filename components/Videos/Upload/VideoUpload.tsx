@@ -1,7 +1,5 @@
 import { UploadDropzone } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
-import Link from "next/link";
-import { VideoDrop } from "./VideoDrop";
 
 export default function VideoUpload({
   setActiveStep,
