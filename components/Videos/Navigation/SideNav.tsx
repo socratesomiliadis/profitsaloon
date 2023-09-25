@@ -14,8 +14,11 @@ function NavItem({
 }) {
   const router = useRouter();
   const asPath = router.asPath;
+  const asPathWithoutQuery = asPath.split("?")[0];
   const isWatch = href === "/videos/watch";
-  const isActive = isWatch ? asPath.includes(href) : asPath === href;
+  const isActive = isWatch
+    ? asPath.includes(href)
+    : asPathWithoutQuery === href;
 
   return (
     <Link
