@@ -1,6 +1,7 @@
 import Player from "@/components/VideoPlayer/Player";
 import CategorySelector from "@/components/Videos/ui/CategorySelector";
 import VideoItem from "@/components/Videos/ui/VideoItem";
+import { transformCategory } from "@/lib/utils";
 import { supabase } from "@/utils/supabase-client";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -8,13 +9,19 @@ import { useEffect } from "react";
 export default function VideosTest({
   homeVids,
   categories,
+  selectedCategory,
 }: {
   homeVids: any;
   categories: any;
+  selectedCategory: string;
 }) {
   useEffect(() => {
     console.log(homeVids);
   }, [homeVids]);
+
+  useEffect(() => {
+    console.log(selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <>
@@ -44,9 +51,13 @@ export default function VideosTest({
         <div className="bg-[#1D1D1D] mt-24 text-white py-4 px-10 rounded-lg">
           Recommended
         </div>
-
+        {homeVids.length <= 0 && (
+          <span className="text-[#818181] text-lg absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+            No videos in this category.
+          </span>
+        )}
         <div className="mt-8 grid grid-cols-3 gap-8">
-          {homeVids.map((vid: any) => (
+          {homeVids?.map((vid: any) => (
             <VideoItem
               key={vid?.id}
               videoAssetURL={vid?.video_url}
@@ -65,15 +76,23 @@ export default function VideosTest({
   );
 }
 
-export async function getStaticProps() {
-  const homeVids = await supabase.from("videos").select("*, users(*)").limit(3);
+export async function getServerSideProps({ query }: { query: any }) {
+  const category = transformCategory(query?.category?.toString() ?? "all");
+  const homeVids =
+    category === "all"
+      ? await supabase.from("videos").select("*, users(*)").limit(3)
+      : await supabase
+          .from("videos")
+          .select("*, users(*)")
+          .containedBy("categories", [category])
+          .limit(3);
   const categories = await supabase.from("video_categories").select("*");
 
   return {
     props: {
       homeVids: homeVids.data,
       categories: categories.data,
+      selectedCategory: category,
     },
-    revalidate: 1,
   };
 }

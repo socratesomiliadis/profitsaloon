@@ -2,7 +2,7 @@ import Tiptap from "@/components/Tiptap";
 import { CircularProgress, Input, Select, SelectItem } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import ThumbUpload from "./ThumbnailUpload";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabaseClientWithAuth } from "@/utils/helpers";
 import { useAuth } from "@clerk/nextjs";
 import { set } from "sanity";
@@ -94,6 +94,10 @@ export default function Metadata({
     }
   };
 
+  useEffect(() => {
+    getCategories().catch((err) => console.log(err));
+  }, []);
+
   return (
     <motion.div
       initial={{
@@ -141,33 +145,36 @@ export default function Metadata({
         />
         <div className="flex flex-col mt-4">
           <span className="text-[#818181]">Categories</span>
-          <Select
-            size="md"
-            className="w-full mt-2 bg-transparent"
-            label="Select Categories"
-            scrollShadowProps={{
-              isEnabled: false,
-            }}
-            selectionMode="multiple"
-            selectedKeys={categories}
-            //@ts-expect-error
-            onSelectionChange={setCategories}
-            classNames={{
-              trigger:
-                "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
-              popover:
-                "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
-            }}
-          >
-            {availableCategories?.map((category) => (
-              <SelectItem
-                key={transformCategory(category)}
-                className="text-white"
-              >
-                {category}
-              </SelectItem>
-            ))}
-          </Select>
+          {availableCategories.length > 0 && (
+            <Select
+              size="md"
+              className="w-full mt-2 bg-transparent"
+              label="Select Categories"
+              scrollShadowProps={{
+                isEnabled: false,
+              }}
+              selectionMode="multiple"
+              selectedKeys={categories}
+              //@ts-expect-error
+              onSelectionChange={setCategories}
+              classNames={{
+                trigger:
+                  "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
+                popover:
+                  "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
+              }}
+            >
+              {availableCategories?.map((category) => (
+                <SelectItem
+                  key={transformCategory(category)}
+                  textValue={transformCategory(category)}
+                  className="text-white"
+                >
+                  {category}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

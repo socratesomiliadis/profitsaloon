@@ -44,9 +44,6 @@ export default function CategorySelector({
         freeMode={true}
         slidesPerView="auto"
         modules={[Navigation, FreeMode]}
-        onSlideChange={(swiper) =>
-          console.log("slide change", swiper.activeIndex)
-        }
         navigation={{
           nextEl: ".swiper-next",
           prevEl: ".swiper-prev",

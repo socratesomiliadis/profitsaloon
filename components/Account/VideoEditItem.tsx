@@ -53,8 +53,26 @@ export default function VideoEditItem({
     }
   }
 
+  const deleteFile = async (key: string) => {
+    const data = {
+      key: key,
+    };
+
+    try {
+      const response = await fetch("/api/ut-delete", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+  };
+
   useEffect(() => {
     if (isDelete) {
+      const keyFromURL = video?.video_url.replace("https://utfs.io/f/", "");
+      deleteFile(keyFromURL).catch((err) => console.log(err));
       deleteVideo().catch((err) => console.log(err));
     }
   }, [isDelete]);

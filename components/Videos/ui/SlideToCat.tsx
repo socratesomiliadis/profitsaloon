@@ -12,7 +12,6 @@ export default function SlideToCat({
     const activeSlideFromQuery = document.querySelector(
       `[data-slide-category=${categoryQuery}]`
     ) as HTMLElement;
-    console.log(activeSlideFromQuery);
     const activeSlideIndex = parseInt(
       activeSlideFromQuery?.dataset?.slideIndex ?? "0"
     );
