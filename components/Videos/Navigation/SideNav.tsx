@@ -45,7 +45,7 @@ function NavItem({
 
 export default function SideNav() {
   return (
-    <aside className="h-full bg-transparent w-fit flex flex-col items-center py-16 px-10 relative border-r-[1px] border-[#1D1D1D]">
+    <aside className="h-full bg-transparent w-fit flex flex-col items-center py-8 px-10 relative border-r-[1px] border-[#1D1D1D]">
       <Link href="/" className="w-10 block text-white">
         <svg
           width="100%"

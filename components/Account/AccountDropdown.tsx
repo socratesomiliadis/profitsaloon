@@ -31,7 +31,7 @@ export default function AccountDropdown() {
             width={100}
             height={100}
             alt=""
-            className="w-10 h-10 rounded-full cursor-pointer"
+            className="w-9 h-9 rounded-full cursor-pointer"
           />
         )}
       </DropdownTrigger>

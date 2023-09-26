@@ -72,7 +72,12 @@ export default function VideoEditItem({
   useEffect(() => {
     if (isDelete) {
       const keyFromURL = video?.video_url.replace("https://utfs.io/f/", "");
+      const thumbnailKeyFromURL = video?.thumbnail_url.replace(
+        "https://utfs.io/f/",
+        ""
+      );
       deleteFile(keyFromURL).catch((err) => console.log(err));
+      deleteFile(thumbnailKeyFromURL).catch((err) => console.log(err));
       deleteVideo().catch((err) => console.log(err));
     }
   }, [isDelete]);

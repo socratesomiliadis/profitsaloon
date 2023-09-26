@@ -92,6 +92,9 @@ export default function ThumbUpload({
             //@ts-expect-error
             setThumbKey(res[0].key);
           }}
+          config={{
+            mode: "auto",
+          }}
           onUploadError={(error: Error) => {
             // Do something with the error.
             alert(`ERROR! ${error.message}`);

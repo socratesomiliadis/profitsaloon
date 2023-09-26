@@ -167,7 +167,6 @@ export default function Metadata({
               {availableCategories?.map((category) => (
                 <SelectItem
                   key={transformCategory(category)}
-                  textValue={transformCategory(category)}
                   className="text-white"
                 >
                   {category}

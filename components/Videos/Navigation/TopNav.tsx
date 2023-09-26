@@ -10,7 +10,7 @@ function AffBtn({ text, link }: { text: string; link: string }) {
       className="p-[1px] overflow-hidden rounded-full bg-gradient-to-b from-[#5c5c5c] to-[#818181]/0"
     >
       <div className="bg-gradient-to-b from-[#121212] via-black to-[#121212] rounded-full overflow-hidden px-12 py-2 flex flex-row items-center whitespace-nowrap gap-3">
-        <span className="w-4">
+        <span className="w-3">
           <svg
             width="100%"
             viewBox="0 0 8 11"
@@ -32,7 +32,7 @@ function AffBtn({ text, link }: { text: string; link: string }) {
             />
           </svg>
         </span>
-        <span className="text-base text-white">{text}</span>
+        <span className="text-sm text-white">{text}</span>
       </div>
     </Link>
   );
@@ -43,8 +43,8 @@ export default function TopNav() {
 
   return (
     <header className="sticky flex flex-row items-center justify-end z-10 w-full top-0 px-24 py-8">
-      <div className="flex flex-row pl-6 pr-32 py-3 items-center gap-3 bg-[#1d1d1d]/50 backdrop-blur-xl rounded-full absolute left-1/2 -translate-x-1/2">
-        <span className="w-6 block">
+      <div className="flex select-none flex-row pl-6 pr-32 py-2 items-center gap-3 bg-[#1d1d1d]/50 backdrop-blur-xl rounded-full absolute left-1/2 -translate-x-1/2">
+        <span className="w-5 block">
           <svg
             width="100%"
             viewBox="0 0 18 18"
@@ -70,7 +70,7 @@ export default function TopNav() {
           //   onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      <div className="flex flex-row items-center gap-12">
+      <div className="flex flex-row items-center gap-6">
         <SignedIn>
           <AccountDropdown />
         </SignedIn>

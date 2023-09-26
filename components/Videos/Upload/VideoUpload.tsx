@@ -45,7 +45,11 @@ export default function VideoUpload({
                 </div>
               );
 
-            return "Getting ready...";
+            return (
+              <span className="text-[#818181] mt-4 text-base whitespace-nowrap font-normal">
+                Getting ready...
+              </span>
+            );
           },
           allowedContent({ ready, fileTypes, isUploading }) {
             // if (!ready) return "Checking what you allow";
@@ -59,6 +63,9 @@ export default function VideoUpload({
         }}
         className="w-full h-full ut-button:rounded-full ut-button:font-normal ut-button:bg-gradient-to-r ut-button:from-[#121212] ut-button:via-[#232323] ut-button:to-[#121212] ut-button:ut-uploading:after:bg-[#818181]/20"
         endpoint="videoUploader"
+        config={{
+          mode: "auto",
+        }}
         onClientUploadComplete={(res) => {
           // Do something with the response
           //@ts-expect-error

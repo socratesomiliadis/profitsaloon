@@ -53,9 +53,9 @@ export default function VideosTest({ categories }: { categories: any[] }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="theme-color" content="#000000" />
       </Head>
-      <main className="w-full h-[200vh] flex flex-col items-start pb-24 justify-start px-10">
+      <main className="w-full flex flex-col items-start pb-24 justify-start px-10">
         <CategorySelector categories={categories} />
-        <div className="bg-[#1D1D1D] mt-24 text-white py-4 px-10 rounded-lg">
+        <div className="bg-[#1D1D1D] ml-6 mt-12 text-white py-3 px-10 rounded-lg">
           Recommended
         </div>
         {!homeVids ||
@@ -64,7 +64,7 @@ export default function VideosTest({ categories }: { categories: any[] }) {
               No videos in this category.
             </span>
           ))}
-        <div className="mt-8 grid grid-cols-3 gap-8">
+        <div className="ml-6 mt-8 grid grid-cols-3 gap-8">
           {homeVids?.map((vid: any) => (
             <VideoItem
               key={vid?.id}

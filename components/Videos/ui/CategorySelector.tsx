@@ -1,13 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, FreeMode } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { useRouter } from "next/router";
 import { transformCategory } from "@/lib/utils";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/free-mode";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SlideToCat from "./SlideToCat";
 
 export default function CategorySelector({
@@ -15,6 +14,16 @@ export default function CategorySelector({
 }: {
   categories: any[];
 }) {
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [swiperPosition, setSwiperPosition] = useState<"start" | "mid" | "end">(
+    "start"
+  );
+
+  useEffect(() => {
+    router.query.category = activeCategory;
+    router.push(router);
+  }, [activeCategory]);
+
   const router = useRouter();
 
   const categoryQuery = transformCategory(
@@ -22,8 +31,13 @@ export default function CategorySelector({
   );
 
   return (
-    <div className="mt-3 flex flex-row items-center gap-4 w-full">
-      <button className="block w-2 swiper-prev">
+    <div className="mt-6 select-none flex flex-row items-center gap-4 w-full">
+      <button
+        style={{
+          opacity: swiperPosition !== "start" ? 1 : 0,
+        }}
+        className="block w-2 swiper-prev hover:scale-[1.2] transition-transform duration-200 ease-out"
+      >
         <svg
           width="100%"
           viewBox="0 0 6 9"
@@ -38,12 +52,37 @@ export default function CategorySelector({
           />
         </svg>
       </button>
+
       <Swiper
-        className="w-full"
-        spaceBetween={20}
-        freeMode={true}
+        style={{
+          maskImage:
+            swiperPosition !== "start"
+              ? swiperPosition === "end"
+                ? "linear-gradient(to right, transparent, black 5%, black 100%)"
+                : "linear-gradient(to right, transparent, black 5%, black 90%, transparent 100%)"
+              : "linear-gradient(to right, black 0%, black 90%, transparent 100%)",
+          WebkitMaskImage:
+            swiperPosition !== "start"
+              ? swiperPosition === "end"
+                ? "linear-gradient(to right, transparent, black 5%, black 100%)"
+                : "linear-gradient(to right, transparent, black 5%, black 90%, transparent 100%)"
+              : "linear-gradient(to right, black 0%, black 90%, transparent 100%)",
+        }}
+        className="w-full select-none overflow-visible transition-[-webkit-mask-image] duration-200 ease-out"
+        spaceBetween={10}
         slidesPerView="auto"
-        modules={[Navigation, FreeMode]}
+        grabCursor={true}
+        modules={[Navigation]}
+        onSlideChange={(swiper) => {
+          setSwiperPosition(
+            swiper.isBeginning ? "start" : swiper.isEnd ? "end" : "mid"
+          );
+        }}
+        onSliderMove={(swiper) => {
+          setSwiperPosition(
+            swiper.isBeginning ? "start" : swiper.isEnd ? "end" : "mid"
+          );
+        }}
         navigation={{
           nextEl: ".swiper-next",
           prevEl: ".swiper-prev",
@@ -51,19 +90,18 @@ export default function CategorySelector({
       >
         <SlideToCat categoryQuery={categoryQuery} />
         <SwiperSlide data-slide-category="all">
-          <button
+          <span
             onClick={() => {
-              router.query.category = "all";
-              router.push(router);
+              setActiveCategory("all");
             }}
             className={`${
-              categoryQuery === "all"
-                ? "bg-gradient-to-b from-[#E9FF54] font-medium to-[#00FF0A] text-black"
-                : "bg-[#1D1D1D] text-white"
-            } text-sm py-[0.3rem] px-10 rounded-xl`}
+              activeCategory === "all"
+                ? "bg-gradient-to-b from-[#E9FF54] to-[#00FF0A] text-black"
+                : "bg-[#1D1D1D] text-white hover:bg-[#303030] transition-colors duration-200 ease-out"
+            } text-sm py-[0.3rem] px-10 rounded-md block cursor-pointer`}
           >
             All
-          </button>
+          </span>
         </SwiperSlide>
 
         {categories.map((cat: any, index: number) => (
@@ -76,23 +114,27 @@ export default function CategorySelector({
             className="w-fit"
             key={index}
           >
-            <button
+            <span
               onClick={() => {
-                router.query.category = transformCategory(cat.title);
-                router.push(router);
+                setActiveCategory(transformCategory(cat.title));
               }}
               className={`${
-                categoryQuery === transformCategory(cat.title)
-                  ? "bg-gradient-to-b font-medium from-[#E9FF54] to-[#00FF0A] text-black"
-                  : "bg-[#1D1D1D] text-white"
-              } text-sm py-[0.3rem] px-10 rounded-xl`}
+                activeCategory === transformCategory(cat.title)
+                  ? "bg-gradient-to-b from-[#E9FF54] to-[#00FF0A] text-black"
+                  : "bg-[#1D1D1D] text-white hover:bg-[#303030] transition-colors duration-200 ease-out"
+              } text-sm py-[0.3rem] px-10 rounded-md block cursor-pointer`}
             >
               {cat.title}
-            </button>
+            </span>
           </SwiperSlide>
         ))}
       </Swiper>
-      <button className="block w-2 rotate-180 swiper-next">
+      <button
+        style={{
+          opacity: swiperPosition !== "end" ? 1 : 0,
+        }}
+        className="block w-2 rotate-180 hover:scale-[1.2] transition-transform duration-200 ease-out swiper-next"
+      >
         <svg
           width="100%"
           viewBox="0 0 6 9"
