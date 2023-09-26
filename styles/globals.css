@@ -138,6 +138,26 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.tier-label {
+  z-index: 1;
+}
+
+.marquee {
+  --gap: 6rem;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__content {
+  display: flex;
+  justify-content: space-around;
+  min-width: fit-content;
+  gap: var(--gap);
+  animation: marqueeScroll 32s linear infinite;
+}
+
 .nextui-input > div,
 .nextui-input button {
   background-color: #000 !important;

@@ -48,7 +48,7 @@ export default function Home() {
         <HeroMasked />
         <MainSection />
         <TierSection />
-        <FeaturedCourses />
+        {/* <FeaturedCourses /> */}
         <Tools />
         <MockupSection />
         <Footer />

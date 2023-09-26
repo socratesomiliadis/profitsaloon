@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Tools() {
   return (
-    <section className="relative bg-black w-screen pt-32 flex flex-col items-center">
+    <section className="relative bg-black w-screen -mt-[5%] flex flex-col items-center">
       <div className="flex flex-col items-center gap-2 z-10">
         <span className="text-transparent text-xl font-medium bg-clip-text bg-gradient-to-t from-[#00FF0A] to-[#E9FF54]">
           Learn the most recent apps

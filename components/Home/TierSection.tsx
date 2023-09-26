@@ -16,7 +16,7 @@ export default function TierSection({
           Start your subscription today.
         </h3>
       </div>
-      <div className="flex w-full flex-row items-center gap-14 px-28 3xl:px-64 z-10">
+      <div className="flex w-full flex-row items-center gap-8 px-28 3xl:px-64 z-10">
         <TierCard
           title="Student"
           price="28,99"
@@ -37,9 +37,9 @@ export default function TierSection({
         />
       </div>
       {!isTiersPage && (
-        <div className="relative mt-[5%] w-full h-[150vh]">
+        <div className="relative w-full h-[1800px]">
           <div className="labels-section z-10">
-            <div className="tier-label flex flex-row items-start gap-4 absolute left-[35%] top-[22.3%]">
+            <div className="tier-label flex flex-row items-start gap-4 absolute left-[35%] top-[27.8%]">
               <svg
                 width="24"
                 viewBox="0 0 18 18"
@@ -67,7 +67,7 @@ export default function TierSection({
                 </p>
               </div>
             </div>
-            <div className="tier-label flex flex-row items-start gap-4 absolute left-[61.5%] top-[38.5%]">
+            <div className="tier-label flex flex-row items-start gap-4 absolute left-[61.5%] top-[40.8%]">
               <svg
                 width="24"
                 viewBox="0 0 18 18"
@@ -95,7 +95,7 @@ export default function TierSection({
                 </p>
               </div>
             </div>
-            <div className="tier-label flex flex-row items-start gap-4 absolute left-[40%] top-[64.4%]">
+            <div className="tier-label flex flex-row items-start gap-4 absolute left-[40%] top-[61.6%]">
               <svg
                 width="24"
                 viewBox="0 0 18 18"

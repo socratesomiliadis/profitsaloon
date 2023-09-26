@@ -5,9 +5,8 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { postData } from "@/utils/helpers";
 import { getStripe } from "@/utils/stripe-client";
-import { set } from "sanity";
+import Link from "next/link";
 import { CircularProgress } from "@nextui-org/react";
-import Spline from "@splinetool/react-spline";
 
 function CourseItem({ title, register }: { title: string; register: any }) {
   return (
@@ -157,9 +156,12 @@ export default function SubPage({
             <span className="text-[#ededed]">Get started</span> with Profit
             Saloon now.
           </p>
-          <button className="bg-[#8A8A8A]/20 py-2 px-10 text-white rounded-full text-sm outline outline-1 outline-offset-4 outline-white">
+          <Link
+            href="/tiers"
+            className="bg-[#8A8A8A]/20 py-2 px-10 text-white rounded-full text-sm outline outline-1 outline-offset-4 outline-white"
+          >
             Learn More
-          </button>
+          </Link>
         </div>
 
         <div className="h-full aspect-[1600/1627] max-w-[45vw] absolute object-bottom w-auto translate-y-[5%] z-[1]">

@@ -112,9 +112,9 @@ export default function TierCard({
               tier: tier,
             },
           }}
-          className="relative w-1/2 group rounded-full p-[1px] bg-gradient-to-t from-white/25 via-[#121212]/25 to-white/25"
+          className="relative w-1/2 group rounded-full border-[1px] border-[#232323]"
         >
-          <span className="flex w-full items-center justify-center gap-2 relative overflow-hidden text-sm py-2 rounded-full bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212] text-white">
+          <span className="flex w-full items-center justify-center gap-2 relative overflow-hidden text-sm py-2 rounded-full bg-[#111111] text-white">
             <span>Get Started</span>
             <span className="w-0 group-hover:w-3 transition-[width] duration-300 ease-out">
               <svg

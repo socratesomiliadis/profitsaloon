@@ -10,27 +10,77 @@ function NewsBtn({ text, link }: { text: string; link: string }) {
       href={link}
       className="p-[1px] overflow-hidden rounded-full bg-gradient-to-b from-[#c3c3c3] to-[#818181]/0"
     >
-      <div className="bg-gradient-to-b from-[#F0F0F0] via-white to-[#f8f8f8] rounded-full overflow-hidden px-8 py-3 flex flex-row items-center whitespace-nowrap gap-2">
-        <span className="w-4">
-          <svg
-            width="100%"
-            viewBox="0 0 15 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="bg-gradient-to-b from-[#F0F0F0] via-white to-[#f8f8f8] rounded-full overflow-hidden py-3 flex flex-row items-center whitespace-nowrap gap-2">
+        <div
+          style={{
+            maskImage:
+              "linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+          }}
+          className="relative flex items-center"
+        >
+          <div
+            style={
+              {
+                "--gap": "1rem",
+              } as React.CSSProperties
+            }
+            className="marquee absolute w-full z-0"
           >
-            <path
-              d="M4.75784 5.18725V3.89044H6.81498V5.18725H4.75784Z"
-              fill="#282828"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M0.643555 1.29681C0.643555 0.580603 1.25756 0 2.01498 0H9.55784C10.3153 0 10.9293 0.580603 10.9293 1.29681V5.18725H12.9864C13.7438 5.18725 14.3578 5.76785 14.3578 6.48406V9.40189C14.3578 10.6553 13.2833 11.6713 11.9578 11.6713H3.04355C1.71807 11.6713 0.643555 10.6553 0.643555 9.40189V1.29681ZM11.9578 10.3745C12.5259 10.3745 12.9864 9.93905 12.9864 9.40189V6.48406H10.9293V9.40189C10.9293 9.93905 11.3898 10.3745 11.9578 10.3745ZM3.38641 8.42928C3.38641 8.07118 3.69342 7.78088 4.07213 7.78088H7.5007C7.87941 7.78088 8.18641 8.07118 8.18641 8.42928C8.18641 8.78739 7.87941 9.07769 7.5007 9.07769H4.07213C3.69342 9.07769 3.38641 8.78739 3.38641 8.42928ZM4.07213 2.59363C3.69342 2.59363 3.38641 2.88393 3.38641 3.24203V5.83566C3.38641 6.19376 3.69342 6.48406 4.07213 6.48406H7.5007C7.87941 6.48406 8.18641 6.19376 8.18641 5.83566V3.24203C8.18641 2.88393 7.87941 2.59363 7.5007 2.59363H4.07213Z"
-              fill="#282828"
-            />
-          </svg>
-        </span>
-        <span className="text-sm">{text}</span>
+            <div className="marquee__content">
+              <div className="flex flex-row items-center gap-2">
+                <span className="block w-4">
+                  <svg
+                    width="100%"
+                    viewBox="0 0 15 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.75784 5.18725V3.89044H6.81498V5.18725H4.75784Z"
+                      fill="#282828"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.643555 1.29681C0.643555 0.580603 1.25756 0 2.01498 0H9.55784C10.3153 0 10.9293 0.580603 10.9293 1.29681V5.18725H12.9864C13.7438 5.18725 14.3578 5.76785 14.3578 6.48406V9.40189C14.3578 10.6553 13.2833 11.6713 11.9578 11.6713H3.04355C1.71807 11.6713 0.643555 10.6553 0.643555 9.40189V1.29681ZM11.9578 10.3745C12.5259 10.3745 12.9864 9.93905 12.9864 9.40189V6.48406H10.9293V9.40189C10.9293 9.93905 11.3898 10.3745 11.9578 10.3745ZM3.38641 8.42928C3.38641 8.07118 3.69342 7.78088 4.07213 7.78088H7.5007C7.87941 7.78088 8.18641 8.07118 8.18641 8.42928C8.18641 8.78739 7.87941 9.07769 7.5007 9.07769H4.07213C3.69342 9.07769 3.38641 8.78739 3.38641 8.42928ZM4.07213 2.59363C3.69342 2.59363 3.38641 2.88393 3.38641 3.24203V5.83566C3.38641 6.19376 3.69342 6.48406 4.07213 6.48406H7.5007C7.87941 6.48406 8.18641 6.19376 8.18641 5.83566V3.24203C8.18641 2.88393 7.87941 2.59363 7.5007 2.59363H4.07213Z"
+                      fill="#282828"
+                    />
+                  </svg>
+                </span>
+                <span className="text-sm">{text}</span>
+              </div>
+            </div>
+            <div aria-hidden className="marquee__content">
+              <div className="flex flex-row items-center gap-2">
+                <span className="block w-4">
+                  <svg
+                    width="100%"
+                    viewBox="0 0 15 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.75784 5.18725V3.89044H6.81498V5.18725H4.75784Z"
+                      fill="#282828"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.643555 1.29681C0.643555 0.580603 1.25756 0 2.01498 0H9.55784C10.3153 0 10.9293 0.580603 10.9293 1.29681V5.18725H12.9864C13.7438 5.18725 14.3578 5.76785 14.3578 6.48406V9.40189C14.3578 10.6553 13.2833 11.6713 11.9578 11.6713H3.04355C1.71807 11.6713 0.643555 10.6553 0.643555 9.40189V1.29681ZM11.9578 10.3745C12.5259 10.3745 12.9864 9.93905 12.9864 9.40189V6.48406H10.9293V9.40189C10.9293 9.93905 11.3898 10.3745 11.9578 10.3745ZM3.38641 8.42928C3.38641 8.07118 3.69342 7.78088 4.07213 7.78088H7.5007C7.87941 7.78088 8.18641 8.07118 8.18641 8.42928C8.18641 8.78739 7.87941 9.07769 7.5007 9.07769H4.07213C3.69342 9.07769 3.38641 8.78739 3.38641 8.42928ZM4.07213 2.59363C3.69342 2.59363 3.38641 2.88393 3.38641 3.24203V5.83566C3.38641 6.19376 3.69342 6.48406 4.07213 6.48406H7.5007C7.87941 6.48406 8.18641 6.19376 8.18641 5.83566V3.24203C8.18641 2.88393 7.87941 2.59363 7.5007 2.59363H4.07213Z"
+                      fill="#282828"
+                    />
+                  </svg>
+                </span>
+                <span className="text-sm">{text}</span>
+              </div>
+            </div>
+          </div>
+          <span className="placeholder-text px-8 opacity-0 pointer-events-none text-sm">
+            {text}
+          </span>
+        </div>
       </div>
     </Link>
   );
@@ -209,7 +259,7 @@ export default function MainSection() {
           alt=""
           quality={100}
           priority
-          className="w-[130%] ml-[12%] z-[3] max-w-none object-center object-cover opacity-100"
+          className="w-[130%] pointer-events-none ml-[12%] z-[3] max-w-none object-center object-cover opacity-100"
         />
       </div>
     </section>
