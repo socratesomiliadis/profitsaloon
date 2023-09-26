@@ -88,7 +88,7 @@ export default function Header() {
           </Link>
         </span>
       </div>
-      <div className="flex flex-row items-center gap-12">
+      <div className="flex flex-row items-center gap-6">
         <SignedIn>
           <AccountDropdown />
         </SignedIn>

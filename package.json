@@ -55,6 +55,7 @@
     "react-hook-form": "^7.46.1",
     "react-phone-number-input": "^3.3.6",
     "react-player": "^2.13.0",
+    "react-qr-code": "^2.0.12",
     "sanity": "^3.16.7",
     "screenfull": "^6.0.2",
     "sonner": "^1.0.3",

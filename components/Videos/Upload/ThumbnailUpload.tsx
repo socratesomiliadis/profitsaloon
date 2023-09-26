@@ -82,7 +82,7 @@ export default function ThumbUpload({
             //   return <button className="absolute inset-0"></button>;
             // },
           }}
-          className="w-full aspect-video bg-gradient-to-r border-[#282828] border-[1px] from-[#0b0c0b] to-[#020202] ut-button:rounded-full ut-button:font-normal ut-button:bg-gradient-to-r ut-button:from-[#121212] ut-button:via-[#232323] ut-button:to-[#121212] ut-button:ut-uploading:after:bg-[#818181]/20"
+          className="w-full aspect-video bg-black border-[#282828] border-[1px] ut-button:rounded-full ut-button:font-normal ut-button:bg-gradient-to-r ut-button:from-[#121212] ut-button:via-[#232323] ut-button:to-[#121212] ut-button:ut-uploading:after:bg-[#818181]/20"
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {
             // Do something with the response

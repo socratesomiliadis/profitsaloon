@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import QRCode from "react-qr-code";
 
 export default function Referal({
   setActiveStep,
@@ -63,19 +64,18 @@ export default function Referal({
       </div>
       <div key="refs" className="mt-10 flex flex-col items-start gap-6">
         <div className="flex flex-row items-start gap-6">
-          <div className="bg-gradient-to-r  border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212] p-2">
-            <Image
-              src="/static/images/qr.png"
-              width={200}
-              height={200}
-              alt=""
-              className="w-32"
+          <div className="bg-black border-[#282828] border-[1px] rounded-xl p-2">
+            <QRCode
+              size={256}
+              className="w-32 h-32"
+              value={`https://profitsaloon.com/?ref=${user?.username}`}
+              viewBox={`0 0 256 256`}
             />
           </div>
           <Snippet
             classNames={{
               base: [
-                "bg-gradient-to-r font-normal w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "bg-black font-normal w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
               ],
               pre: "font-[inherit]",
             }}
@@ -87,7 +87,7 @@ export default function Referal({
               },
             }}
             hideSymbol
-            codeString="https://profitsaloon.com/?ref=123456"
+            codeString={`https://profitsaloon.com/?ref=${user?.username}`}
           >
             Click to copy the referral link
           </Snippet>

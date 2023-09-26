@@ -138,6 +138,11 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.nextui-input > div,
+.nextui-input button {
+  background-color: #000 !important;
+}
+
 .swiper-wrapper {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;

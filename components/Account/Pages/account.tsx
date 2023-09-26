@@ -116,10 +116,10 @@ export default function AccountMain() {
               "Your username must be at least 3 characters long"
             }
             isInvalid={!!errors.username}
-            className="bg-black hover:bg-black data-[focus=true]:bg-black"
+            className="bg-black nextui-input"
             classNames={{
               inputWrapper: [
-                "bg-black data-[hover=true]:bg-black  w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "bg-black w-full text-white border-[#282828] border-[1px] rounded-xl",
               ],
             }}
             {...register("username", {
@@ -138,9 +138,10 @@ export default function AccountMain() {
               errors.name && "Your name must be at least 3 characters long"
             }
             isInvalid={!!errors.name}
+            className="bg-black nextui-input"
             classNames={{
               inputWrapper: [
-                "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "w-full text-white border-[#282828] border-[1px] rounded-xl",
               ],
             }}
             {...register("name", {
@@ -170,12 +171,13 @@ export default function AccountMain() {
             defaultSelectedKeys={[user?.unsafeMetadata?.birth_year]}
             errorMessage={errors.birthYear && "Please enter a valid birth year"}
             isInvalid={!!errors.birthYear}
+            className="nextui-input"
             classNames={{
               trigger: [
-                "bg-gradient-to-r w-[500px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "w-[500px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
               ],
               popover: [
-                "bg-gradient-to-r w-[500px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "bg-black w-[500px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
               ],
             }}
             {...register("birthYear", {

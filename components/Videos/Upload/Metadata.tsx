@@ -126,10 +126,11 @@ export default function Metadata({
         errorMessage={
           title.length < 3 && "The title must be at least 3 characters long"
         }
+        className="nextui-input"
         isInvalid={title.length < 3}
         classNames={{
           inputWrapper: [
-            "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
+            "w-full text-white border-[#282828] border-[1px] rounded-xl",
           ],
         }}
         value={title}
@@ -148,7 +149,7 @@ export default function Metadata({
           {availableCategories.length > 0 && (
             <Select
               size="md"
-              className="w-full mt-2 bg-transparent"
+              className="w-full mt-2 bg-transparent nextui-input"
               label="Select Categories"
               scrollShadowProps={{
                 isEnabled: false,
@@ -159,9 +160,9 @@ export default function Metadata({
               onSelectionChange={setCategories}
               classNames={{
                 trigger:
-                  "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
+                  "bg-transparent w-full text-white border-[#282828] border-[1px] rounded-xl ",
                 popover:
-                  "bg-transparent bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]",
+                  "bg-black w-full text-white border-[#282828] border-[1px] rounded-xl",
               }}
             >
               {availableCategories?.map((category) => (

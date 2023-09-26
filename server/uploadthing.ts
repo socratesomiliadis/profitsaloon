@@ -31,7 +31,7 @@ export const ourFileRouter = {
 
       console.log("File url", file.url);
     }),
-  imageUploader: f({ image: { maxFileSize: "2MB", maxFileCount: 1 } })
+  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req, res }) => {
       // This code runs on your server before upload

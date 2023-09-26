@@ -25,7 +25,11 @@ export default function LeftItem({
       : tab === undefined
     : currTab === tab;
 
-  const href = !!tab ? { pathname: `/account`, query: { tab } } : "/account";
+  const href = !!tab
+    ? { pathname: `/account`, query: { tab } }
+    : !!courseHref
+    ? courseHref
+    : "/account";
   const ref = useRef<HTMLAnchorElement>(null);
 
   return (

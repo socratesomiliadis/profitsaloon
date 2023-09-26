@@ -1,13 +1,14 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { groq } from "next-sanity";
-import { useEffect, useState } from "react";
-import { assetUrlFor, sanityClient, urlFor } from "@/lib/sanity/sanityClient";
+import { useEffect, useState, useLayoutEffect } from "react";
+import { sanityClient } from "@/lib/sanity/sanityClient";
 import gsap from "gsap";
-import { CircularProgress, ScrollShadow } from "@nextui-org/react";
+import { CircularProgress } from "@nextui-org/react";
 import { PortableText } from "@portabletext/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Footer from "@/components/Footer/Footer";
+import { useHeaderTheme } from "@/hooks/useHeaderTheme";
 import { useUser } from "@/utils/getUser";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +36,12 @@ export default function Course({
   );
   const nextCourseIndex = (currentCourseIndex + 1) % allCourses.length;
   const nextCourse = allCourses[nextCourseIndex];
+
+  const { setHeaderTheme } = useHeaderTheme();
+
+  useLayoutEffect(() => {
+    setHeaderTheme("dark");
+  }, []);
 
   useEffect(() => {
     if (!isLoading) {

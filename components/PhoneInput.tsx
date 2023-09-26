@@ -67,7 +67,7 @@ export default function PhoneInput({
     >
       <Select
         size="sm"
-        className="basis-[25%] bg-transparent"
+        className="basis-[25%] nextui-input"
         label="Country"
         scrollShadowProps={{
           isEnabled: false,
@@ -81,10 +81,9 @@ export default function PhoneInput({
         }}
         defaultSelectedKeys={[defaultKey]}
         classNames={{
-          trigger:
-            "bg-gradient-to-r text-white border-[#282828] rounded-xl border-[1px] from-[#121212] via-[#232323] to-[#121212]",
+          trigger: " text-white border-[#282828] rounded-xl border-[1px]",
           popover:
-            "bg-gradient-to-r w-[250px] text-white border-[#282828] rounded-xl border-[1px] from-[#121212] via-[#232323] to-[#121212]",
+            "bg-black w-[250px] text-white border-[#282828] rounded-xl border-[1px]",
         }}
         renderValue={(items) => {
           return items.map((item) => {
@@ -122,7 +121,7 @@ export default function PhoneInput({
         label="Phone Number"
         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
         size="sm"
-        className="basis-[80%]"
+        className="basis-[80%] nextui-input"
         errorMessage={hasError && "Please provide a valid phone number"}
         isInvalid={hasError}
         {...register("phoneNumber", {
@@ -132,7 +131,7 @@ export default function PhoneInput({
         defaultValue={defaultPhoneNumberWithoutCode ?? ""}
         classNames={{
           inputWrapper: [
-            "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+            "w-full text-white border-[#282828] border-[1px] rounded-xl",
           ],
         }}
       />

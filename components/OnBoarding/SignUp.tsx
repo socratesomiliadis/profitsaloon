@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useSignUp } from "@clerk/nextjs";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Input } from "@nextui-org/react";
+import { Input, Select, SelectItem } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
 import PhoneInput from "../PhoneInput";
@@ -22,6 +22,16 @@ export default function SignUp({
   const [countryCode, setCountryCode] = useState("+1");
   const [isVisible, setIsVisible] = useState(false);
   const [clerkErrors, setClerkErrors] = useState<any>(null);
+  const generateYearOptions = () => {
+    const years = [];
+    for (let i = 1920; i < 2021; i++) {
+      years.push(i);
+    }
+    const reversed = years.reverse();
+    return reversed;
+  };
+
+  const [years, setYears] = useState(generateYearOptions());
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -143,7 +153,7 @@ export default function SignUp({
                 type="text"
                 label="Username"
                 size="sm"
-                className="basis-1/2"
+                className="basis-1/2 nextui-input"
                 errorMessage={
                   errors.username &&
                   "Your username must be at least 3 characters long"
@@ -151,7 +161,7 @@ export default function SignUp({
                 isInvalid={!!errors.username}
                 classNames={{
                   inputWrapper: [
-                    "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                    "w-full text-white border-[#282828] border-[1px] rounded-xl",
                   ],
                 }}
                 {...register("username", {
@@ -163,7 +173,7 @@ export default function SignUp({
                 type="text"
                 label="Name"
                 size="sm"
-                className="basis-1/2"
+                className="basis-1/2 nextui-input"
                 autoComplete="fullName"
                 errorMessage={
                   errors.name && "Your name must be at least 3 characters long"
@@ -171,7 +181,7 @@ export default function SignUp({
                 isInvalid={!!errors.name}
                 classNames={{
                   inputWrapper: [
-                    "bg-gradient-to-r w-full text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                    "w-full text-white border-[#282828] border-[1px] rounded-xl",
                   ],
                 }}
                 {...register("name", {
@@ -186,9 +196,10 @@ export default function SignUp({
               size="sm"
               errorMessage={errors.email && "Please enter a valid email"}
               isInvalid={!!errors.email}
+              className="nextui-input"
               classNames={{
                 inputWrapper: [
-                  "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                  "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                 ],
               }}
               {...register("email", {
@@ -199,9 +210,10 @@ export default function SignUp({
             <Input
               label="Password"
               size="sm"
+              className="nextui-input"
               classNames={{
                 inputWrapper: [
-                  "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                  "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                 ],
               }}
               errorMessage={
@@ -271,24 +283,33 @@ export default function SignUp({
               //@ts-expect-error
               hasError={errors.phoneNumber}
             />
-            <Input
-              type="number"
+            <Select
               label="Birth Year"
               size="sm"
               errorMessage={
                 errors.birthYear && "Please enter a valid birth year"
               }
               isInvalid={!!errors.birthYear}
+              className="nextui-input"
               classNames={{
-                inputWrapper: [
-                  "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                trigger: [
+                  "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
+                ],
+                popover: [
+                  "bg-black w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                 ],
               }}
               {...register("birthYear", {
                 required: true,
                 pattern: /(?:(?:19|20|21)[0-9]{2})/g,
               })}
-            />
+            >
+              {years.map((year) => (
+                <SelectItem key={year} textValue={year.toString()}>
+                  {year}
+                </SelectItem>
+              ))}
+            </Select>
             <button
               type="submit"
               className="px-6 py-2 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"

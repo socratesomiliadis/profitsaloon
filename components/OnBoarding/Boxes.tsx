@@ -49,7 +49,7 @@ function Counter({ current, total }: { current: number; total: number }) {
 
 export default function Boxes({ children }: { children?: React.ReactNode }) {
   const { isSignedIn, user, isLoaded } = useUser();
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const [goalsDone, setGoalsDone] = useState(false);
   const [referalsDone, setReferalsDone] = useState(false);
 

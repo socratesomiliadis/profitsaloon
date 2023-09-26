@@ -67,7 +67,7 @@ export default function OnBoarding() {
             ease: "easeOut",
           },
         }}
-        className="bg-black overflow-hidden w-screen h-screen onboarding flex items-center justify-center"
+        className="bg-black overflow-hidden w-screen h-screen flex items-center justify-center"
       >
         <Boxes></Boxes>
       </motion.div>

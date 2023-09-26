@@ -48,9 +48,9 @@ export default function AccLayout({
           ease: "easeOut",
         },
       }}
-      className="bg-black overflow-hidden w-screen h-screen account flex items-center justify-center px-6 lg:px-64 2xl:px-72"
+      className="bg-black overflow-hidden w-screen h-screen account flex items-center justify-center px-64 2xl:px-72"
     >
-      <div className="relative w-full h-[83vh] 3xl:h-[83vh] rounded-3xl border-[#2B2B2B] border-[1px] flex flex-row">
+      <div className="relative w-full h-[83vh] rounded-3xl border-[#2B2B2B] border-[1px] flex flex-row">
         <aside className="z-[1] w-[27%] h-full border-r-[1px] border-[#2b2b2b] relative flex flex-col justify-between p-6">
           <div className="h-full flex flex-col items-start gap-3">
             <div className="flex flex-row items-center gap-3">
@@ -179,7 +179,7 @@ export default function AccLayout({
                     key={course._id}
                     icon={<span className="block">$</span>}
                     title={course.title}
-                    courseHref={`/courses/${course.slug}`}
+                    courseHref={`/courses/${course.slug.current}`}
                     colorCode={course.courseColorCode}
                     // href="/account/billing"
                   />
@@ -210,7 +210,9 @@ export default function AccLayout({
                     />
                   </svg>
                 </span>
-                <span>Log out</span>
+                <span className=" group-hover:scale-105 transition-transform duration-250 ease-out">
+                  Log out
+                </span>
               </button>
             </div>
           </div>

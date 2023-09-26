@@ -128,11 +128,12 @@ export default function ForgotPassword({
                 type="email"
                 label="E-mail"
                 size="md"
+                className="nextui-input"
                 errorMessage={errors.email && "Please enter a valid email"}
                 validationState={errors.email ? "invalid" : "valid"}
                 classNames={{
                   inputWrapper: [
-                    "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                    "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                   ],
                 }}
                 {...register("email", {
@@ -172,9 +173,10 @@ export default function ForgotPassword({
               <Input
                 label="New password"
                 size="md"
+                className="nextui-input"
                 classNames={{
                   inputWrapper: [
-                    "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                    "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                   ],
                 }}
                 errorMessage={
@@ -240,13 +242,14 @@ export default function ForgotPassword({
                 type="text"
                 label="Reset password code"
                 size="md"
+                className="nextui-input"
                 errorMessage={
                   errors.code && "The verification code is 6 digits long"
                 }
                 validationState={errors.code ? "invalid" : "valid"}
                 classNames={{
                   inputWrapper: [
-                    "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                    "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                   ],
                 }}
                 {...register("code", {

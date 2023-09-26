@@ -4,7 +4,7 @@ import { Snippet } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@nextui-org/react";
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
+import QRCode from "react-qr-code";
 
 export default function ShareVideo({
   setActiveStep,
@@ -52,12 +52,11 @@ export default function ShareVideo({
         <div key="refs" className="mt-10 flex flex-col items-start gap-6">
           <div className="flex flex-row items-start gap-6">
             <div className="bg-gradient-to-r border-[#282828] border-[1px] rounded-xl from-[#121212]/50 via-[#232323]/50 to-[#121212]/50 p-2">
-              <Image
-                src="/static/images/qr.png"
-                width={200}
-                height={200}
-                alt=""
-                className="w-32"
+              <QRCode
+                size={256}
+                className="w-32 h-32"
+                value={`https://profitsaloon.com/?ref=${user?.username}`}
+                viewBox={`0 0 256 256`}
               />
             </div>
             <Snippet

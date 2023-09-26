@@ -29,7 +29,7 @@ const Tiptap = ({
   });
 
   return (
-    <div className="editor-wrapper relative text-white tiptap-editor focus:outline-none px-4 pt-2 pb-4 mt-4 bg-gradient-to-r w-full border-[#282828] border-[1px] rounded-xl from-[#0b0c0b] to-[#020202]">
+    <div className="editor-wrapper relative text-white tiptap-editor focus:outline-none px-4 pt-2 pb-4 mt-4 bg-black w-full border-[#282828] border-[1px] rounded-xl">
       <span className="text-foreground-600 text-sm">Description</span>
       <EditorContent className="mt-2 h-[180px] overflow-auto" editor={editor} />
     </div>

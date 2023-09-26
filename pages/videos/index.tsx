@@ -21,13 +21,14 @@ export default function VideosTest({ categories }: { categories: any[] }) {
         : await supabase
             .from("videos")
             .select("*, users(*)")
-            .containedBy("categories", [category])
+            .overlaps("categories", [category])
             .limit(3);
     setHomeVids(vids.data);
   };
 
   useEffect(() => {
-    getVids(category);
+    console.log(category);
+    getVids(category).catch((err) => console.error(err));
   }, [category]);
 
   return (

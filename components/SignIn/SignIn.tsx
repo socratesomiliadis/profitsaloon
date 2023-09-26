@@ -99,30 +99,32 @@ export default function SignIn({
               errors.email_or_username &&
               "Please enter a valid email or username"
             }
-            validationState={errors.email_or_username ? "invalid" : "valid"}
+            isInvalid={!!errors.email_or_username}
+            className="nextui-input"
             classNames={{
               inputWrapper: [
-                "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
               ],
             }}
             {...register("email_or_username", {
               required: true,
             })}
           />
-          <div className="w-[400px] flex flex-col items-end">
+          <div className="w-[400px] flex flex-col items-start">
             <Input
               label="Password"
               size="md"
+              className="nextui-input"
               classNames={{
                 inputWrapper: [
-                  "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                  "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
                 ],
               }}
               errorMessage={
                 errors.password &&
                 "Your password must be at least 8 characters long"
               }
-              validationState={errors.password ? "invalid" : "valid"}
+              isInvalid={!!errors.password}
               endContent={
                 <button
                   className="focus:outline-none mr-1"
@@ -176,6 +178,24 @@ export default function SignIn({
                 validate: (value) => value.length >= 8,
               })}
             />
+          </div>
+          <div className="w-full flex flex-row items-center justify-between">
+            <button
+              type="submit"
+              className="mt-2 px-6 py-2 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"
+            >
+              {loading && (
+                <CircularProgress
+                  size="sm"
+                  color="default"
+                  aria-label="Loading..."
+                  classNames={{
+                    svg: "w-4 h-4",
+                  }}
+                />
+              )}
+              <span>Sign in</span>
+            </button>
             <button
               onClick={() => setResetPassword(true)}
               className="text-white mt-2 text-sm mr-1"
@@ -183,22 +203,6 @@ export default function SignIn({
               Forgot Password?
             </button>
           </div>
-          <button
-            type="submit"
-            className="mt-2 px-6 py-2 rounded-full bg-white text-black text-sm flex flex-row items-center gap-3"
-          >
-            {loading && (
-              <CircularProgress
-                size="sm"
-                color="default"
-                aria-label="Loading..."
-                classNames={{
-                  svg: "w-4 h-4",
-                }}
-              />
-            )}
-            <span>Sign in</span>
-          </button>
           {clerkErrors && (
             <span className="text-sm text-red-500">{clerkErrors}</span>
           )}

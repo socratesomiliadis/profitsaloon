@@ -143,14 +143,14 @@ export default function Goals({
               className="profit-checkbox"
               classNames={{
                 base: cn(
-                  "inline-flex w-[500px] m-0 bg-gradient-to-r from-[#121212] via-[#232323] to-[#121212]",
+                  "inline-flex w-[500px] m-0 bg-black bg-gradient-to-r from-transparent to-transparent",
                   "items-center justify-start",
-                  "cursor-pointer rounded-lg gap-2 p-4 border-[1px] border-[#282828] transition-all duration-200 ease-out data-[selected=true]:via-[#174B3B]/30"
+                  "cursor-pointer rounded-lg gap-2 px-4 py-3 border-[1px] border-[#282828] transition-all duration-200 ease-out data-[selected=true]:via-[#174B3B]/30"
                 ),
               }}
               value={goal.title}
             >
-              <div className="w-[500px] text-white flex flex-row items-center gap-4 text-lg">
+              <div className="w-[500px] text-white flex flex-row items-center gap-4 text-base">
                 <span className="w-4">{goal.icon}</span>
                 <span>{goal.title}</span>
               </div>
