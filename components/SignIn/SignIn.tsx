@@ -82,7 +82,7 @@ export default function SignIn({
       >
         <div className="flex flex-col gap-1">
           <h2 className="text-white text-4xl font-medium">
-            Sign in to Profit Saloon.
+            Sign in to Profit Saloon
           </h2>
           <p className="text-[#5c5c5c]">Sign up to get started!</p>
         </div>

@@ -139,7 +139,7 @@ export default function SignUp({
         >
           <div className="flex flex-col gap-1">
             <h2 className="text-white text-4xl font-medium">
-              Time to start making Profit.
+              Time to start making Profit
             </h2>
             <p className="text-[#5c5c5c]">Sign up to get started!</p>
           </div>
@@ -366,13 +366,14 @@ export default function SignUp({
             type="text"
             label="Code"
             size="sm"
+            className="nextui-input"
             errorMessage={
               errors.code && "The verification code is 6 digits long"
             }
-            validationState={errors.code ? "invalid" : "valid"}
+            isInvalid={!!errors.code}
             classNames={{
               inputWrapper: [
-                "bg-gradient-to-r w-[400px] text-white border-[#282828] border-[1px] rounded-xl from-[#121212] via-[#232323] to-[#121212]",
+                "w-[400px] text-white border-[#282828] border-[1px] rounded-xl",
               ],
             }}
             {...register("code", {

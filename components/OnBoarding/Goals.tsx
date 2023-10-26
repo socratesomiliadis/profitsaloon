@@ -127,7 +127,7 @@ export default function Goals({
       </div>
       <div key="goals-form" className="mt-10 flex flex-col items-start gap-6">
         <CheckboxGroup
-          label="Select your goals"
+          // label="Select your goals"
           classNames={{
             base: "w-full",
             label: "w-full text-[#5c5c5c]",

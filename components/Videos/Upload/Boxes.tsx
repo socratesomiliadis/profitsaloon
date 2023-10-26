@@ -52,7 +52,7 @@ function Counter({ current, total }: { current: number; total: number }) {
 
 export default function Boxes() {
   const { isSignedIn, user, isLoaded } = useUser();
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const [uploadDone, setUploadDone] = useState(false);
   const [metadataDone, setMetadataDone] = useState(false);
   const [videoURL, setVideoURL] = useState("");
